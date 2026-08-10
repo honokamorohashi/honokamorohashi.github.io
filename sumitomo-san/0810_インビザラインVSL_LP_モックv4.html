@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新宿デンタルオフィス｜インビザラインLP v4（VSLモック）</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; color: #1e293b; line-height: 1.8; max-width: 480px; margin: 0 auto; background: #f8fafc; font-size: 15px; }
+
+/* ========== FV Section ========== */
+.fv { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: #fff; padding: 0; text-align: center; }
+.fv-banner { background: #dc2626; padding: 10px 16px; font-size: 13px; letter-spacing: 1px; }
+.fv-banner span { display: inline-block; border: 1px solid #fff; padding: 2px 12px; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.fv-sub { padding: 20px 20px 0; font-size: 13px; line-height: 1.7; opacity: 0.9; }
+.fv-video { margin: 20px 16px; background: #000; border: 2px solid #fff; border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+.fv-video-placeholder { color: #94a3b8; font-size: 13px; text-align: center; padding: 20px; }
+.fv-video-placeholder .icon { font-size: 40px; margin-bottom: 8px; display: block; opacity: 0.5; }
+.fv-arrow { font-size: 20px; margin: 8px 0; opacity: 0.6; }
+
+/* ========== CTA Button ========== */
+.cta-section { padding: 20px 16px; text-align: center; }
+.cta-section.dark { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); }
+.cta-btn { display: block; background: linear-gradient(135deg, #06C755 0%, #05a848 100%); color: #fff; text-decoration: none; padding: 18px 24px; border-radius: 60px; font-size: 17px; font-weight: 700; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(6,199,85,0.4); transition: transform 0.2s; position: relative; }
+.cta-btn::after { content: '\203A'; position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-size: 22px; }
+.cta-note { font-size: 11px; color: #94a3b8; margin-top: 8px; }
+.cta-note.dark { color: #94a3b8; }
+.cta-note.light { color: #64748b; }
+
+/* ========== Target Circles ========== */
+.target-circles { display: flex; justify-content: center; gap: 8px; padding: 24px 16px 8px; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); flex-wrap: wrap; }
+.target-circle { width: 100px; height: 100px; border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; font-weight: 700; color: #fff; line-height: 1.4; padding: 8px; }
+
+/* ========== Content Sections ========== */
+.section { padding: 40px 20px; }
+.section-dark { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: #fff; }
+.section-light { background: #fff; }
+.section-cream { background: #faf8f5; }
+.section-muted { background: #f1f5f9; }
+
+.section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; }
+.section-title { font-size: 22px; font-weight: 700; line-height: 1.5; margin-bottom: 20px; }
+.section-title-light { color: #fff; }
+.section-title-dark { color: #0f172a; }
+.section-body { font-size: 14.5px; line-height: 2; }
+.section-body p { margin-bottom: 16px; }
+
+/* ========== Problem List ========== */
+.problem-list { list-style: none; padding: 0; }
+.problem-list li { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; line-height: 1.7; position: relative; padding-left: 28px; }
+.problem-list li::before { content: '\203A'; position: absolute; left: 8px; color: #f97316; font-size: 18px; font-weight: 700; }
+.problem-list.dark li { border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
+.problem-list.light li { border-color: #e2e8f0; color: #334155; }
+
+/* ========== Feature Cards ========== */
+.feature-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.feature-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px; }
+.feature-card.light { background: #fff; border-color: #e2e8f0; }
+.feature-num { font-size: 28px; font-weight: 800; color: #06C755; margin-bottom: 8px; font-family: 'Georgia', serif; }
+.feature-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.feature-desc { font-size: 13.5px; line-height: 1.8; opacity: 0.85; }
+
+/* ========== Doctor Profile ========== */
+.doctor-section { text-align: center; }
+.doctor-photo { width: 140px; height: 140px; border-radius: 50%; background: #e2e8f0; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #94a3b8; border: 3px solid #cbd5e1; }
+.doctor-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.doctor-title { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+.doctor-career { text-align: left; font-size: 13px; line-height: 2; color: #475569; }
+.doctor-career li { margin-bottom: 2px; list-style: none; position: relative; padding-left: 16px; }
+.doctor-career li::before { content: '\2014'; position: absolute; left: 0; color: #94a3b8; }
+
+/* ========== Case Studies ========== */
+.case-card { background: #fff; border-radius: 12px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.case-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.case-photo-placeholder { aspect-ratio: 1; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #94a3b8; }
+.case-body { padding: 16px; }
+.case-tag { display: inline-block; background: #dbeafe; color: #1e40af; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; }
+.case-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.case-text { font-size: 13px; color: #475569; line-height: 1.7; }
+
+/* ========== FAQ ========== */
+.faq-item { border-bottom: 1px solid #e2e8f0; padding: 16px 0; }
+.faq-q { font-size: 14px; font-weight: 700; margin-bottom: 8px; position: relative; padding-left: 28px; color: #0f172a; }
+.faq-q::before { content: 'Q'; position: absolute; left: 0; width: 20px; height: 20px; background: #0f172a; color: #fff; border-radius: 4px; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.faq-a { font-size: 13.5px; color: #475569; line-height: 1.8; padding-left: 28px; }
+
+/* ========== Cost Compare ========== */
+.cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.cost-card { border-radius: 10px; padding: 16px; font-size: 13px; line-height: 1.7; }
+.cost-card.bad { background: #fef2f2; border: 2px solid #fca5a5; }
+.cost-card.good { background: #ecfdf5; border: 2px solid #6ee7b7; }
+.cost-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+.cost-total { font-size: 16px; font-weight: 800; margin-top: 8px; }
+.cost-card.bad .cost-total { color: #dc2626; }
+.cost-card.good .cost-total { color: #059669; }
+
+/* ========== Price Table ========== */
+.price-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+.price-table th, .price-table td { padding: 10px 12px; border: 1px solid #e2e8f0; text-align: left; }
+.price-table th { background: #f1f5f9; font-weight: 700; white-space: nowrap; }
+.price-table .price { font-weight: 700; color: #0f172a; white-space: nowrap; }
+.price-table .free { color: #059669; font-weight: 700; }
+
+/* ========== Steps ========== */
+.step-list { counter-reset: step; }
+.step-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { min-width: 36px; height: 36px; background: #0f172a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.step-content { flex: 1; }
+.step-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #0f172a; }
+.step-desc { font-size: 13px; color: #475569; line-height: 1.7; }
+
+/* ========== Clinic Info ========== */
+.clinic-info { font-size: 13px; line-height: 2; color: #475569; }
+.clinic-info dt { font-weight: 700; color: #0f172a; }
+.clinic-info dd { margin-bottom: 8px; margin-left: 0; }
+
+/* ========== Footer ========== */
+.footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 24px 16px; font-size: 11px; }
+.footer a { color: #94a3b8; }
+
+/* ========== Divider ========== */
+.divider { height: 4px; background: linear-gradient(90deg, #06C755, #0ea5e9); }
+
+/* ========== Emphasis Quote ========== */
+.emphasis-block { background: rgba(255,255,255,0.08); border-left: 3px solid #06C755; padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 15px; line-height: 1.8; }
+.emphasis-block.light { background: #f0fdf4; border-color: #06C755; color: #0f172a; }
+
+/* ========== Concern Items ========== */
+.concern-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin: 16px 0; }
+.concern-box.light { background: #fff; border-color: #e2e8f0; }
+.concern-title { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 16px; }
+
+/* ========== NOTE ========== */
+.note { font-size: 11px; color: #94a3b8; line-height: 1.6; margin-top: 12px; }
+.note.dark { color: #64748b; }
+
+/* ========== Photo placeholder ========== */
+.photo-banner { width: 100%; aspect-ratio: 16/7; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- FV: ファーストビュー -->
+<!-- ============================================ -->
+<div class="fv">
+  <div class="fv-banner">
+    <span>重 要</span><br>
+    このページを閉じる前に、<br>下の動画を先にご視聴ください。
+  </div>
+
+  <div class="fv-sub">
+    インビザラインが気になっている方も。<br>
+    矯正後の噛み合わせに不安がある方も。<br>
+    顔の歪みや原因不明の不調がある方も。<br><br>
+    まず、この動画をご覧ください。
+  </div>
+
+  <div class="fv-video">
+    <div class="fv-video-placeholder">
+      <span class="icon">&#9654;</span>
+      LP動画（15-20分）<br>ここにVimeo/YouTube埋め込み
+    </div>
+  </div>
+
+  <div class="fv-arrow">&#9660;</div>
+</div>
+
+<!-- ============================================ -->
+<!-- TARGET: ターゲット表示（台本v2の巻き込み順） -->
+<!-- ============================================ -->
+<div class="target-circles">
+  <div class="target-circle">インビザ<br>ラインが<br>気になる方</div>
+  <div class="target-circle">矯正後の<br>噛み合わせ<br>が不安な方</div>
+  <div class="target-circle">顔の歪みが<br>気になる方</div>
+  <div class="target-circle">原因不明の<br>不調がある方</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 1st CTA -->
+<!-- ============================================ -->
+<div class="cta-section dark">
+  <div style="color:#fff; font-size:13px; margin-bottom:6px; opacity:0.8">歯学博士が「顎から診る」本質改善</div>
+  <div style="color:#fff; font-size:20px; font-weight:700; margin-bottom:16px; line-height:1.5;">
+    新宿デンタルオフィス
+  </div>
+  <a href="#" class="cta-btn">無料カウンセリングを予約する</a>
+  <div class="cta-note dark">※初回カウンセリング・3Dシミュレーション 無料<br>新宿区・JR大久保駅 徒歩2分</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: 問題提起（台本BLOCK 1-2連動） -->
+<!-- ============================================ -->
+<div class="section section-dark">
+  <div class="section-label">The Hidden Problem</div>
+  <div class="section-title section-title-light">
+    バラバラに見える悩み。<br>実は、たった一つの原因で<br>つながっているかもしれません。
+  </div>
+
+  <div class="section-body" style="color:#cbd5e1;">
+    <p>
+      マウスピース矯正が気になっているけど、本当に自分に合うのかわからない。どこで受けたらいいのか決められない。矯正したのに噛み合わせがおかしい。後戻りしてしまった。顔の歪みが気になる。原因不明の頭痛や肩こりが続いている。
+    </p>
+    <p>
+      一見バラバラに見えるこれらの悩み。実は、たった一つの場所につながっている可能性があります。
+    </p>
+    <p>
+      それが「噛み合わせ」と、その土台となる「顎の位置」です。
+    </p>
+  </div>
+
+  <div class="concern-box">
+    <div class="concern-title" style="color:#f97316;">こんなこと、心当たりはありませんか？</div>
+    <ul class="problem-list dark">
+      <li>矯正のシミュレーションで「こうなります」と見せられて、その通りになると安心している</li>
+      <li>「最短」「格安」という言葉に惹かれて、クリニックを選ぼうとしている</li>
+      <li>歯並びさえ綺麗に揃えばすべて解決すると思っている</li>
+      <li>せっかく矯正が終わったのに、前より噛み合わせが悪くなった気がする</li>
+      <li>自分の写真を見ると、口角の高さが左右で違う</li>
+      <li>整体や小顔矯正に何度通っても、しばらくすると元に戻ってしまう</li>
+      <li>頭痛や肩こりがずっと続いていて、どの病院に行っても原因がわからない</li>
+    </ul>
+  </div>
+
+  <div class="emphasis-block">
+    一つでも当てはまった方。その悩みの原因が「噛み合わせ」にあるとしたら、答えは一つです。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: 業界の嘘と真実（台本BLOCK 3連動・NEW） -->
+<!-- ============================================ -->
+<div class="section section-cream">
+  <div class="section-label" style="color:#64748b;">The Truth</div>
+  <div class="section-title section-title-dark">
+    3Dシミュレーションだけで<br>安心していませんか？
+  </div>
+
+  <div class="section-body" style="color:#475569;">
+    <p>
+      今、マウスピース矯正を提供するクリニックはとても増えました。「3Dシミュレーションで仕上がりが見える」「最短○ヶ月」「月々たった○円から」。安心できる言葉が並んでいます。
+    </p>
+    <p>
+      ただし、3Dシミュレーションは歯の形だけを見て「こう並べましょう」と自動で作る設計図です。一人ひとり違う筋肉の強さ、顎の動き、骨の厚みまでは計算しきれません。
+    </p>
+    <p>
+      例えるなら、家を建てる時に間取り図だけ作って、土台の地盤調査をしないまま建て始めるようなもの。見た目の間取りはきれいでも、地盤が傾いていたら住み心地は良くなりません。
+    </p>
+    <p>
+      見た目がきれいに並ぶことと、噛み合わせが正しく整うことは全く別のことなんです。
+    </p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: 根本原因への収束（台本BLOCK 4連動） -->
+<!-- ============================================ -->
+<div class="section section-dark">
+  <div class="section-label">Why It Happens</div>
+  <div class="section-title section-title-light">
+    顎の位置が<br>本来と異なるだけで、<br>歯も、顔も、体も変わります。
+  </div>
+
+  <div class="section-body" style="color:#cbd5e1;">
+    <p>
+      噛み合わせが本来と異なる位置にあると、まず顔の下3分の1の形が変わります。口角の高さが左右で違ったり、顎のラインが非対称になったり。
+    </p>
+    <p>
+      美容クリニックでボトックスを打っても、小顔矯正に通っても、しばらくすると元に戻る。その原因の一つが、噛み合わせにある可能性があります。
+    </p>
+    <p>
+      それだけではありません。噛み合わせのバランスが崩れると、頭の重心も変わります。すると首、肩、背中と順番に引っ張り合いが起きて、頭痛、肩こり、耳鳴り、めまいにつながることがある。
+    </p>
+    <p>
+      歯並びの問題も、顔の歪みも、原因不明の体の不調も、突き詰めていくと「噛み合わせ」というたった一つの共通点にたどり着くことがあるのです。
+    </p>
+  </div>
+
+  <div class="emphasis-block">
+    バラバラに見えていた悩みが、実は一本の線でつながっている。これに気づいた瞬間、解決策が見えてきます。
+  </div>
+</div>
+
+<!-- Photo Banner -->
+<div class="photo-banner">
+  ［院内写真・診療風景のイメージ画像をここに配置］
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: 正直な矯正（台本BLOCK 5連動・NEW） -->
+<!-- ============================================ -->
+<div class="section section-cream">
+  <div class="section-label" style="color:#64748b;">Our Philosophy</div>
+  <div class="section-title section-title-dark">
+    「正しい矯正」を、<br>私たちは実践しています。
+  </div>
+
+  <div class="section-body" style="color:#475569;">
+    <p>
+      噛み合わせの状態を正確に把握する。CTで骨の中まで確認する。噛み合わせの位置を整えてから歯を動かす。設計図はコンピュータが作りますが、それを一人ひとりの顎の動きや骨の状態に合わせて医師が確認し、修正する。
+    </p>
+    <p>
+      正直に言えば、これは手間がかかりますし、時間もかかります。
+    </p>
+    <p>
+      でも、矯正の本当の成功は「一生自分の歯で食事を楽しめる、機能的な噛み合わせを手に入れること」だと私は考えています。
+    </p>
+  </div>
+
+  <div class="emphasis-block light">
+    一回きちんと向き合って、根本から整える。結果的にそれが、一番早く、一番確実な道だと考えています。「急がば回れ」が歯科矯正の基本なんです。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: 解決策 -->
+<!-- ============================================ -->
+<div class="section section-dark">
+  <div class="section-label">Our Approach</div>
+  <div class="section-title section-title-light">
+    当院は、歯を並べる前に<br>「顎の位置」を<br>整えるところから始めます。
+  </div>
+
+  <div class="section-body" style="color:#cbd5e1;">
+    <p>
+      新宿デンタルオフィスでは、まず顎の位置を三次元的に診断します。前後、左右、上下のどの方向に、どれくらい本来の位置から離れているかを正確に把握した上で、顎を正しい位置に導いてから歯列矯正に入ります。
+    </p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-title" style="color:#fff;">CTスキャンで骨の中まで確認</div>
+      <div class="feature-desc" style="color:#cbd5e1;">歯の根っこがどの方向に、どれくらいの骨の中に埋まっているかをCTで確認します。骨から飛び出す方向には歯は動かせません。3Dスキャン（iTero）だけでは見えない情報を、CTで補完してから治療計画を立てます。</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-title" style="color:#fff;">顎の位置を三次元で診断</div>
+      <div class="feature-desc" style="color:#cbd5e1;">独自の咬合器を使い、顎が前後・左右・上下のどの方向に、どれくらい本来の位置から離れているかを数値化します。この診断に基づいて、まず顎を正しい位置に導いてからインビザラインの治療を始めます。</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-title" style="color:#fff;">歯科医師が設計図を一つ一つ修正</div>
+      <div class="feature-desc" style="color:#cbd5e1;">3Dシミュレーションで作られた設計図を、院長が臨床的な視点から一つ一つ確認・修正します。患者さん一人ひとりの筋肉の強さや顎の動きに合わせて、本当にフィットする噛み合わせを設計します。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 2nd CTA -->
+<!-- ============================================ -->
+<div class="cta-section" style="background:#fff;">
+  <a href="#" class="cta-btn">無料カウンセリングを予約する</a>
+  <div class="cta-note light">※まずはあなたの噛み合わせの状態を確認させてください<br>3Dシミュレーションで矯正後のイメージもご覧いただけます</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: 院長プロフィール（台本BLOCK 6連動・強化） -->
+<!-- ============================================ -->
+<div class="section section-muted doctor-section">
+  <div class="section-label" style="color:#64748b;">Doctor</div>
+  <div class="section-title section-title-dark" style="font-size:18px;">
+    なぜ「顎から診る」ことに<br>こだわるのか
+  </div>
+
+  <div class="doctor-photo"><img src="data:image/jpeg;base64,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" alt="住友麻優子 院長" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
+  <div class="doctor-name">住友 麻優子</div>
+  <div class="doctor-title">歯学博士・歯科医師・鍼灸師<br>新宿デンタルオフィス院長</div>
+
+  <div class="section-body" style="text-align:left; color:#475569; font-size:14px;">
+    <p>
+      歯科の世界にはいろんな分野があります。その中で私がたどり着いたのが「噛み合わせ」でした。
+    </p>
+    <p>
+      噛み合わせの位置が変わるだけで、顔の形が変わる。体の調子が変わる。人生が変わる。そういう患者さんを何百人も見てきました。
+    </p>
+    <p>
+      一方で、矯正をしたことでかえって噛み合わせが悪くなり、辛い思いをしている方も何人も診てきました。せっかく時間もお金もかけたのに、前より調子が悪くなる。そんなことはあってはいけない。
+    </p>
+    <p>
+      そこで開発したのが「顎位矯正術」という当院独自の治療法です。噛み合わせの位置を正しいところに誘導してから、インビザラインで歯を並べる。噛み合わせの土台から整えるという発想です。「ゼロシート」「ゼロピポット」という装置も独自に開発しました。
+    </p>
+    <p>
+      必要なものがなければ自分で作る。それが、噛み合わせに20年向き合ってきた私のやり方です。
+    </p>
+  </div>
+
+  <div class="doctor-career" style="margin-top:20px;">
+    <ul>
+      <li>朝日大学歯学部 卒業</li>
+      <li>同大学院にて歯学博士号取得</li>
+      <li>カナダ・モントリオール大学 留学</li>
+      <li>都内美容外科の審美歯科部門を設立</li>
+      <li>2006年 新宿デンタルオフィス院長就任</li>
+    </ul>
+  </div>
+  <div class="note dark" style="text-align:left; margin-top:12px;">
+    顧問：住友伸一郎（朝日大学歯学部口腔外科学分野 名誉教授・順天堂大学浦安病院 歯科教授）
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: 症例紹介（台本BLOCK 7連動・順番変更） -->
+<!-- ============================================ -->
+<div class="section section-light">
+  <div class="section-label" style="color:#64748b;">Cases</div>
+  <div class="section-title section-title-dark">治療された方の声</div>
+
+  <div class="case-card">
+    <div class="case-photos">
+      <div class="case-photo-placeholder">Before<br>写真</div>
+      <div class="case-photo-placeholder">After<br>写真</div>
+    </div>
+    <div class="case-body">
+      <span class="case-tag">インビザライン矯正</span>
+      <div class="case-title">歯並びと噛み合わせを同時に改善</div>
+      <div class="case-text">歯並びが気になりインビザラインを検討していた。噛み合わせを調べたところ、位置が本来と異なっていることが分かった。噛み合わせを整えた上でインビザラインを行い、歯並びと噛み合わせの両方を同時に改善することができた。</div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-photos">
+      <div class="case-photo-placeholder">Before<br>写真</div>
+      <div class="case-photo-placeholder">After<br>写真</div>
+    </div>
+    <div class="case-body">
+      <span class="case-tag">顔の歪みの改善</span>
+      <div class="case-title">口角の左右差が気になっていた</div>
+      <div class="case-text">写真を撮るたびに口角の高さの違いが気になっていた。美容クリニックにも通われていたが、根本的な変化は感じられなかった。噛み合わせを調べたところ左右のバランスが崩れていることが分かり、矯正で噛み合わせを整えたことで、顔のバランスにも変化が見られた。</div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-photos">
+      <div class="case-photo-placeholder">Before<br>写真</div>
+      <div class="case-photo-placeholder">After<br>写真</div>
+    </div>
+    <div class="case-body">
+      <span class="case-tag">原因不明の頭痛の改善</span>
+      <div class="case-title">何年も続いた頭痛が軽減された</div>
+      <div class="case-text">何年も頭痛に悩まされ、いくつもの病院を回った。噛み合わせを診たところ、位置が変わっていたことが分かった。噛み合わせを整える治療を行ったところ、症状の改善が見られた。</div>
+    </div>
+  </div>
+
+  <p class="note dark">※治療効果には個人差があります。すべての方に同じ結果を保証するものではありません。</p>
+</div>
+
+<!-- ============================================ -->
+<!-- 3rd CTA -->
+<!-- ============================================ -->
+<div class="cta-section" style="background:#f1f5f9;">
+  <a href="#" class="cta-btn">無料カウンセリングを予約する</a>
+  <div class="cta-note light">※カウンセリングでは、CTを使った噛み合わせの診断と<br>矯正後の3Dシミュレーションをご覧いただけます</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 8: 緊急性（台本BLOCK 8連動・NEW） -->
+<!-- ============================================ -->
+<div class="section section-dark">
+  <div class="section-label">Now Is The Time</div>
+  <div class="section-title section-title-light" style="font-size:20px;">
+    今日が、あなたの人生で<br>一番若い日です。
+  </div>
+
+  <div class="section-body" style="color:#cbd5e1;">
+    <p>
+      噛み合わせの問題は、放っておいて自然に治ることはありません。むしろ年月が経てば経つほど、体への影響は積み重なっていってしまいます。
+    </p>
+    <p>
+      美容クリニックに通い続ける。マッサージで一時的に楽になる。鎮痛剤で頭痛をごまかす。こうした対処療法を繰り返している間にも、時間は過ぎていきます。
+    </p>
+    <p>
+      矯正を考えている方にとっては、早く始めるほど治療はスムーズに進む傾向があります。骨の状態も、歯の状態も、若いうちの方が動きやすい。
+    </p>
+  </div>
+
+  <div class="emphasis-block">
+    対処療法を繰り返す時間を、根本から整える時間に変えてみませんか。
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 9: 治療の流れ -->
+<!-- ============================================ -->
+<div class="section section-muted">
+  <div class="section-label" style="color:#64748b;">Flow</div>
+  <div class="section-title section-title-dark" style="font-size:18px;">
+    治療の流れ
+  </div>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">無料カウンセリング予約</div>
+        <div class="step-desc">このページのボタンからまずはLINEにご登録ください。LINEに届くカレンダーからご予約いただけます。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">初回カウンセリング（約60分・無料）</div>
+        <div class="step-desc">お悩みやご希望をじっくりお聞きした上で、3Dスキャンで歯列を撮影。その場で矯正後のシミュレーション画像をご確認いただけます。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">精密検査</div>
+        <div class="step-desc">口腔内写真、レントゲン、CTスキャンを行い、顎の位置を三次元的に診断。検査結果をもとに3Dで治療計画をご説明します。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">治療開始</div>
+        <div class="step-desc">治療計画にご納得いただけたら、マウスピースを発注。約3週間後に届き次第、治療を開始します。その場で決める必要はありません。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">定期チェック・保定</div>
+        <div class="step-desc">定期的にチェック（調整料は毎回無料）。治療完了後は保定装置で後戻りを防ぎます。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 4th CTA -->
+<!-- ============================================ -->
+<div class="cta-section" style="background:#fff;">
+  <a href="#" class="cta-btn">無料カウンセリングを予約する</a>
+  <div class="cta-note light">※その場で決める必要はありません。まずはお話をお聞かせください</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 12: よくある質問 -->
+<!-- ============================================ -->
+<div class="section section-cream">
+  <div class="section-label" style="color:#64748b;">FAQ</div>
+  <div class="section-title section-title-dark" style="font-size:18px;">よくあるご質問</div>
+
+  <div class="faq-item">
+    <div class="faq-q">インビザラインが初めてでも相談できますか？</div>
+    <div class="faq-a">もちろんです。矯正が初めての方にこそ、まず噛み合わせの状態を確認していただきたいと考えています。矯正が必要かどうかも含めてご説明します。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">顔の歪みだけでも相談できますか？</div>
+    <div class="faq-a">はい。顔の歪みの原因の一つに噛み合わせがあります。まずはCTを使った診断で、顎の位置と顔のバランスの関係を確認し、治療の必要性や方法をご説明します。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">他院で矯正したのですが、やり直しはできますか？</div>
+    <div class="faq-a">ご相談いただけます。他院でワイヤー矯正やマウスピース矯正を受けた後に噛み合わせが合わなくなった方のご相談を多くいただいています。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">痛みはありますか？</div>
+    <div class="faq-a">インビザラインはワイヤー矯正に比べて痛みが少ないのが特徴です。マウスピースの交換直後に多少の締め付け感がありますが、数日で慣れる方がほとんどです。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">年齢制限はありますか？</div>
+    <div class="faq-a">ありません。60代以上の方にも対応しています。歯と歯周組織の状態が整っていれば、年齢に関係なく治療は可能です。</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 13: 医院情報 -->
+<!-- ============================================ -->
+<div class="section section-light">
+  <div class="section-label" style="color:#64748b;">Clinic</div>
+  <div class="section-title section-title-dark" style="font-size:18px;">医院のご案内</div>
+
+  <div class="photo-banner" style="aspect-ratio:16/9; border-radius:8px; margin-bottom:20px;">
+    ［医院外観・内観の写真をここに配置］
+  </div>
+
+  <dl class="clinic-info">
+    <dt>新宿デンタルオフィス</dt>
+    <dd>東京都新宿区北新宿1-1-17 ウインド北新宿4F</dd>
+
+    <dt>アクセス</dt>
+    <dd>
+      JR総武線 大久保駅南口 徒歩2分<br>
+      JR山手線 新大久保駅 徒歩6分<br>
+      JR新宿駅西口 徒歩10分
+    </dd>
+
+    <dt>診療時間</dt>
+    <dd>10:00〜19:00</dd>
+
+    <dt>休診日</dt>
+    <dd>水曜・日曜（祝日は診療）</dd>
+
+    <dt>電話番号</dt>
+    <dd>03-6304-0917</dd>
+  </dl>
+</div>
+
+<!-- ============================================ -->
+<!-- FINAL CTA（台本BLOCK 9連動・4層順） -->
+<!-- ============================================ -->
+<div class="section section-dark" style="text-align:center; padding: 40px 20px;">
+  <div style="font-size:18px; font-weight:700; color:#fff; line-height:1.6; margin-bottom:8px;">
+    あなたの噛み合わせの状態を、<br>まずは無料で見せてください。
+  </div>
+  <div style="font-size:13px; color:#94a3b8; margin-bottom:20px; line-height:1.7;">
+    インビザラインが気になっている方も。<br>
+    矯正後の噛み合わせに不安がある方も。<br>
+    顔の歪みの原因を知りたい方も。<br>
+    原因不明の不調がある方も。<br><br>
+    下のボタンからまずはLINEにご登録いただき、<br>届くカレンダーからご予約いただけます。<br>
+    その場で決める必要はありません。
+  </div>
+  <a href="#" class="cta-btn">無料カウンセリングを予約する</a>
+  <div class="cta-note dark" style="margin-top:12px;">※初回カウンセリング・3Dシミュレーション 無料<br>新宿区・JR大久保駅 徒歩2分</div>
+</div>
+
+<!-- ============================================ -->
+<!-- Footer -->
+<!-- ============================================ -->
+<div class="footer">
+  <div style="margin-bottom:8px;">
+    <a href="#">プライバシーポリシー</a>　|　<a href="#">特定商取引法に基づく表記</a>
+  </div>
+  <div>&copy; 新宿デンタルオフィス</div>
+</div>
+
+</body>
+</html>
