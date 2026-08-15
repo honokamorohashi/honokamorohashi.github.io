@@ -1,0 +1,554 @@
+<title>棚卸し — 2026年8月</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FAFAF8;
+  --bg2: #F2F1ED;
+  --bg3: #FFFFFF;
+  --text: #1a1a18;
+  --text2: #5a5a56;
+  --text3: #9a9a94;
+  --border: rgba(0,0,0,0.1);
+  --border2: rgba(0,0,0,0.18);
+  --green-bg: #EAF3DE;
+  --green-text: #3B6D11;
+  --amber-bg: #FAEEDA;
+  --amber-text: #854F0B;
+  --red-bg: #FCEBEB;
+  --red-text: #A32D2D;
+  --blue-bg: #E6F1FB;
+  --blue-text: #0C447C;
+  --purple-bg: #EEEDFE;
+  --purple-text: #3C3489;
+}
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+}
+.header {
+  background: #1a1a18;
+  color: #fff;
+  padding: 48px 56px 40px;
+}
+.header-label { font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+.header-title { font-size: 26px; font-weight: 500; line-height: 1.3; margin-bottom: 6px; }
+.header-sub { font-size: 14px; color: rgba(255,255,255,0.55); }
+.header-meta { margin-top: 20px; display: flex; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 36px; }
+.section { background: var(--bg3); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.section-header { padding: 24px 28px 18px; border-bottom: 0.5px solid var(--border); }
+.section-header h2 { font-size: 16px; font-weight: 600; letter-spacing: 0.02em; }
+.section-header .label { display: inline-block; font-size: 10px; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 6px; }
+.section-body { padding: 20px 28px 28px; }
+.section-body p { font-size: 14px; color: var(--text2); margin-bottom: 14px; line-height: 1.85; }
+.section-body ul, .section-body ol { padding-left: 1.2em; margin-bottom: 14px; }
+.section-body li { font-size: 14px; color: var(--text2); margin-bottom: 8px; line-height: 1.8; }
+.section-body li strong { color: var(--text); }
+.callout { border-radius: 10px; padding: 16px 20px; margin: 16px 0; font-size: 13px; line-height: 1.8; }
+.callout-green { background: var(--green-bg); color: var(--green-text); }
+.callout-amber { background: var(--amber-bg); color: var(--amber-text); }
+.callout-red { background: var(--red-bg); color: var(--red-text); }
+.callout-blue { background: var(--blue-bg); color: var(--blue-text); }
+.callout-purple { background: var(--purple-bg); color: var(--purple-text); }
+.callout strong { font-weight: 700; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+th { background: var(--bg2); text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; border-bottom: 1px solid var(--border2); }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+.tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; margin-right: 4px; }
+.tag-green { background: var(--green-bg); color: var(--green-text); }
+.tag-amber { background: var(--amber-bg); color: var(--amber-text); }
+.tag-red { background: var(--red-bg); color: var(--red-text); }
+.tag-blue { background: var(--blue-bg); color: var(--blue-text); }
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+.snap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.snap-card { background: var(--bg2); border-radius: 10px; padding: 14px 16px; }
+.snap-label { font-size: 10px; color: var(--text3); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 4px; }
+.snap-value { font-size: 16px; font-weight: 700; color: var(--text); }
+.snap-note { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+.chart-wrap { margin: 16px 0; overflow-x: auto; }
+.chart-wrap svg { display: block; width: 100%; max-width: 840px; height: auto; }
+
+.video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 16px 0; border-radius: 10px; background: var(--bg2); }
+.video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px; }
+
+.period { margin-bottom: 24px; padding: 22px 26px; background: var(--bg); border-radius: 10px; border-left: 3px solid var(--border2); }
+.period.mood-high { border-left-color: #3B6D11; }
+.period.mood-mid { border-left-color: #854F0B; }
+.period.mood-low { border-left-color: #A32D2D; }
+.period-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 4px; }
+.period-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.period-date { font-size: 11px; color: var(--text3); }
+.period-body { font-size: 14px; line-height: 1.85; color: var(--text2); margin-bottom: 14px; }
+.period-body p { font-size: 14px; margin-bottom: 12px; }
+.period-body p:last-child { margin-bottom: 0; }
+.tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.track-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px; }
+.track-label.t-heart { color: #854F0B; }
+.track-label.t-money { color: #3B6D11; }
+.track-bar-bg { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 3px; }
+.track-bar-fill { height: 100%; border-radius: 2px; }
+.track-bar-fill.t-heart { background: #C49330; }
+.track-bar-fill.t-money { background: #5A9A30; }
+.track-note { font-size: 11px; color: var(--text3); }
+
+.equation { text-align: center; padding: 20px; margin: 16px 0; background: var(--amber-bg); border-radius: 10px; }
+.equation p { font-size: 15px; font-weight: 600; color: var(--amber-text); margin: 0; line-height: 1.6; }
+.equation .eq-note { font-size: 12px; font-weight: 400; margin-top: 8px; color: #9A7830; }
+
+.questions { list-style: none; padding: 0; counter-reset: q; }
+.questions li { padding: 14px 0 14px 36px; position: relative; font-size: 14px; color: var(--text2); line-height: 1.8; border-bottom: 1px solid var(--border); counter-increment: q; }
+.questions li:last-child { border-bottom: none; }
+.questions li::before { content: counter(q); position: absolute; left: 0; top: 14px; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-bg); color: var(--blue-text); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 640px) {
+  .header { padding: 36px 24px 32px; }
+  .header-title { font-size: 22px; }
+  .snap-grid { grid-template-columns: 1fr 1fr; }
+  .tracks { grid-template-columns: 1fr; }
+  .container { padding: 24px 16px 60px; }
+}
+</style>
+
+<div class="header">
+  <div class="header-label">PERSONAL INVENTORY</div>
+  <div class="header-title">棚卸し — 3年間の海外生活</div>
+  <div class="header-sub">感情×収入の推移、構造分析、意思決定の問い</div>
+  <div class="header-meta">
+    <span>2026年8月15日時点</span>
+    <span>Honoka — 32歳</span>
+    <span>オランダ・アムステルダム在住</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ▼ 現在地 -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">CURRENT STATUS</div>
+    <h2>現在地</h2>
+  </div>
+  <div class="section-body">
+    <div class="snap-grid">
+      <div class="snap-card">
+        <div class="snap-label">年齢</div>
+        <div class="snap-value">32歳</div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">拠点</div>
+        <div class="snap-value">アムステルダム</div>
+        <div class="snap-note">2025年12月〜</div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">職業</div>
+        <div class="snap-value">Webマーケター</div>
+        <div class="snap-note">Meta広告 × マーケティングツール構築 × Claude Code構築</div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">海外生活</div>
+        <div class="snap-value">約3年</div>
+        <div class="snap-note">パリ → ディジョン → オランダ</div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">顧客</div>
+        <div class="snap-value">全員日本人</div>
+        <div class="snap-note">一部ヨーロッパ在住</div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">心の状態</div>
+        <div class="snap-value" style="color: var(--red-text);">限界</div>
+        <div class="snap-note">人間不信→孤立→事業成功→心が持たない</div>
+      </div>
+    </div>
+
+    <div class="callout callout-red">
+      <strong>一言で言うと：</strong>事業は過去最高。心は過去最低。人を信じられなくなったことから孤立に走り、結果的に事業は伸びたけれど、その代償として心が限界に達しています。日本に帰りたい。でもそれは「逃げ」なのか「合理的選択」なのか「限界」なのか、自分では判別がつかないんです。
+    </div>
+  </div>
+</div>
+
+<!-- ▼ チャート -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">EMOTION × INCOME</div>
+    <h2>感情×収入の3年間</h2>
+  </div>
+  <div class="section-body">
+    <p>各時期の「心の充実度」と「収入レベル」を重ねたものです。2本の線が逆方向に動いていくのがわかると思います。</p>
+
+    <div class="chart-wrap">
+      <svg viewBox="0 0 840 280" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="180" x2="800" y2="180" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+        <line x1="40" y1="100" x2="800" y2="100" stroke="rgba(0,0,0,0.06)" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="40" y1="20" x2="800" y2="20" stroke="rgba(0,0,0,0.06)" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="32" y="184" text-anchor="end" font-size="9" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif">低</text>
+        <text x="32" y="24" text-anchor="end" font-size="9" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif">高</text>
+
+        <path d="M40,36 L109,108 L178,164 L247,140 L316,52 L385,84 L454,28 L523,124 L592,140 L661,156 L730,116 L800,172 L800,180 L40,180 Z" fill="#C49330" opacity="0.08"/>
+        <path d="M40,148 L109,156 L178,164 L247,108 L316,92 L385,60 L454,84 L523,68 L592,36 L661,20 L730,28 L800,20 L800,180 L40,180 Z" fill="#5A9A30" opacity="0.08"/>
+
+        <polyline points="40,36 109,108 178,164 247,140 316,52 385,84 454,28 523,124 592,140 661,156 730,116 800,172" fill="none" stroke="#C49330" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <polyline points="40,148 109,156 178,164 247,108 316,92 385,60 454,84 523,68 592,36 661,20 730,28 800,20" fill="none" stroke="#5A9A30" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <circle cx="40" cy="36" r="3.5" fill="#C49330"/><circle cx="109" cy="108" r="3.5" fill="#C49330"/><circle cx="178" cy="164" r="3.5" fill="#C49330"/><circle cx="247" cy="140" r="3.5" fill="#C49330"/><circle cx="316" cy="52" r="3.5" fill="#C49330"/><circle cx="385" cy="84" r="3.5" fill="#C49330"/><circle cx="454" cy="28" r="3.5" fill="#C49330"/><circle cx="523" cy="124" r="3.5" fill="#C49330"/><circle cx="592" cy="140" r="3.5" fill="#C49330"/><circle cx="661" cy="156" r="3.5" fill="#C49330"/><circle cx="730" cy="116" r="3.5" fill="#C49330"/><circle cx="800" cy="172" r="3.5" fill="#C49330"/>
+        <circle cx="40" cy="148" r="3.5" fill="#5A9A30"/><circle cx="109" cy="156" r="3.5" fill="#5A9A30"/><circle cx="178" cy="164" r="3.5" fill="#5A9A30"/><circle cx="247" cy="108" r="3.5" fill="#5A9A30"/><circle cx="316" cy="92" r="3.5" fill="#5A9A30"/><circle cx="385" cy="60" r="3.5" fill="#5A9A30"/><circle cx="454" cy="84" r="3.5" fill="#5A9A30"/><circle cx="523" cy="68" r="3.5" fill="#5A9A30"/><circle cx="592" cy="36" r="3.5" fill="#5A9A30"/><circle cx="661" cy="20" r="3.5" fill="#5A9A30"/><circle cx="730" cy="28" r="3.5" fill="#5A9A30"/><circle cx="800" cy="20" r="3.5" fill="#5A9A30"/>
+
+        <text x="454" y="18" text-anchor="middle" font-size="10" fill="#854F0B" font-weight="600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">幸せの頂点</text>
+        <text x="800" y="10" text-anchor="end" font-size="10" fill="#A32D2D" font-weight="600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">事業最高 / 心最低</text>
+
+        <text x="40" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="40" dy="0">初めての</tspan><tspan x="40" dy="11">パリ一人旅</tspan></text>
+        <text x="109" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="109" dy="0">ワーホリで</tspan><tspan x="109" dy="11">パリに戻る</tspan></text>
+        <text x="178" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="178" dy="0">人生初の</tspan><tspan x="178" dy="11">衝撃的な裏切り</tspan></text>
+        <text x="247" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="247" dy="0">帰国して</tspan><tspan x="247" dy="11">再起動</tspan></text>
+        <text x="316" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="316" dy="0">パリに</tspan><tspan x="316" dy="11">再び戻る</tspan></text>
+        <text x="385" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="385" dy="0">写真を</tspan><tspan x="385" dy="11">手放す</tspan></text>
+        <text x="454" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="454" dy="0">地方都市</tspan><tspan x="454" dy="11">ノマドの至福</tspan></text>
+        <text x="523" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="523" dy="0">オランダ</tspan><tspan x="523" dy="11">移住</tspan></text>
+        <text x="592" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="592" dy="0">事業</tspan><tspan x="592" dy="11">拡大期</tspan></text>
+        <text x="661" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="661" dy="0">過労の</tspan><tspan x="661" dy="11">ピーク</tspan></text>
+        <text x="730" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="730" dy="0">彼が</tspan><tspan x="730" dy="11">来てくれた</tspan></text>
+        <text x="800" y="200" text-anchor="middle" font-size="8" fill="#9a9a94" font-family="'Hiragino Kaku Gothic ProN', sans-serif"><tspan x="800" dy="0">現在</tspan><tspan x="800" dy="11">限界</tspan></text>
+
+        <line x1="520" y1="254" x2="544" y2="254" stroke="#C49330" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="550" y="258" font-size="11" fill="#5a5a56" font-family="'Hiragino Kaku Gothic ProN', sans-serif">心の充実</text>
+        <line x1="640" y1="254" x2="664" y2="254" stroke="#5A9A30" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="670" y="258" font-size="11" fill="#5a5a56" font-family="'Hiragino Kaku Gothic ProN', sans-serif">収入</text>
+      </svg>
+    </div>
+    <p style="font-size: 12px; color: var(--text3); text-align: center;">ディジョン（2025年後半）で交差した2本の線は、以降ずっと逆方向に開いていく。</p>
+  </div>
+</div>
+
+<!-- ▼ 年表 -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">TIMELINE</div>
+    <h2>年表 — 感情と収入の二重奏</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="period mood-high">
+      <div class="period-top">
+        <span class="period-title">初めてのパリ一人旅</span>
+        <span class="period-date">2023年10〜11月 — 29歳</span>
+      </div>
+      <div class="period-body">
+        <p>パリに初めて行ったのは、2023年の秋でした。もうすぐ30歳になるという焦りがずっとありました。Web業界で何年か働いてきたけれど、「何者でもない自分」がずっと引っかかっていて。日本のぬるま湯のような環境から出たかったんです。パリに行けば何かが変わるんじゃないか、何者かになれるんじゃないかって、漠然と信じていました。</p>
+        <p>当時の私は、ご縁とか運とか人とのつながりを、すごく信じているタイプでした。人生の全てを「物語」として捉えていたんですよね。「この出会いにはきっと意味がある」「運ばれてきたものだ」って。全てのことに意味を見出して、人生のストーリーを信じて生きていたんです。</p>
+        <p>ホームステイ先のPatrickさんがすごく親切で、ご縁を感じて滞在を1.5ヶ月も延長しました。Bellevilleにあるファッションデザイナーのアトリエに通い始めて——そこで出会った日本人のデザイナーに恋をしました。パリという街にも、その人にも、同時に惹かれていったんです。</p>
+        <p>「やっぱり人生ってこういうふうに動いていくんだ」「全てが繋がっている」って、あの頃は本気で思っていました。ワーキングホリデーで戻ることを即決しました。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:90%"></div></div><div class="track-note">ギラギラした興奮。未知への挑戦。全てに意味がある</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:20%"></div></div><div class="track-note">日本の貯金を切り崩し</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">ワーホリでパリに戻る</span>
+        <span class="period-date">2024年2月〜2025年1月 — 30歳</span>
+      </div>
+      <div class="period-body">
+        <p>ワーキングホリデービザを取って、パリに戻りました。あのデザイナーに会いたかった。パリの生活を取り戻したかった。</p>
+        <p>パリのファッションデザイナー（日本人）との交際が始まって、主に恋愛に飲み込まれた1年でした。前半は完全に彼の世界に入り込んでいました。蕎麦屋のアルバイトは3日でクビになり、次のレストランではパワハラに遭い。気づけば、彼のアトリエに入り浸っていて、自分の夢を追いかけることを少し忘れていました。</p>
+        <p>でも後半になると、このままでは1年で何も残せないということに焦り始めました。薄々、彼との関係にも違和感を感じていた。それで、自分で切り開こうと動き始めたんです。ウェディングフォトのアシスタントを始めたり、自分で写真を撮ったり。最終的に彼のアパートに転がり込む形にはなっていましたが、心の中では少しずつ自分を取り戻そうとしていました。</p>
+        <p>でも、ワーホリの終了と同時に、計画的に捨てられたんです。</p>
+        <p>彼のアパートには以前から元カノが住んでいて、私が帰国した後にそのまま戻す前提だったことを後から知りました。関係の全体が、最初から演出されていたんです。私がワーホリで来ることも、アパートに住み始めることも、全部彼の計算の中にあった。私がいなくなったら、また元カノが戻ってくる。それが最初から決まっていた。</p>
+        <p>人生で初めて、「サイコパス的な人間」に出会ったという衝撃でした。</p>
+        <p>何が一番堪えたかというと、<strong>「利用価値がゼロになった瞬間に捨てられた」</strong>ということです。ビザが切れて、もうフランスにいられなくなった瞬間に、用済みになった。人間としての私には最初から興味がなかった。</p>
+        <p>それまで私は、人との出会いにはすべて意味があると信じていました。ご縁を信じ、運を信じ、「物語」として人生を捉えていた。パリに来たことも、彼に出会ったことも、きっと何かの導きだと思っていた。</p>
+        <p>でも、全部嘘だったんです。導きでもご縁でもなく、ただ利用されていただけだった。</p>
+        <p><strong>性善説が壊れました。</strong>「縁」も「スピリチュアル」も「物語」も、全て崩壊した。人生を物語として捉える力が、根底から破壊されたんです。この衝撃は本当に大きくて、今の私の人間不信の原点になっています。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:10%"></div></div><div class="track-note">恋愛の熱狂 → 裏切りの絶望。信じていたもの全てが崩壊</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:15%"></div></div><div class="track-note">生活困窮</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">帰国して再起動</span>
+        <span class="period-date">2025年1〜3月 — 31歳</span>
+      </div>
+      <div class="period-body">
+        <p>日本に戻りました。でも安堵とか、ホッとした感覚は一切なかったです。ただ怒りと屈辱感だけが残っていました。</p>
+        <p>「利用価値ゼロで捨てられた」——この経験が、復讐的な原動力に変わっていきました。「もうバカにされたくない」「見返してやる」。それだけがエネルギー源だったんです。</p>
+        <p>この頃に、海外移住講座をやっている土居さんという方の講座に本格的に参加しました。ただ、土居さんの講座に入る前から、私には既にWeb広告やマーケティングの実務経験がありました。土居さんに勧められてマーケティング案件を始めたところ、1週間で案件を獲得。ほぼ経験者だったので。</p>
+        <p>本当はパリで芽生えた写真やクリエイティブの仕事を続けたかった。でも土居さんから「写真は労働集約型でレバレッジが効かない。マーケティングの方が効率的に伸ばせる」とアドバイスがあり、それは正しいと思いました。復讐心も上回った。「とにかく稼いで、見返せる自分になるんだ」って。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:25%"></div></div><div class="track-note">怒りと復讐心がエネルギー源。「バカにされない自分になる」</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:45%"></div></div><div class="track-note">マーケティング案件で回復。月30万前後</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-high">
+      <div class="period-top">
+        <span class="period-title">パリに再び戻る — 好きなことと稼ぐことが両立した時代</span>
+        <span class="period-date">2025年4月〜 — 31歳</span>
+      </div>
+      <div class="period-body">
+        <p>ビザを取得して、パリに戻りました。今度は2つの収入源を持って。セルフフォト撮影の仕事と、マーケティング案件（月30万前後）。パリの500ユーロのアパート。</p>
+        <p>シェアハウスに住んでいたのも大きかったです。住人たちと毎晩一緒に夜ご飯を食べて、他愛もない話をして。一人じゃない生活がそこにありました。適度な距離感の人間関係があって、パリという街の美しさに囲まれて、仕事もうまくいっている。</p>
+        <p>写真の仕事では「この仕事向いてるんですね」と言ってもらえて、すごく嬉しかったです。自分が好きなことで人に喜んでもらえている感覚。好きなこと（写真）と稼ぐこと（マーケティング）のバランスが取れていました。</p>
+        <p>固定費が低く、美しい街に住み、シェアハウスで適度に人と会い、自由な時間がある。振り返ると、この時期が最もバランスの取れた時期の一つだったと思います。心も経済も、どちらも無理をしていなかった。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:80%"></div></div><div class="track-note">穏やかな充実。好きなことと稼ぐことが共存していた</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:55%"></div></div><div class="track-note">月30万前後。固定費が低く余裕あり</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-mid">
+      <div class="period-top">
+        <span class="period-title">写真を手放す — 復讐が完成した瞬間</span>
+        <span class="period-date">2025年中盤 — 31歳</span>
+      </div>
+      <div class="period-body">
+        <p>土居さんから「写真をやめてマーケティングに集中した方がいい」と言われました。月商100万を目指す方向に舵を切ることになり、写真の仕事を手放しました。</p>
+        <p>土居さんがパリに来て、YouTube対談を撮影しました。「パリ移住を実現、Webマーケターで月100万」というストーリーが作られた。実際の月商は約90万（写真含む混合）で、マーケティング単体では約70万でしたけど、動画では「月商100万」として打ち出されました。土居さんの講座のマーケティング素材として。</p>
+        <p>でも正直、嬉しかったんです。承認欲求がものすごく満たされました。YouTubeに出て、「成功した人」として紹介されて。あのパリのデザイナーは、夢を追っていても全然稼げていない。一方で自分はパリに住みながら月100万稼いでいる。「やつの人生より私の方が全然いい」——心の中でそう思った瞬間、復讐が完成したんです。</p>
+        <p>でも今振り返ると、この時点で好きだった写真を手放したことが、心の充実感が下がり始めるターニングポイントだったんだと思います。</p>
+        <div class="video-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/FAQ-daHUPBQ?si=7NAIAwnlJ_G26Oyl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:60%"></div></div><div class="track-note">承認欲求は満たされた。でも好きな写真を失った喪失感も</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:75%"></div></div><div class="track-note">月70〜100万（混合）。上昇気流</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-high">
+      <div class="period-top">
+        <span class="period-title">シャルトル・ディジョン（フランス地方都市のノマド生活）の至福 — この3年間のハイライト</span>
+        <span class="period-date">2025年後半 — 31歳</span>
+      </div>
+      <div class="period-body">
+        <p>シャルトルという中世の街に惹かれて1ヶ月滞在した後、ディジョンに移りそこでも1ヶ月滞在しました。</p>
+        <p>シャルトルでは、大聖堂に圧倒されました。「シャルトルブルー」と呼ばれるステンドグラスの青が本当に美しくて、何度も通いました。街全体が中世の空気を残していて、ただ歩いているだけで満たされる感覚がありました。</p>
+        <p>ディジョンでは月700ユーロの文化遺産マンションに住みました。1日3〜4時間だけ仕事をして、残りの時間はマルシェに行って、街を歩いて、ただそれだけの日々。「老後の生活をこの年齢で送っている」っていう感覚でした。ディジョンから電車ですぐ行けるボーヌという街のぶどう畑が本当に最高で。一面のぶどう畑の中を歩いて、ワインを飲んで。あの景色は今でも忘れられません。</p>
+        <p>ここが、この3年間で最も幸せだった場所です。適度な収入があって、固定費が低くて、美しい環境に住んでいて、自由な時間があって、時々人と会える。この5つが全部揃っていたんです。何も無理していなかった。ただ穏やかに暮らしていた。</p>
+        <p>ただし後半になると、人との繋がりが薄れ始めて、じわじわと孤独が入ってきました。至福の中に、少しずつ影が差し始めた感覚です。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:95%"></div></div><div class="track-note">至福。「何も無理していない幸せ」→ 後半は孤独の兆し</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:60%"></div></div><div class="track-note">月70万前後。支出が少なく最も余裕があった</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-mid">
+      <div class="period-top">
+        <span class="period-title">オランダ移住 — 逃避を合理性で包んだ選択</span>
+        <span class="period-date">2025年9月〜12月 — 31歳</span>
+      </div>
+      <div class="period-body">
+        <p>きっかけは、夏頃にたまたま取れたクライアントがオランダに住んでいたことでした。日本人の方なんですけど、偶然オランダ在住で。クライアント訪問も兼ねて初めてアムステルダムに行ったとき、夏のアムステルダムの美しさに惚れました。運河沿いのテラス、長い日照時間、開放的な空気——「ここもいい場所だ」と思ったんです。</p>
+        <p>その前提があった上で、土居さんとも相談しながらオランダ移住を具体的に検討し始めました。ディジョンからパリに戻って2ヶ月ほど調べた結果、合理的にも筋が通っていた。フランスでは永住権が取りにくいけれど、オランダならZZPビザから永住権を目指せる。土居さんもそれを推していました。</p>
+        <p>でも本音の部分では、パリに残るあのデザイナーの記憶を消したかったんです。同じフランスにいる限り、あの記憶からは逃れられない気がしていました。そして「人と会わない方が稼げる」という信念も固まっていた。ディジョンの後半に感じた孤独を、「孤独の方が生産的だ」と自分に言い聞かせた。意図的にパリの友人関係をすべて切りました。</p>
+        <p>今振り返ると、合理的な判断に見せかけた逃避だったんだと思います。心を置き去りにして、頭だけで選んだ。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:35%"></div></div><div class="track-note">逃避としての移住。心は置き去りにした</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:70%"></div></div><div class="track-note">月70万。安定</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">事業拡大 — 数字は上がるが、心は下がる</span>
+        <span class="period-date">2026年前半 — 32歳</span>
+      </div>
+      <div class="period-body">
+        <p>オランダのZZPビザを取得した頃、事業が一気に伸びました。月70万だった売上が200万近くまで急伸。ただし、この成長の大部分は土居さん経由の案件です。紹介案件の実装を担当し、勉強会で「海外在住のWebマーケター」として登壇し、YouTube対談の第2弾も撮影しました。</p>
+        <p>でも、土居さんの「会社」の一部のような立場になっていく感覚がありました。「パリからオランダに移住！月商7桁達成」という見栄えの良いストーリーが完成する一方で、内実はどんどん疲弊していました。5つのプロジェクトを同時に回す毎日。身体だけがオランダにある状態です。</p>
+        <p>オランダに友達はいません。文化的な楽しみも見出せていません。「疲れた」と初めて感じた時期でした。</p>
+        <div class="video-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/z6KjXPMMK7w?si=naRgmxZceeI4j2v_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:25%"></div></div><div class="track-note">「疲れた」と初めて感じた。数字が上がるほど心が沈む</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:90%"></div></div><div class="track-note">月100〜200万。過去最高</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">過労のピーク</span>
+        <span class="period-date">2026年5月 — 32歳</span>
+      </div>
+      <div class="period-body">
+        <p>5つの案件を同時進行する日々。朝から晩までパソコンの前にいて、AIツールと向き合い続ける。友達がいない。文化的な楽しみもない。パリにいた頃はカフェのテラスで街を眺めて幸せを感じていたのに、今はアムステルダムの運河を見ても何も感じない。</p>
+        <p>好きな場所にいるはずなのに、好きだと感じられなくなっている自分に気づき始めました。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:15%"></div></div><div class="track-note">何も感じなくなっている。限界の始まり</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:100%"></div></div><div class="track-note">月200万前後。過去最高</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">東京時代の元彼が来てくれた — 一瞬の光と、その後の暗闇</span>
+        <span class="period-date">2026年7月 — 32歳</span>
+      </div>
+      <div class="period-body">
+        <p>東京にいたときに長く関わっていた元彼が、2週間オランダに来てくれました。実は初めてパリに旅行に行く前に、彼がうつ病になってしまい会えなくなってしまったのがきっかけでした。それで別れていたんです。（この出来事があったから、ひとりでパリに行けたというのもありました）でも最近になって割と元気になったようで、向こうから連絡が来て、ちょくちょくやり取りするようになっていました。「オランダに行ってみたい」と言ってくれたので、案内することにしたんです。</p>
+        <p>彼のために広い部屋にアップグレードして、一緒に暮らしました。一緒にいる間は、久しぶりに「人と暮らす」ということの温かさを感じました。朝起きて誰かがいること。ご飯を一緒に食べること。些細なことを共有できること。それがどれだけ大きなことだったか、一人になってから初めてわかりました。</p>
+        <p>彼が帰国した後の孤独が、壊滅的でした。部屋に戻ったら、そこにはもう誰もいない。広くした部屋が余計に空虚に感じる。彼はオランダには住めない人なんです。もし自分が日本に帰れば、一緒にいられる。</p>
+        <p>このとき初めて、「やっぱり一人では生きていけないのかもしれない」と思いました。ずっと「一人の方が稼げる」「一人の方が楽」と言い聞かせてきたけれど、それは嘘だったのかもしれない。人と一緒にいることの温かさを取り戻した瞬間に、孤独の深さに気づいてしまったんです。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:40%"></div></div><div class="track-note">一瞬の光 → その後の暗闘が深すぎた</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:95%"></div></div><div class="track-note">変わらず高い。高い家賃を払い続けている</div></div>
+      </div>
+    </div>
+
+    <div class="period mood-low">
+      <div class="period-top">
+        <span class="period-title">限界 — もう帰りたい</span>
+        <span class="period-date">2026年8月（現在）— 32歳</span>
+      </div>
+      <div class="period-body">
+        <p>一人で部屋にいて、叫びました。「もう限界だ」という言葉が、何度も口をついて出てきます。</p>
+        <p>帰りたい。でも帰ったら敗北を意味する気がする。でもこれ以上オランダにいる意味がない。オランダにいる1日1日が、ただ重い税を支払うだけの、未来に何もつながっていない感覚になる。一刻も早く日本に拠点を戻した方がいい。頭ではわかっている。でも「海外にいる自分」を手放すのが怖い。</p>
+        <p>人に会いたくて、8月17日から21日まで、パリに行きます。このセッションの前日まで。オランダに友達がいないから、人と会いたいと思ったら今でも電車でパリに向かうんです。結局、ヨーロッパにおける私のアイデンティティはずっとパリにあるのかもしれません。どんな経験をしようとも、やっぱりパリは好きですね。</p>
+      </div>
+      <div class="tracks">
+        <div><div class="track-label t-heart">心</div><div class="track-bar-bg"><div class="track-bar-fill t-heart" style="width:5%"></div></div><div class="track-note">精神崩壊の瀬戸際。「もう限界だ」</div></div>
+        <div><div class="track-label t-money">収入</div><div class="track-bar-bg"><div class="track-bar-fill t-money" style="width:100%"></div></div><div class="track-note">過去最高水準。でも手残りはほぼゼロ</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ▼ パターン -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">PATTERNS</div>
+    <h2>見えてきた構造</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="callout callout-amber">
+      <strong>事業が最大値のとき、心は最下位になっている：</strong>最も幸せだったディジョンやパリ再来の月収は30〜70万。最も苦しい今の月収は100〜200万。収入と心の充実が完全に逆相関しています。
+    </div>
+
+    <div class="equation">
+      <p>適度な収入 ＋ 低い固定費 ＋ 美しい環境<br>＋ 自由な時間 ＋ 人との繋がり ＝ 幸せ</p>
+      <p class="eq-note">3年間で最も充実していた時期に共通する5要素。現在は「収入」以外の4つが欠けています。</p>
+    </div>
+
+    <div class="callout callout-red">
+      <strong>信じていたものが全て壊された：</strong>パリのファッションデザイナー（日本人）に「利用価値ゼロで捨てられた」経験が、人生観を根底から変えました。ご縁、運、人とのつながり、物語的に人生を捉える力——全てが破壊された。そこから生まれた人間不信が、孤立に走る原動力になり、同時に「バカにされない自分になる」という復讐心が事業を伸ばす燃料になりました。でも、復讐は完成した。YouTubeに出て「勝ち組になった」と感じた時点で燃料は燃え尽きた。燃料なき走行が今の状態です。
+    </div>
+
+    <div class="callout callout-red">
+      <strong>孤立のスパイラル：</strong>「人と会わない方が稼げる」→ 意図的に孤立 → 収入増 → 孤独が深まる → さらに仕事に逃避 → さらに孤立。オランダ移住そのものが、孤立を構造化する選択でした。でも彼が来てくれた2週間で、「やっぱり一人では生きていけないのかもしれない」と気づいてしまった。
+    </div>
+
+    <div class="callout callout-blue">
+      <strong>「挑戦」と「耐久」は違う：</strong>パリに行った時は挑戦でした。今のオランダは耐久です。挑戦には希望がありますが、耐久にはない。「海外にいること」自体が目的化して、「何のためにいるのか」が消失しています。
+    </div>
+
+    <div class="callout callout-blue">
+      <strong>感情で選ぶと経済が壊れ、合理で選ぶと心が壊れる：</strong>パリ（感情の選択）→ 心は満たされたが経済は崩壊。オランダ（合理の選択）→ 経済は安定したが心が崩壊。この二択自体が問題の構造で、「逃げか合理か」という問いの立て方がそもそもずれている可能性があります。
+    </div>
+
+    <div class="callout callout-purple">
+      <strong>2つのアイデンティティ：</strong>クリエイター/フォトグラファー（パリで見つけた原初の夢）と、マーケター/広告代理店経営者（現在のキャリア）。写真を手放した2025年中盤から、心の充実度が下降し始めています。この2つの自分をどう扱うかが、今後の方向性を決めるのだと思います。
+    </div>
+
+  </div>
+</div>
+
+<!-- ▼ 土居さん -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">STRUCTURAL BLOCKER</div>
+    <h2>土居さんとの利害関係</h2>
+  </div>
+  <div class="section-body">
+    <p>土居さんには恩があります。方向性を定めてくれたのは間違いなく土居さんでした。でも、今は師弟関係から利害が複雑に絡んだエコシステムへと発展していて、それが自分の人生の選択を縛っている状態です。</p>
+
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td><strong>構造</strong></td><td>土居さん＝上流（コンサル・集客・講座）、私＝下流（マーケティングツール実装・広告運用・Claude Code構築）</td></tr>
+      <tr><td><strong>報酬</strong></td><td>月額制の案件 ＋ クライアントの紹介</td></tr>
+      <tr><td><strong>登壇義務</strong></td><td>勉強会 全4〜5回の契約（「海外在住Webマーケター」として自分の体験を話す）</td></tr>
+      <tr><td><strong>YouTube</strong></td><td>対談2本撮影済み（パリ編・オランダ編）。どちらも土居さんの講座のマーケティング素材</td></tr>
+    </table>
+
+    <div class="callout callout-red">
+      <strong>帰国するとどうなるか：</strong>「海外在住」の登壇ネタが使えなくなるので、契約違反の可能性が出てきます。土居さん経由の案件も失います。心はすでに帰国に向いているのに、この契約義務がブレーキになっている。自分の人生の選択が、ビジネス上の利害関係に縛られている状態です。
+    </div>
+  </div>
+</div>
+
+<!-- ▼ 財務 -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">FINANCIAL STRUCTURE</div>
+    <h2>ねじれ構造 — 円で稼ぎ、ユーロで暮らす問題</h2>
+  </div>
+  <div class="section-body">
+    <p>心の話とは別に、構造的な問題もあります。私は日本円で稼いで、ユーロで暮らしています。クライアントは全員日本在住で、オランダにビジネス上の接点はゼロです。</p>
+
+    <ul>
+      <li>この5年で<strong>円の対ユーロ購買力が約51%下落</strong>しています（2020年: 1EUR=121円 → 2026年: 184円）</li>
+      <li>アムステルダムの生活費は<strong>東京の約1.7倍</strong>、家賃は<strong>2倍以上</strong>（Numbeo実測）</li>
+      <li>オランダの税率：所得税35〜49.5% ＋ 金融資産に年2.16%の課税（Box 3）</li>
+      <li>日本のNISA・iDeCoは海外居住者には使えません</li>
+    </ul>
+
+    <div class="callout callout-green">
+      <strong>数字だけで見た場合：</strong>感情を排除して数字だけで判断すると、オランダに留まる事業上の合理性はゼロです。売上が半分に減っても、日本に帰れば手残りは3倍以上になる構造。32歳の今から資産形成を始めた場合と4年後に始めた場合で、60歳時点で約4,000万円の差が出ます。詳細は別途まとめた分析資料があります。
+    </div>
+  </div>
+</div>
+
+<!-- ▼ 欲しいもの -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">WHAT I WANT NOW</div>
+    <h2>いま、欲しいもの</h2>
+  </div>
+  <div class="section-body">
+    <ul>
+      <li><strong>休み</strong> — 何にも追われない時間が欲しいです。ずっと走り続けてきました。復讐心で走り、承認欲求で走り、義務感で走り。もう走る燃料が残っていません。</li>
+      <li><strong>自由</strong> — 何にも縛られたくないんです。土居さんの契約にも、ビザにも、「海外にいなきゃいけない」というプレッシャーにも。ヨーロッパには行きたいけれど、義務としてではなく、自由に行きたい。</li>
+      <li><strong>パートナー</strong> — 東京の彼。オランダに来てくれた2週間で、「人と暮らす」ことがどれだけ大事か思い知りました。一人で叫んでいる部屋と、誰かがいる部屋は、同じ空間でもまったく違う場所です。彼はオランダには来られない。自分が帰れば一緒にいられます。</li>
+      <li><strong>人との繋がり</strong> — オランダに友達がいません。人に会いたいと思ったら、パリまで電車で行くんです。セッション前日までパリにいるのも、人に会うためです。結局ずっと人を求めているのに、自分から人を遠ざけてしまっている。この矛盾が苦しいです。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ▼ 問い -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">QUESTIONS FOR SESSION</div>
+    <h2>セッションで明確にしたいこと</h2>
+  </div>
+  <div class="section-body">
+    <ol class="questions">
+      <li>日本に帰りたい。これは「逃げ」なのか、「合理的選択」なのか、「限界」なのか。3つは重なっているのか、それとも見分ける基準があるのか。</li>
+      <li>感情で選ぶと経済が壊れ、合理で選ぶと心が壊れる。この二択自体がずれている可能性はないか。第三の選択軸はあるか。</li>
+      <li>パリのデザイナーに裏切られて以来、人を信じることができなくなりました。それが孤立に走る原因になっている。この人間不信をどう扱えばいいか。</li>
+      <li>クリエイター（写真）の自分と、マーケター（広告代理店）の自分。どちらを生きるのか。あるいは統合する道はあるか。</li>
+      <li>「帰国＝敗北」という感覚をどう扱えばいいか。「挑戦を続ける」ことと「耐久を続ける」ことの違いはどこにあるか。</li>
+      <li>土居さんとの関係をどう整理すればいいか。恩はある。でも利害関係が自分の人生の選択を縛っている。</li>
+      <li>帰国しても、ヨーロッパには3ヶ月のビジタービザでいつでも戻れる。オランダのビザがなくても、ヨーロッパとの関係は終わらない。この認識は正しいか、甘いか。</li>
+    </ol>
+  </div>
+</div>
+
+</div>
