@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共有ナレッジ 完全ガイド</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy-900:#16243A; --navy-700:#24405F; --navy-500:#3A6491; --navy-100:#E3EAF3; --navy-50:#F1F5F9;
+  --gold-600:#A67520; --gold-500:#C4862B; --gold-100:#FBF3E4;
+  --red-600:#B8423A;  --red-100:#FDE8E6;
+  --blue-600:#3068A8; --blue-100:#E3EDF8;
+  --green-600:#2D7A4B;--green-100:#E4F2E9;
+  --neutral-900:#2A2A28; --neutral-700:#4A4A47; --neutral-500:#7A7A76;
+  --neutral-300:#B8B8B4; --neutral-100:#ECECEA;
+  --bg:#FAFAF8; --white:#FFFFFF;
+}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP','Yu Gothic',sans-serif;
+  background:var(--bg);color:var(--neutral-900);line-height:1.7;font-size:14px;-webkit-font-smoothing:antialiased}
+.report{max-width:920px;margin:0 auto;padding:40px 24px 80px}
+
+/* Header */
+.report-header{border-bottom:2px solid var(--navy-700);padding-bottom:20px;margin-bottom:32px}
+.report-header .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-500);font-weight:600;margin-bottom:6px}
+.report-header h1{font-size:26px;font-weight:800;color:var(--navy-900);line-height:1.3;text-wrap:balance}
+.report-header .subtitle{font-size:13px;color:var(--neutral-500);margin-top:6px}
+
+/* Overview */
+.overview{background:var(--white);border:1px solid var(--neutral-100);border-radius:8px;padding:22px 24px;margin-bottom:36px}
+.overview h2{font-size:14px;font-weight:700;color:var(--navy-900);margin-bottom:10px}
+.overview p{font-size:13.5px;color:var(--neutral-700);margin-bottom:18px}
+.steps-map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.steps-map{grid-template-columns:1fr}}
+.smap{background:var(--navy-50);border:1px solid var(--navy-100);border-radius:8px;padding:14px;text-align:center}
+.smap .n{width:26px;height:26px;border-radius:7px;background:var(--navy-700);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;margin:0 auto 8px}
+.smap b{display:block;font-size:13px;color:var(--navy-900);margin-bottom:2px}
+.smap span{font-size:11px;color:var(--neutral-500)}
+
+/* Part */
+.part{margin-bottom:40px}
+.parthead{display:flex;align-items:center;gap:12px;padding-bottom:9px;border-bottom:1px solid var(--neutral-100);margin-bottom:8px}
+.parthead .badge{background:var(--navy-700);color:#fff;font-weight:700;font-size:11px;letter-spacing:.06em;padding:4px 10px;border-radius:5px;white-space:nowrap}
+.parthead h2{font-size:18px;font-weight:700;color:var(--navy-900)}
+.partnote{color:var(--neutral-500);font-size:12.5px;margin-bottom:18px}
+.partnote b{color:var(--neutral-700)}
+
+/* Step */
+.step{background:var(--white);border:1px solid var(--neutral-100);border-radius:8px;padding:16px 20px;margin-bottom:12px}
+.step h3{font-size:14.5px;font-weight:700;color:var(--navy-900);display:flex;align-items:flex-start;gap:10px;line-height:1.5;margin-bottom:9px}
+.step h3 .n{flex:none;width:23px;height:23px;border-radius:6px;background:var(--navy-50);border:1px solid var(--navy-100);color:var(--navy-700);font-weight:800;font-size:12px;display:grid;place-items:center;margin-top:2px}
+.step p{font-size:13.5px;color:var(--neutral-700);margin-bottom:8px}
+.step p:last-child{margin-bottom:0}
+.step b{color:var(--navy-900);font-weight:700}
+
+/* Copy blocks */
+.copylbl{font-size:10.5px;letter-spacing:.1em;color:var(--neutral-500);font-weight:600;margin:12px 0 5px}
+.copy{background:var(--navy-50);border:1px solid var(--navy-100);border-radius:6px;padding:12px 14px;margin:8px 0;
+  font-family:"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;color:var(--navy-900);white-space:pre-wrap;word-break:break-all;line-height:1.65}
+.copy.say{background:var(--gold-100);border-color:#E8D6AE;color:var(--neutral-900);
+  font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;font-size:13.5px;white-space:pre-line;word-break:normal}
+.copy.tree{background:var(--white);border-color:var(--neutral-100);color:var(--neutral-700);font-size:12px;line-height:1.85}
+
+/* Notes */
+.note{border-radius:0 6px 6px 0;padding:14px 18px;margin:12px 0;font-size:13px;border-left:4px solid}
+.note b{display:block;font-size:13px;font-weight:700;margin-bottom:4px}
+.note p{margin:0;color:var(--neutral-700)}
+.note.info{background:var(--blue-100);border-color:var(--blue-600)}   .note.info b{color:var(--blue-600)}
+.note.warn{background:var(--gold-100);border-color:var(--gold-600)}   .note.warn b{color:var(--gold-600)}
+.note.ok{background:var(--green-100);border-color:var(--green-600)}   .note.ok b{color:var(--green-600)}
+.note.ng{background:var(--red-100);border-color:var(--red-600)}       .note.ng b{color:var(--red-600)}
+
+/* Daily */
+.daily{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.daily{grid-template-columns:1fr}}
+.dcard{background:var(--white);border:1px solid var(--neutral-100);border-radius:8px;padding:18px 20px}
+.dcard .when{font-size:11px;letter-spacing:.06em;color:var(--neutral-500);font-weight:600;margin-bottom:6px}
+.dcard .say{font-size:18px;font-weight:800;color:var(--navy-700);margin-bottom:8px}
+.dcard .what{font-size:12.5px;color:var(--neutral-700)}
+
+/* Table */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--white);border:1px solid var(--neutral-100);border-radius:8px;overflow:hidden}
+thead th{background:var(--navy-50);font-size:11px;font-weight:600;color:var(--neutral-700);letter-spacing:.03em;text-align:left;padding:9px 13px;border-bottom:1px solid var(--neutral-100);white-space:nowrap}
+tbody td{padding:11px 13px;border-bottom:1px solid var(--neutral-100);color:var(--neutral-700);vertical-align:top}
+tbody td b{color:var(--navy-900)}
+tbody tr:last-child td{border-bottom:none}
+
+/* Examples */
+.exgroup{margin-bottom:22px}
+.exgroup h4{font-size:13px;font-weight:700;color:var(--navy-700);margin-bottom:9px}
+.ex{background:var(--white);border:1px solid var(--neutral-100);border-left:3px solid var(--navy-500);border-radius:0 8px 8px 0;padding:13px 17px;margin-bottom:9px}
+.ex .q{font-size:13.5px;color:var(--navy-900);font-weight:600;margin-bottom:4px}
+.ex .a{font-size:12.5px;color:var(--neutral-500)}
+
+/* Details */
+details{background:var(--white);border:1px solid var(--neutral-100);border-radius:8px;padding:14px 18px;margin-bottom:9px}
+summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--navy-900);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--gold-600)}
+details[open] summary::before{content:"▾ "}
+details .body{margin-top:11px;font-size:13px;color:var(--neutral-700)}
+details .body p{margin-bottom:8px}
+details .body p:last-child{margin-bottom:0}
+
+.sectitle{font-size:11px;letter-spacing:.14em;color:var(--neutral-500);font-weight:600;text-align:center;margin:44px 0 18px}
+.foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--neutral-100);text-align:center;color:var(--neutral-500);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="report">
+
+<div class="report-header">
+  <div class="eyebrow">Complete Guide</div>
+  <h1>共有ナレッジフォルダ 完全ガイド</h1>
+  <p class="subtitle">Honoka × masadoi.college ／ 対象：Mac・GitHubアカウント作成済みの方 ／ 所要時間 約15分（初回のみ）</p>
+</div>
+
+<div class="overview">
+  <h2>これで何ができるようになるか</h2>
+  <p>
+  土居さんのMacのデスクトップに <b>共有ナレッジフォルダ</b> ができます。<br>
+  過去のInstagram投稿・YouTube・講義の文字起こし・SEO記事などが全部入っていて、<br>
+  <b>Claude Code に「あのフォルダ見て」と言うだけで、全部読んで答えてくれる</b>状態になります。<br>
+  Honoka 側がナレッジを更新すれば、土居さん側にも反映されます。
+  </p>
+  <div class="steps-map">
+    <div class="smap"><div class="n">1</div><b>招待を承認</b><span>ブラウザ・1分</span></div>
+    <div class="smap"><div class="n">2</div><b>Macをつなぐ</b><span>Claude Code・10分</span></div>
+    <div class="smap"><div class="n">3</div><b>フォルダを取得</b><span>Claude Code・2分</span></div>
+  </div>
+</div>
+
+<!-- PART 1 -->
+<div class="part">
+<div class="parthead"><span class="badge">PART 1</span><h2>招待を承認する</h2></div>
+<p class="partnote">GitHubアカウントの作成は完了済みなので、ここからです。</p>
+
+<div class="step">
+<h3><span class="n">1</span>招待ページを開く</h3>
+<p>GitHubにログインした状態で、下のアドレスを開いてください。</p>
+<div class="copy">https://github.com/honokamorohashi/doi-knowledge/invitations</div>
+<p>緑色の <b>Accept invitation</b> を押せば完了です。</p>
+<div class="note info"><b>メールからでも承認できます</b><p>GitHubから届いている英語のメール内の「View invitation」からでも同じ画面に行けます。メールが見つからない場合は上のURLを直接開いてください。</p></div>
+<div class="note warn"><b>有効期限は7日間です</b><p>過ぎてしまった場合は Honoka に再送を依頼してください。</p></div>
+</div>
+</div>
+
+<!-- PART 2 -->
+<div class="part">
+<div class="parthead"><span class="badge">PART 2</span><h2>MacをGitHubにつなぐ</h2></div>
+<p class="partnote">Claude Code に作業してもらいます。コマンドを覚える必要はありません。</p>
+
+<div class="step">
+<h3><span class="n">1</span>下の文章をそのまま Claude Code に貼り付ける</h3>
+<div class="copylbl">COPY &amp; PASTE</div>
+<div class="copy say">GitHubに接続できるようにしたいです。以下をお願いします。
+
+1. Homebrew が入っていなければインストール
+2. GitHub CLI（gh）をインストール
+3. gh auth login でブラウザ認証（HTTPSで）
+4. gh auth setup-git を実行
+5. git の user.name と user.email を設定
+
+user.name は「土居正英」、user.email は GitHub に登録したメールアドレスを使ってください。</div>
+<div class="note warn"><b>途中でMacのパスワードを求められることがあります</b><p>Homebrew のインストールに管理者権限が必要なためです。ご自身のMacのログインパスワードを入力してください。</p></div>
+</div>
+
+<div class="step">
+<h3><span class="n">2</span>ワンタイムコードを入力する</h3>
+<p>画面に <b>XXXX-XXXX</b> という8桁のコードが表示され、ブラウザでGitHubのページが開きます。そのコードを入力して <b>Continue</b> を押してください。</p>
+</div>
+
+<div class="step">
+<h3><span class="n">3</span>認可する</h3>
+<p><b>Authorize GitHub CLI</b> の画面で、緑色の <b>Authorize github</b> を押してください。</p>
+<div class="note ng"><b>緑のボタンが押せないとき</b><p>GitHubは誤クリック防止のため、ボタンを数秒間ロックしています。<b>ページの余白をどこか1回クリックして、5秒ほど待ってから</b>押してみてください。</p></div>
+<div class="note ok"><b>「Authentication complete.」と出れば成功です</b></div>
+</div>
+</div>
+
+<!-- PART 3 -->
+<div class="part">
+<div class="parthead"><span class="badge">PART 3</span><h2>フォルダを取ってくる</h2></div>
+<p class="partnote">GitHub上にあるフォルダを、そっくりそのまま自分のMacにコピーします。この作業は<b>初回の1回だけ</b>です。</p>
+
+<div class="note info"><b>「clone（クローン）」とは</b><p>GitHubに置いてあるフォルダを、中身ごと丸ごとダウンロードして自分のMacに実体として作ることです。ダウンロードに近い作業ですが、フォルダ構造も更新履歴もそのまま引き継がれます。</p></div>
+
+<div class="copy tree">【実行前】  デスクトップには何もない
+                ↓   コマンドを1回実行（約10〜30秒）
+【実行後】  デスクトップに doi-knowledge フォルダが出現（739ファイル）</div>
+
+<div class="step">
+<h3><span class="n">1</span>Claude Code を開く</h3>
+<p>いつも使っている Claude Code を開いてください。<b>このときの作業フォルダはどこでも構いません。</b>「デスクトップに作って」と指示するので、いまどこを開いていても正しい場所に作られます。</p>
+</div>
+
+<div class="step">
+<h3><span class="n">2</span>下の文章をそのまま貼り付けて送る</h3>
+<div class="copylbl">COPY &amp; PASTE</div>
+<div class="copy say">下のリポジトリをデスクトップに clone してください。
+
+https://github.com/honokamorohashi/doi-knowledge.git</div>
+<p>コマンドを自分で打つ必要はありません。<b>この日本語を貼るだけ</b>で、Claude Code が裏で処理してくれます。</p>
+</div>
+
+<div class="step">
+<h3><span class="n">3</span>実行の確認が出たら「許可」を押す</h3>
+<p>Claude Code が「このコマンドを実行してよいか」と聞いてくることがあります。表示されるのはこのようなコマンドです。</p>
+<div class="copy">git clone https://github.com/honokamorohashi/doi-knowledge.git</div>
+<p>内容を確認して <b>許可</b> を押してください。</p>
+</div>
+
+<div class="step">
+<h3><span class="n">4</span>10〜30秒待つ</h3>
+<p>34MBほどのデータをダウンロードします。「完了しました」という返事が来るまで待ってください。</p>
+</div>
+
+<div class="step">
+<h3><span class="n">5</span>Finderでフォルダができたか確認する</h3>
+<p>デスクトップを見てください。<b>doi-knowledge</b> という名前のフォルダができています。開くと中身はこうなっているはずです。</p>
+<div class="copy tree">doi-knowledge/
+├── 01_ナレッジ/
+├── 02_SEO/
+├── 03_note・アメブロ/
+├── 04_X・Threads/
+├── 05_YouTube/
+├── 99_コラボ/
+└── 各種管理シート（.xlsx）</div>
+<div class="note ok"><b>これが見えたらダウンロードは成功です</b><p>普通のFinderのフォルダなので、開く・コピーする・編集する、すべていつも通りできます。</p></div>
+</div>
+
+<div class="step">
+<h3><span class="n">6</span>Claude Code の作業フォルダをここに切り替える</h3>
+<p><b>ここが一番大事な工程です。</b> フォルダができただけでは、Claude Code はまだそこを見ていません。</p>
+<p>Claude Code で <b>新しいセッションを開き、作業フォルダにデスクトップの doi-knowledge を指定</b> してください。これで初めて、Claude Code がこのナレッジを読める状態になります。</p>
+<div class="note warn"><b>切り替えを忘れると「ファイルが見つかりません」と言われます</b><p>フォルダは確かに存在しているのに読めない、という場合はほぼこれが原因です。</p></div>
+</div>
+
+<div class="step">
+<h3><span class="n">7</span>本当に読めるか確認する</h3>
+<p>作業フォルダを切り替えたセッションで、下を貼ってみてください。</p>
+<div class="copylbl">COPY &amp; PASTE</div>
+<div class="copy say">01_ナレッジ/01_Instagram を読んで、
+私が繰り返し話しているテーマを5つ挙げてください。</div>
+<div class="note ok"><b>過去のInstagram投稿をふまえた答えが返ってきたら、すべて完了です</b><p>ここまで来れば、あとは自由に使えます。</p></div>
+</div>
+</div>
+
+<div class="sectitle">ここからが本題です</div>
+
+<!-- PART 4 -->
+<div class="part">
+<div class="parthead"><span class="badge">PART 4</span><h2>フォルダの中身</h2></div>
+<p class="partnote">何がどこにあるかの地図です。媒体ごとのデータが先頭に並んでいます。</p>
+
+<div class="copy tree">doi-knowledge/
+│
+├── 01_ナレッジ/                  ← 素材の本体
+│   ├── 01_Instagram/            過去の投稿・リール・ライブの文字起こし
+│   ├── 02_YouTube/              動画の文字起こし
+│   ├── 03_Threads/              Threads投稿
+│   ├── 04_講義・セミナー/        グループ講義・勉強会の文字起こしと資料
+│   ├── 05_商品・特典/            講座商品資料・特典・FBグループ
+│   ├── 06_アウトプット/          整形済みの文字起こしまとめ
+│   ├── 07_統合ナレッジ/          全部を1ファイルに統合したもの
+│   ├── 08_アイデアプール/        企画の種
+│   ├── 09_おさる式メソッド/      攻略本11冊
+│   └── 10_クローラー定義/        収集設定
+│
+├── 02_SEO/                      SEO記事のブリーフ・原稿
+├── 03_note・アメブロ/            note／アメブロ原稿
+├── 04_X・Threads/                X投稿
+├── 05_YouTube/                  YouTube企画書
+├── 99_コラボ/                    コラボ関連
+└── 各種管理シート（.xlsx）        コンテンツカレンダー・投稿管理表など</div>
+
+<div class="note info"><b>動画・音声・画像・PDFは入っていません</b><p>容量が大きいため、それらは従来通り Googleドライブでやりとりします。このフォルダに入っているのは<b>文字（テキスト）のデータ</b>です。だからAIが全部読めます。</p></div>
+</div>
+
+<!-- PART 5 -->
+<div class="part">
+<div class="parthead"><span class="badge">PART 5</span><h2>Claude Code での使い方</h2></div>
+<p class="partnote">Claude Code でこのフォルダを開いて、日本語で話しかけるだけです。</p>
+
+<div class="step">
+<h3><span class="n">1</span>まずこれを試してください</h3>
+<p>動作確認を兼ねた、一番わかりやすい例です。</p>
+<div class="copylbl">COPY &amp; PASTE</div>
+<div class="copy say">01_ナレッジ/01_Instagram を読んで、
+私が繰り返し話しているテーマを5つ挙げてください。</div>
+<p>過去のInstagram投稿を全部読んだ上で答えが返ってきたら、成功です。</p>
+</div>
+
+<div class="exgroup">
+<h4>■ 過去の発信を掘り起こす</h4>
+<div class="ex"><p class="q">「01_Instagram の過去投稿から、税金について話しているものを全部出して」</p><p class="a">キーワードで横断検索します。何年前の投稿でも見つかります。</p></div>
+<div class="ex"><p class="q">「このフォルダ全体から『イギリス』に関する発言を集めて、主張を整理して」</p><p class="a">媒体をまたいで、発言の一貫性や変化を確認できます。</p></div>
+</div>
+
+<div class="exgroup">
+<h4>■ 企画を考える</h4>
+<div class="ex"><p class="q">「YouTubeの文字起こしを読んで、まだ記事にしていないテーマを5つ挙げて」</p><p class="a">02_SEO の既存記事と突き合わせて、穴を探します。</p></div>
+<div class="ex"><p class="q">「08_アイデアプール を見て、今月やるべき企画を3つ選んで。理由も教えて」</p></div>
+<div class="ex"><p class="q">「09_おさる式メソッド のショート動画攻略本に沿って、リール台本を1本書いて」</p><p class="a">メソッドを読ませた上で書かせる、という使い方ができます。</p></div>
+</div>
+
+<div class="exgroup">
+<h4>■ 原稿・コンテンツを作る</h4>
+<div class="ex"><p class="q">「04_講義・セミナー の文字起こしから、受講生がつまずいているポイントを抽出して」</p></div>
+<div class="ex"><p class="q">「過去のライブで話した内容をもとに、Threadsの投稿を5本書いて」</p><p class="a">口調や言い回しも過去データから学習するので、本人らしい文章になります。</p></div>
+</div>
+
+<div class="note ok"><b>コツは「どのフォルダを見てほしいか」を最初に言うことです</b><p>フォルダ名を指定すると、そこを重点的に読んでくれます。指定しなくても探してくれますが、指定した方が速くて正確です。</p></div>
+</div>
+
+<!-- 毎日 -->
+<div class="part">
+<div class="parthead"><span class="badge">毎日</span><h2>覚えることは2つだけ</h2></div>
+<p class="partnote">Googleドライブと違い、<b>自動では同期されません</b>。取りに行って初めて最新になります。</p>
+<div class="daily">
+  <div class="dcard"><div class="when">作業を始めるとき</div><div class="say">「最新を取ってきて」</div><p class="what">Honoka側の更新が反映されます。これをやらないと古い情報のまま作業することになります。</p></div>
+  <div class="dcard"><div class="when">作業を終えるとき</div><div class="say">「変更を共有して」</div><p class="what">土居さん側の変更が Honoka に届きます。これをやらないと相手に伝わりません。</p></div>
+</div>
+</div>
+
+<!-- 注意 -->
+<div class="part">
+<div class="parthead"><span class="badge">注意</span><h2>気をつけていただきたいこと</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:190px">項目</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td><b>非公開です</b></td><td>Private設定です。招待された人しか見られません。インターネットに公開されることはありません。</td></tr>
+<tr><td><b>パスワードやAPIキーは置かない</b></td><td>絶対に入れないでください。共有されてしまいます。</td></tr>
+<tr><td><b>.git フォルダは触らない</b></td><td>フォルダ内の <b>.git</b> は履歴の本体です。移動・削除しないでください。通常はFinderに表示されません。</td></tr>
+<tr><td><b>同時に編集しても壊れません</b></td><td>お互いが別のファイルを触った場合は自動で統合されます。同じ箇所を触った場合だけ確認を求められます。どちらかが消えることはありません。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- 困ったら -->
+<div class="part">
+<div class="parthead"><span class="badge">困ったら</span><h2>よくあるつまずき</h2></div>
+
+<details><summary>「コマンドラインデベロッパツールをインストールしますか」という画面が出た</summary>
+<div class="body"><p>Macに開発ツールが入っていない場合に出ます。<b>インストール</b>を押して完了まで待ってください（5〜10分）。終わったら Claude Code に続きを頼んでください。</p></div></details>
+
+<details><summary>緑の Authorize ボタンが押せない</summary>
+<div class="body"><p>GitHubの誤クリック防止ロックです。<b>ページの余白を1回クリックして5秒待つ</b>と押せるようになります。それでもダメなら、ページを閉じて Claude Code に「認証をやり直して」と伝えてください。</p></div></details>
+
+<details><summary>ワンタイムコードの有効期限が切れた</summary>
+<div class="body"><p>コードは15分ほどで無効になります。Claude Code に「もう一度認証して」と伝えれば新しいコードが出ます。</p></div></details>
+
+<details><summary>招待が見つからない</summary>
+<div class="body"><p>GitHubにログインした状態で <b>https://github.com/honokamorohashi/doi-knowledge/invitations</b> を直接開いてください。メールを探さずに承認できます。</p></div></details>
+
+<details><summary>デスクトップにフォルダができない</summary>
+<div class="body"><p>まず Claude Code の返事を確認してください。エラーが出ていればその内容を Honoka に送ってください。よくある原因は次の2つです。</p>
+<p><b>① 招待をまだ承認していない</b> → PART 1 に戻って承認してください。</p>
+<p><b>② 認証が終わっていない</b> → PART 2 に戻って「Authentication complete.」まで完了させてください。</p></div></details>
+
+<details><summary>「Repository not found」「Permission denied」と出る</summary>
+<div class="body"><p>このリポジトリは非公開のため、<b>招待の承認</b>と<b>GitHub認証</b>の両方が済んでいないとアクセスできません。どちらかが抜けている可能性が高いです。PART 1 と PART 2 を確認してください。</p></div></details>
+
+<details><summary>フォルダはあるのに「ファイルが見つかりません」と言われる</summary>
+<div class="body"><p>Claude Code の作業フォルダが doi-knowledge になっていない可能性が高いです。PART 3 のステップ6を確認してください。新しいセッションを開いて、作業フォルダにデスクトップの doi-knowledge を指定し直してください。</p></div></details>
+
+<details><summary>フォルダの中身が古い気がする</summary>
+<div class="body"><p>Claude Code に <b>「最新を取ってきて」</b> と伝えてください。自動では更新されません。</p></div></details>
+
+<details><summary>Claude Code を使わず、自分でコマンドを打ちたい</summary>
+<div class="body">
+<p>初回セットアップ：</p>
+<div class="copy">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install gh
+gh auth login --web --git-protocol https
+gh auth setup-git
+git config --global user.name "土居正英"
+git config --global user.email "GitHubに登録したメールアドレス"
+cd ~/Desktop
+git clone https://github.com/honokamorohashi/doi-knowledge.git</div>
+<p>日常の操作：</p>
+<div class="copy">cd ~/Desktop/doi-knowledge
+
+git pull                      # 最新を取ってくる
+
+git add -A                    # 変更を共有する
+git commit -m "更新内容をひとこと"
+git push</div>
+</div></details>
+</div>
+
+<div class="foot">
+ご不明な点があれば Honoka までお気軽にご連絡ください。<br>
+つまずいた画面のスクリーンショットをいただければ、そのまま確認いたします。
+</div>
+
+</div>
+</body>
+</html>
