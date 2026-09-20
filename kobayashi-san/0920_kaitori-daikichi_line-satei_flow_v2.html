@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>買取大吉 金沢増泉店 — LINE査定 運用フロー設計書</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FAFAF8;
+  --bg2: #F2F1ED;
+  --bg3: #FFFFFF;
+  --text: #1a1a18;
+  --text2: #5a5a56;
+  --text3: #9a9a94;
+  --border: rgba(0,0,0,0.1);
+  --border2: rgba(0,0,0,0.18);
+  --green-bg: #EAF3DE;
+  --green-text: #3B6D11;
+  --amber-bg: #FAEEDA;
+  --amber-text: #854F0B;
+  --red-bg: #FCEBEB;
+  --red-text: #A32D2D;
+  --blue-bg: #E6F1FB;
+  --blue-text: #0C447C;
+  --purple-bg: #EEEDFE;
+  --purple-text: #3C3489;
+  --navy: #1B2A6B;
+}
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.header {
+  background: #1a1a18;
+  color: #fff;
+  padding: 48px 56px 40px;
+}
+.header-label { font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+.header-title { font-size: 26px; font-weight: 500; line-height: 1.3; margin-bottom: 6px; }
+.header-sub { font-size: 14px; color: rgba(255,255,255,0.55); }
+.header-meta { margin-top: 20px; display: flex; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 36px; }
+.section { background: var(--bg3); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.section-header { padding: 24px 28px 18px; border-bottom: 0.5px solid var(--border); }
+.section-header h2 { font-size: 16px; font-weight: 600; letter-spacing: 0.02em; }
+.section-header .label { display: inline-block; font-size: 10px; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 6px; }
+.section-body { padding: 20px 28px 28px; }
+.section-body p { font-size: 14px; color: var(--text2); margin-bottom: 12px; }
+.section-body ul { padding-left: 1.2em; margin-bottom: 12px; }
+.section-body li { font-size: 14px; color: var(--text2); margin-bottom: 6px; line-height: 1.7; }
+.section-body li strong { color: var(--text); }
+.callout { border-radius: 10px; padding: 16px 20px; margin: 16px 0; font-size: 13px; line-height: 1.7; }
+.callout-green { background: var(--green-bg); color: var(--green-text); }
+.callout-amber { background: var(--amber-bg); color: var(--amber-text); }
+.callout-red { background: var(--red-bg); color: var(--red-text); }
+.callout-blue { background: var(--blue-bg); color: var(--blue-text); }
+.callout-purple { background: var(--purple-bg); color: var(--purple-text); }
+.callout strong { font-weight: 700; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+th { background: var(--bg2); text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; border-bottom: 1px solid var(--border2); }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+td strong { color: var(--text); }
+.tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; margin-right: 4px; white-space: nowrap; }
+.tag-green { background: var(--green-bg); color: var(--green-text); }
+.tag-amber { background: var(--amber-bg); color: var(--amber-text); }
+.tag-red { background: var(--red-bg); color: var(--red-text); }
+.tag-blue { background: var(--blue-bg); color: var(--blue-text); }
+.tag-purple { background: var(--purple-bg); color: var(--purple-text); }
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+h3.subsection { font-size: 14px; font-weight: 700; margin-bottom: 12px; margin-top: 28px; }
+h3.subsection:first-child { margin-top: 4px; }
+h3.subsection + ul { margin-top: -4px; }
+.quote { border-left: 2px solid var(--border2); padding: 4px 0 4px 16px; margin: 12px 0; font-size: 13px; color: var(--text2); line-height: 1.75; }
+.quote .who { display: block; font-size: 11px; color: var(--text3); margin-top: 6px; letter-spacing: 0.04em; }
+
+/* ===== フロー図 ===== */
+.flow { margin: 20px 0 8px; }
+.flow-step { position: relative; padding: 0 0 22px 46px; }
+.flow-step::before {
+  content: ""; position: absolute; left: 15px; top: 26px; bottom: -4px; width: 2px; background: var(--border2);
+}
+.flow-step:last-child::before { display: none; }
+.flow-num {
+  position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--navy); color: #fff; font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.flow-step.is-auto .flow-num { background: #4A6FA5; }
+.flow-step.is-cust .flow-num { background: #3B6D11; }
+.flow-step.is-kobayashi .flow-num { background: #854F0B; }
+.flow-step.is-offline .flow-num { background: #77746E; }
+.flow-title { font-size: 15px; font-weight: 700; padding-top: 5px; margin-bottom: 4px; }
+.flow-body { font-size: 13px; color: var(--text2); line-height: 1.75; }
+.flow-body .note { display: block; font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+.boundary {
+  margin: 4px 0 22px 0; padding: 10px 16px; border-radius: 8px;
+  background: repeating-linear-gradient(45deg, #F2F1ED, #F2F1ED 8px, #EAE8E2 8px, #EAE8E2 16px);
+  font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: 0.04em; text-align: center;
+}
+
+/* ===== 3分岐カード ===== */
+.branch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.branch-card { border: 0.5px solid var(--border); border-radius: 10px; padding: 16px 16px 18px; background: var(--bg); }
+.branch-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.branch-card .cond { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 10px; }
+.branch-card p { font-size: 12.5px; color: var(--text2); margin: 0; line-height: 1.7; }
+
+/* ===== LINEモック ===== */
+.phones { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0 8px; }
+.phone { width: 300px; flex: 0 0 300px; border: 1px solid var(--border2); border-radius: 18px; overflow: hidden; background: #8FA8C8; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+.phone-cap { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; margin-bottom: 6px; }
+.phone-wrap { margin-bottom: 8px; }
+.line-bar { background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.line-bar .back { color: #999; font-size: 14px; }
+.line-bar .name { font-size: 13px; font-weight: 700; color: #1a1a18; }
+.line-bar .badge { font-size: 9px; background: #06C755; color: #fff; padding: 1px 5px; border-radius: 3px; }
+.line-body { padding: 14px 12px 18px; display: flex; flex-direction: column; gap: 12px; }
+.line-date { align-self: center; background: rgba(0,0,0,0.22); color: #fff; font-size: 10px; padding: 3px 12px; border-radius: 10px; }
+.row { display: flex; gap: 6px; align-items: flex-end; }
+.row.them { justify-content: flex-start; }
+.row.me { justify-content: flex-end; }
+.ava:empty { background: transparent; }
+.ava { width: 26px; height: 26px; border-radius: 50%; background: #fff; flex: 0 0 26px; font-size: 7px; display: flex; align-items: center; justify-content: center; color: #555; font-weight: 700; text-align: center; line-height: 1.1; align-self: flex-start; }
+.bub { max-width: 210px; padding: 9px 11px; border-radius: 14px; font-size: 11.5px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+.bub.them { background: #fff; color: #1a1a18; border-top-left-radius: 4px; }
+.bub.me { background: #8DE055; color: #1a1a18; border-top-right-radius: 4px; }
+.time { font-size: 9px; color: rgba(255,255,255,0.85); padding-bottom: 2px; white-space: nowrap; }
+.bub b { font-weight: 700; }
+.bub .lnk { color: #1D6FD0; text-decoration: underline; word-break: break-all; }
+.ogp { margin-top: 8px; border-left: 3px solid #d4d4d0; padding: 5px 8px; background: #FAFAF8; border-radius: 3px; }
+.ogp .t { font-size: 10px; font-weight: 700; color: #333; }
+.ogp .d { font-size: 9px; color: #999; }
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 160px; }
+.photos div { aspect-ratio: 1/1; background: #D8D4CC; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #6b6b66; text-align: center; padding: 4px; line-height: 1.3; }
+
+/* ===== リッチメニュー ===== */
+.richmenu { width: 300px; border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; margin: 16px 0; }
+.richmenu-top { display: grid; grid-template-columns: repeat(3, 1fr); }
+.rm-cell { background: var(--navy); color: #fff; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,0.25); }
+.rm-cell:last-child { border-right: none; }
+.rm-cell .ic { font-size: 18px; display: block; margin-bottom: 6px; }
+.rm-cell .tt { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+.rm-cell .ss { font-size: 9px; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
+
+.check { list-style: none; padding-left: 0; }
+.check li { position: relative; padding-left: 26px; margin-bottom: 12px; font-size: 14px; }
+.check li::before { content: ""; position: absolute; left: 0; top: 4px; width: 14px; height: 14px; border: 1.5px solid var(--border2); border-radius: 3px; }
+
+@media (max-width: 720px) {
+  .branch-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .header { padding: 32px 24px 28px; }
+  .header-title { font-size: 21px; }
+  .section-header, .section-body { padding-left: 20px; padding-right: 20px; }
+  table { font-size: 12px; }
+  th, td { padding: 8px 10px; }
+  .phone, .richmenu { width: 100%; flex: 1 1 auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">小林様 送付用</div>
+  <div class="header-title">買取大吉 金沢増泉店<br>LINE無料査定 運用フロー設計書</div>
+  <div class="header-sub">LINEの文章をつくる前に、まず「どういう仕組みで回すか」をご確認ください</div>
+  <div class="header-meta">
+    <span>2026.09.20</span>
+    <span>作成：Honoka</span>
+    <span>ご確認：小林 綾子 様</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 00 この資料について ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">INTRODUCTION</div>
+    <h2>この資料の目的</h2>
+  </div>
+  <div class="section-body">
+    <p>9/17のMTGで、LINE査定の方向性（写真を送ってもらって概算を返す／対応は営業時間内・1営業日以内／リッチメニューは3訴求）まで決まりました。次はLINEのメッセージ文面とバナー制作に進むところですが、<strong>文面より先に「業務としてどう回るか」を固めておかないと、書いた文章が後から全部やり直しになります。</strong></p>
+    <p>そこでこの資料では、①どういう流れで動くのか ②実際にやっている会社の実例 ③大吉版だとどう見えるか、の3つをまとめました。<strong>この形でよさそうか、無理がないかをご確認ください。</strong></p>
+    <div class="callout callout-amber">
+      <strong>ご注意：</strong>この資料に出てくるLINEの画面と文章は<strong>すべてイメージ（仮）</strong>です。確定した文面ではありません。この仕組みでOKをいただいてから、文章の細部とバナー制作に進みます。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 01 大前提 ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">PREMISE</div>
+    <h2>まず、3つの大前提</h2>
+  </div>
+  <div class="section-body">
+
+    <h3 class="subsection">前提① これは「LINEで無料査定」ボタンを押した人だけの流れです</h3>
+    <p>いま制作中のLPには、画面下に固定で「今すぐ電話で相談」と「LINEで無料査定」の2つのボタンがあり、上部には「店頭買取／出張買取／宅配買取」の3つのページがあります。</p>
+    <ul>
+      <li><strong>すぐ売りたい人</strong>は、電話するか直接ご来店されます → LINEは通りません</li>
+      <li><strong>出張に来てほしい人</strong>は、出張買取ページから問い合わせます → 別の流れです</li>
+      <li><strong>今回設計するのは</strong>、緑の「LINEで無料査定」を押した人だけ。<strong>最初から「写真で値段を聞きたい」と思っている人</strong>です</li>
+    </ul>
+    <div class="callout callout-blue">
+      出張買取ページ・宅配買取ページにもLINEボタンを置く場合は、<strong>そちらは別のシナリオが必要</strong>です。出張を頼みたい人にいきなり「写真を撮って送ってください」と流れると話が噛み合わないためです。今回はまず「LINE査定」の1本を完成させ、出張用・宅配用はその後に作ります。
+    </div>
+
+    <h3 class="subsection">前提② LINEでは金額は確定しません</h3>
+    <p>写真だけで買取金額は決められません。LINEでお返しするのは<strong>あくまで「だいたいこのくらい」の目安</strong>で、実際の金額は<strong>お品物を手に取って拝見してから</strong>です。</p>
+    <p>ですので、<strong>買取依頼書のご記入・本人確認・お支払いは、すべてLINEの外（ご来店・出張・宅配）で行う</strong>通常業務のままです。LINEの役割は、そこまでお連れすることだけです。</p>
+
+    <h3 class="subsection">前提③ 回答は「営業時間内・1営業日以内」</h3>
+    <p>LPのボタンには「24時間受付」と入っていますが、これは<strong>受け付けが24時間</strong>という意味です。矛盾しないように、LINE側で<strong>「受付は24時間／お返事は営業時間内・1営業日以内」</strong>とはっきり書き分けます。</p>
+    <p>写真が届いた瞬間に「受け付けました、◯営業日以内にご返信します」という自動メッセージが飛ぶようにしておけば、<strong>夜中に送ったお客様が「無視された」と感じることがありません。</strong>ここは小林様の手を一切わずらわせずに自動で動きます。</p>
+    <div class="callout callout-amber">
+      <strong>ご確認いただきたい点：</strong>定休日や、小林様が出張で店舗を空けている日の扱いです。「1営業日以内」と書く以上、<strong>営業日でない日をどう案内するか</strong>（例：日曜は翌営業日のご回答になります）を決めておきたいです。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 02 運用フロー ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">01 — 運用フロー</div>
+    <h2>写真が届いてから、買取が決まるまで</h2>
+  </div>
+  <div class="section-body">
+    <p>全体はこの流れです。<span class="tag tag-blue">自動</span>はシステムが勝手に送るもの、<span class="tag tag-amber">小林様</span>は人の手が必要なもの、<span class="tag tag-green">お客様</span>はお客様の操作です。</p>
+
+    <div class="flow">
+
+      <div class="flow-step is-cust">
+        <div class="flow-num">1</div>
+        <div class="flow-title">LPの「LINEで無料査定」を押す → 友だち追加</div>
+        <div class="flow-body">
+          <span class="tag tag-green">お客様</span>
+          広告 → LP → 緑のボタン → 大吉の公式LINEに登録。
+          <span class="note">※どのボタンから登録したかを記録しておき、後で「LINE査定から来た人」だけに絞って連絡できるようにします。</span>
+        </div>
+      </div>
+
+      <div class="flow-step is-auto">
+        <div class="flow-num">2</div>
+        <div class="flow-title">あいさつ＋使い方の案内が自動で届く</div>
+        <div class="flow-body">
+          <span class="tag tag-blue">自動</span>
+          登録した瞬間に2通。「何ができるか・受付時間・回答時間」と「写真の撮り方／教えてほしい情報」。
+          <span class="note">※ここで欲しい情報を先に伝えておくほど、後の査定がラクになります。</span>
+        </div>
+      </div>
+
+      <div class="flow-step is-cust">
+        <div class="flow-num">3</div>
+        <div class="flow-title">お客様が写真＋情報を送る</div>
+        <div class="flow-body">
+          <span class="tag tag-green">お客様</span>
+          全体・刻印やブランドタグ・傷のある箇所・付属品の写真＋「ブランド名／購入時期／状態」などを、わかる範囲で。
+        </div>
+      </div>
+
+      <div class="flow-step is-auto">
+        <div class="flow-num">4</div>
+        <div class="flow-title">「受け付けました」が自動で返る</div>
+        <div class="flow-body">
+          <span class="tag tag-blue">自動</span>
+          写真が届いた瞬間に自動返信。いつまでに返事が来るかをここで伝えます。
+          <span class="note">※夜間・定休日の安心材料。小林様の作業は発生しません。</span>
+        </div>
+      </div>
+
+      <div class="flow-step is-kobayashi">
+        <div class="flow-num">5</div>
+        <div class="flow-title">査定する（必要なら業者に確認）</div>
+        <div class="flow-body">
+          <span class="tag tag-amber">小林様</span>
+          その場で相場がわかるものはそのまま、専門業者への確認が必要なものは写真を転送して回答を待ちます。
+          <span class="note">※ここが「1営業日以内」の中身です。どの品目がその場で答えられて、どれが業者確認になるかを、別途ご相談させてください。</span>
+        </div>
+      </div>
+
+      <div class="flow-step is-kobayashi">
+        <div class="flow-num">6</div>
+        <div class="flow-title">概算金額＋査定番号を返信し、次の進み方を案内する</div>
+        <div class="flow-body">
+          <span class="tag tag-amber">小林様</span>
+          定型文をコピーして、<strong>「品名」「金額の目安」「査定番号」の3か所だけ</strong>を書き換えて送信。
+          あわせて「実物を拝見して金額が変わる場合がある」旨と、<strong>ご来店／出張／宅配のどれで進めるか</strong>をご案内します。
+          <span class="note">※査定番号は、このあと来店されたときに「LINEで査定した人」だと一発でわかるようにするための番号です。</span>
+        </div>
+      </div>
+
+      <div class="flow-step is-cust">
+        <div class="flow-num">7</div>
+        <div class="flow-title">お客様が進み方を選ぶ（ここで3つに分かれます）</div>
+        <div class="flow-body">
+          <span class="tag tag-green">お客様</span>
+          お住まいのエリアと、お品物の点数・大きさで自然に決まります。
+        </div>
+      </div>
+
+    </div>
+
+    <div class="branch-grid">
+      <div class="branch-card">
+        <h4>A｜ご来店</h4>
+        <div class="cond">金沢市・野々市市など近隣／点数が少ない</div>
+        <p>地図・営業時間・駐車場4台・お持ちいただくもの（お品物／本人確認書類／査定番号）をご案内。<strong>いちばん多くなる想定の出口です。</strong></p>
+      </div>
+      <div class="branch-card">
+        <h4>B｜出張買取</h4>
+        <div class="cond">近隣／点数が多い・大きい・遺品整理など</div>
+        <p>日程のご相談へ。1件あたりの点数が多く、利益への効きがいちばん大きい出口です。<strong>店舗を空ける必要があるため、体制の確認が要ります。</strong></p>
+      </div>
+      <div class="branch-card">
+        <h4>C｜宅配買取</h4>
+        <div class="cond">遠方でご来店が難しい方</div>
+        <p>送り方と買取依頼書のご案内へ。広告は金沢市・野々市市に絞っていますが、LINEは写真だけで完結するため県外の方も来る可能性があります。</p>
+      </div>
+    </div>
+
+    <div class="boundary">▼ ここから先は LINE の外 — これまで通りの通常業務です ▼</div>
+
+    <div class="flow">
+      <div class="flow-step is-offline">
+        <div class="flow-num">8</div>
+        <div class="flow-title">実物を拝見 → 最終金額の提示 → 本人確認 → 買取依頼書 → お支払い</div>
+        <div class="flow-body">
+          <span class="tag">店頭／出張／宅配</span>
+          LINEでは一切行いません。<strong>受付のときに査定番号をお伺いする</strong>だけ追加になります。
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 class="subsection">写真を送ってくれなかった人には</h3>
+    <p>友だち追加はしたけれど写真を送らないまま止まってしまう方も必ず出ます。その方には<strong>数日後に自動でメッセージを送り</strong>、「写真1枚からでも大丈夫です」「出張・宅配という方法もあります」とご案内します。これも小林様の手は不要で、自動です。</p>
+
+    <div class="callout callout-green">
+      <strong>小林様に発生する作業は、全体でたった2つです。</strong>　①写真を見て査定する（必要なら業者に確認）　②定型文の3か所を書き換えて送る。それ以外はすべて自動か、これまで通りの店頭業務です。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 03 RAGTAG事例 ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">02 — 実例</div>
+    <h2>実際にやっている会社の例：RAGTAG</h2>
+  </div>
+  <div class="section-body">
+    <p>ブランド古着の買取を行っている「RAGTAG（ラグタグ）」というお店のLINE査定です。以前わたし自身が実際に利用したときのやり取りを、そのまま再現しました。<strong>2品を査定してもらっています。</strong></p>
+
+    <h3 class="subsection">① 友だち追加した直後に届く2通</h3>
+    <div class="phones">
+      <div class="phone-wrap">
+        <div class="phone-cap">登録直後（自動）</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">RAGTAGお買い取りサービス</span></div>
+          <div class="line-body">
+            <div class="line-date">2021年9月9日（木）</div>
+            <div class="row them">
+              <div class="ava">RAG<br>TAG</div>
+              <div class="bub them">友だち登録ありがとうございます！
+RAGTAGお買い取りサービスです😊
+
+こちらではブランドアイテムの簡易査定を受け付けています。
+ご質問にもお答えしますので、お気軽にメッセージをお送りください😊
+
+営業時間：12：00〜18：00
+※営業時間外のお問い合わせは、営業開始後に順次お答えします。</div>
+              <div class="time">16:15</div>
+            </div>
+            <div class="row them">
+              <div class="ava"></div>
+              <div class="bub them"><b>『LINEで査定』の使い方📱</b>
+
+<b>①お品物の写真を送る</b>📷
+・アイテム全体
+・ブランドタグ/品質表示
+・付属品（あれば）
+
+<b>②メッセージで詳細を送る</b>✏️
+※わかる範囲でかまいません。
+・ブランド名/モデル名
+・購入時期/購入金額
+・お品物の状態（キズや汚れの有無）
+・付属品の有無
+
+<b>③24時間以内に査定額を返信します</b>⏰
+
+▽詳しくはこちら
+<span class="lnk">https://www.ragtag.jp/sell/line/</span>
+
+★ご利用の際は、個人情報保護方針をご確認ください。
+<span class="lnk">https://r01-0r1g1n.ragtag.jp/info/privacy/</span><div class="ogp"><div class="t">ブランド古着の買取 ユーズ…</div><div class="d">ブランド古着の買取・販売を行うユーズドセレクトショップ【…</div></div><div class="ogp"><div class="t">プライバシーポリシー｜ブ…</div><div class="d">ログイン お気に入り 検索ビルダーボタン 0 店…</div></div></div>
+              <div class="time">16:15</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-cap">1品目：送信 → 回答</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">RAGTAGお買い取りサービス</span></div>
+          <div class="line-body">
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">16:16</div>
+              <div class="photos"><div>スカート全体</div><div>全体（別角度）</div><div>内側のブランドタグ・品質表示</div><div>生地のアップ</div></div>
+            </div>
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">16:16</div>
+              <div class="bub me">NATURAL BEAUTY BASICで購入したスカートです。
+使用回数は1回で、汚れやスレなどありません。
+カラーは鮮やかなサーモンピンクで、写真だとやや暗く見えますが実際はもっと明るい色です。
+生地はスエードのような触感で、春秋に使えそうなアイテムです。
+身長167cmの私が履いて膝が少し見えるくらいの長さでした。</div>
+            </div>
+            <div class="row them">
+              <div class="ava">RAG<br>TAG</div>
+              <div class="bub them">お問い合わせありがとうございます。
+お待たせいたしました。査定金額の目安をお知らせいたします。
+
+<b>■NATURAL BEAUTY BASIC　スカート
+査定金額目安：50〜100円
+査定番号【264537】</b>
+
+※宅配買取の場合…申込みページの「備考欄」にご入力ください。
+※店舗買取の場合…受付時にスタッフへお伝えください。
+
+写真での概算査定のため、実際に拝見した際に金額が変動する場合や、お買い取りできない場合がございます。
+予めご了承ください。
+
+他にもお考えのお品物やご不明点がございましたら、お気軽にメッセージをお送りください。
+諸橋 穂乃佳様のご利用を、心よりお待ちしております。
+
+宅配買取のお申し込みはこちら
+<span class="lnk">http://www.ragtag.jp/sell/</span></div>
+              <div class="time">5:37</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-cap">2品目：まったく同じ定型文</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">RAGTAGお買い取りサービス</span></div>
+          <div class="line-body">
+            <div class="line-date">2021年11月16日（火）</div>
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">8:23</div>
+              <div class="photos"><div>シャツジャケット全体</div><div>ブランドタグ</div><div>洗濯表示のアップ</div><div>下げ札・バーコード</div></div>
+            </div>
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">8:23</div>
+              <div class="bub me">ドリスヴァンノッテンのシャツジャケットです。
+購入時期：2021年9月
+購入金額：8万円ほど
+使用回数は3回で汚れやスレはありません。</div>
+            </div>
+            <div class="row them">
+              <div class="ava">RAG<br>TAG</div>
+              <div class="bub them">お問い合わせありがとうございます。
+お待たせいたしました。査定金額の目安をお知らせいたします。
+
+<b>■DRIES VAN NOTEN
+査定金額目安：7,000円〜10,000円
+査定番号【478329】</b>
+
+※宅配買取の場合…申込みページの「備考欄」にご入力ください。
+※店舗買取の場合…受付時にスタッフへお伝えください。
+
+写真での概算査定のため、実際に拝見した際に金額が変動する場合や、お買い取りできない場合がございます。
+予めご了承ください。
+
+他にもお考えのお品物やご不明点がございましたら、お気軽にメッセージをお送りください。
+諸橋 穂乃佳様のご利用を、心よりお待ちしております。
+
+宅配買取のお申し込みはこちら
+<span class="lnk">http://www.ragtag.jp/sell/</span></div>
+              <div class="time">11:22</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subsection">この事例から学べること</h3>
+    <table>
+      <tr><th style="width:200px">ポイント</th><th>中身</th></tr>
+      <tr>
+        <td><strong>査定番号を発行している</strong></td>
+        <td>6桁の番号を出して「宅配なら申込ページの備考欄に／店舗なら受付時にスタッフへお伝えください」と繋いでいます。<strong>予約システムを作らず、番号ひとつでLINEと実店舗をつないでいる</strong>のが巧妙です。これは大吉でもそのまま使えます。</td>
+      </tr>
+      <tr>
+        <td><strong>手で書くのは3か所だけ</strong></td>
+        <td>「■品名」「金額の目安」「査定番号」。それ以外は2品とも一字一句同じ定型文です。<strong>だから1人でも回せます。</strong></td>
+      </tr>
+      <tr>
+        <td><strong>写真だけでなく情報も求めている</strong></td>
+        <td>ブランド名・購入時期・購入金額・状態・付属品を「わかる範囲でかまいません」と添えて依頼。<strong>この案内があるから、お客様がちゃんと書いてくれます。</strong>情報が揃うほど査定が速く正確になります。</td>
+      </tr>
+      <tr>
+        <td><strong>必ず免責を入れている</strong></td>
+        <td>「写真での概算査定のため、実際に拝見した際に金額が変動する場合や、お買い取りできない場合がございます」。<strong>後のトラブルを防ぐ一文</strong>で、大吉でも必須です。</td>
+      </tr>
+      <tr>
+        <td><strong>安い品でも数字を返している</strong></td>
+        <td>1品目は「50〜100円」。断らずに数字を返す姿勢がお店の信用になります。</td>
+      </tr>
+      <tr>
+        <td><strong>回答スピードの実績</strong></td>
+        <td>1品目は約13時間後、2品目は約3時間後。「24時間以内」の約束はきちんと守られていました。<strong>大吉の「1営業日以内」も同じ温度感で問題なさそうです。</strong></td>
+      </tr>
+    </table>
+
+    <div class="callout callout-red">
+      <strong>ただし、そのまま真似してはいけない点があります。</strong>RAGTAGの返信は<strong>出口が「宅配買取」しかありません</strong>。リンクが貼られているのは宅配の申込ページだけで、店舗は「受付時にスタッフへお伝えください」と言い放しです。RAGTAGは全国から送ってもらう通販型のお店なのでそれで正解ですが、<strong>大吉 金沢増泉店はご来店と出張が主役</strong>です。ここは作り替える必要があります。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 04 大吉版 ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="label">03 — 大吉版</div>
+    <h2>では、大吉ではどうするか</h2>
+  </div>
+  <div class="section-body">
+    <p>RAGTAGの型をベースに、<strong>「出口を3つに出し分ける」</strong>ところだけを大吉用に作り替えたイメージです。<strong>文章はすべて仮</strong>で、雰囲気を掴んでいただくためのものです。</p>
+
+    <div class="phones">
+      <div class="phone-wrap">
+        <div class="phone-cap">① 登録直後（自動・2通）</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">買取大吉 金沢増泉店</span></div>
+          <div class="line-body">
+            <div class="row them">
+              <div class="ava">大吉</div>
+              <div class="bub them">友だち追加ありがとうございます！
+買取大吉 金沢増泉店の<b>「LINE無料査定」</b>です。
+
+お売りになりたいお品物のお写真を送っていただくだけで、<b>買取金額の目安</b>をお返しします。
+
+もちろん<b>査定は無料・1点からOK</b>です。
+「これって値段つくの？」だけでもお気軽にどうぞ。
+
+<b>受付：24時間</b>
+<b>お返事：営業時間内（◯◯:00〜18:00）／1営業日以内</b></div>
+                          </div>
+            <div class="row them">
+              <div class="ava"></div>
+              <div class="bub them"><b>【LINE査定の使い方】</b>
+
+<b>① お品物の写真を送る</b>📷
+・全体がわかる写真
+・刻印／ブランドのタグ／型番
+・キズや汚れがあればその部分
+・箱や保証書など付属品（あれば）
+
+<b>② わかる範囲で情報を送る</b>✏️
+※わからない項目は空欄でかまいません
+・ブランド名／お品物の種類
+・購入時期／購入金額
+・使用状況、キズや汚れ
+・付属品の有無
+
+<b>③ 1営業日以内に金額の目安をお返しします</b>⏰</div>
+                          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-cap">② 写真が届く → 自動で受付返信</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">買取大吉 金沢増泉店</span></div>
+          <div class="line-body">
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">22:41</div>
+              <div class="photos"><div>指輪の全体</div><div>刻印のアップ</div><div>—</div><div>—</div></div>
+            </div>
+            <div class="row me">
+              <div class="time" style="color:rgba(0,0,0,0.35)">22:41</div>
+              <div class="bub me">母から譲り受けた指輪です。
+K18と刻印があります。
+箱などはありません。</div>
+            </div>
+            <div class="row them">
+              <div class="ava">大吉</div>
+              <div class="bub them">お写真をお受け取りしました。
+ありがとうございます。
+
+担当が確認のうえ、<b>営業時間内・1営業日以内</b>に査定金額の目安をご連絡いたします。
+
+※◯曜日・祝日にいただいたお問い合わせは、翌営業日のご回答となります。
+※お急ぎの場合はお電話でも承ります。
+<b>000-000-000</b></div>
+              <div class="time">22:41</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-cap">③ 概算回答 → 出口を3つに分ける ★ここが本体</div>
+        <div class="phone">
+          <div class="line-bar"><span class="back">‹</span><span class="badge">✓</span><span class="name">買取大吉 金沢増泉店</span></div>
+          <div class="line-body">
+            <div class="row them">
+              <div class="ava">大吉</div>
+              <div class="bub them">お問い合わせありがとうございます。
+査定金額の目安をお知らせいたします。
+
+<b>■ K18 リング
+査定金額の目安：◯◯,◯◯◯円 〜 ◯◯,◯◯◯円
+査定番号【000000】</b>
+
+お写真での概算査定のため、実際に拝見した際に金額が変動する場合や、お買い取りできない場合がございます。あらかじめご了承ください。
+
+<b>▼このあとの進め方をお選びください</b>
+
+<b>①ご来店</b>（金沢市・野々市市周辺の方）
+<b>②出張買取</b>（点数が多い／大きなお品物）
+<b>③宅配買取</b>（遠方の方）
+
+ご希望を<b>①②③</b>のどれかでご返信ください。担当より詳しくご案内いたします。</div>
+                          </div>
+            <div class="row me">
+                            <div class="bub me">①でお願いします</div>
+            </div>
+            <div class="row them">
+              <div class="ava"></div>
+              <div class="bub them">ありがとうございます。
+下記にてお待ちしております。
+
+<b>買取大吉 金沢増泉店</b>
+石川県金沢市増泉◯-◯-◯
+営業時間 ◯◯:00〜18:00
+<b>駐車場4台あり</b>
+<span class="lnk">▶ 地図を見る</span>
+
+<b>▼お持ちいただくもの</b>
+・お品物
+・本人確認書類（運転免許証など）
+
+受付で<b>査定番号【000000】</b>をお伝えください。お写真の内容をすぐ確認できます。</div>
+                          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subsection">RAGTAGから変えたのはここです</h3>
+    <ul>
+      <li><strong>出口を3つに分けた</strong>。RAGTAGは宅配しかありませんが、大吉ではご来店を主役に、点数が多ければ出張、遠方なら宅配へ</li>
+      <li><strong>お住まいのエリアを、登録直後ではなく概算回答のときに聞く</strong>。最初に「お住まいはどちらですか」と聞くとアンケートのようになって、写真を送る前に離脱されてしまいます。「①②③でご返信ください」の形なら自然に分かります</li>
+      <li><strong>来店の案内に、駐車場・営業時間・持ち物・査定番号を入れた</strong>。ここまで書いておけば、お客様は迷わずご来店できます</li>
+      <li><strong>受付の自動返信を足した</strong>。「24時間受付」と書いている以上、夜間に送った方を放置しないために必要です</li>
+    </ul>
+
+    <h3 class="subsection">リッチメニュー（画面下にいつも出ている3つのボタン）</h3>
+    <p>9/17に決めた通り、3つを常時表示します。</p>
+    <div class="richmenu">
+      <div class="richmenu-top">
+        <div class="rm-cell"><span class="ic">📷</span><span class="tt">LINE査定</span><span class="ss">写真を送るだけ</span></div>
+        <div class="rm-cell"><span class="ic">🚚</span><span class="tt">出張買取</span><span class="ss">出張料無料</span></div>
+        <div class="rm-cell"><span class="ic">📦</span><span class="tt">宅配買取</span><span class="ss">送るだけ</span></div>
+      </div>
+    </div>
+    <div class="callout callout-blue">
+      <strong>このリッチメニューだけは、後回しにさせてください。</strong>1つの公式LINEの中に「LINE査定」「出張」「宅配」の3つの流れが同居することになるため、<strong>3本すべての中身が決まってからでないと、押した先がちぐはぐになります。</strong>まずLINE査定の1本を完成させて実際に回し、その後に出張用・宅配用を作り、最後にメニューを仕上げる順番が安全です。
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
