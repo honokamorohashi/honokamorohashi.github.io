@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>金沢 3日間スケジュール</title>
+<style>
+:root{
+  --bg:#f6f3ee; --card:#fff; --ink:#26221d; --sub:#6f675c; --line:#e3dcd0;
+  --water:#cfe3ef; --road:#d9d2c6;
+  --d1:#2f6fb3; --d2:#b5452f; --d3:#3f8a5a; --food:#d0811f; --warn:#b5452f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1a18; --card:#262421; --ink:#eee8de; --sub:#a9a093; --line:#3a3631;
+    --water:#24394a; --road:#3d3a35; --d1:#6aa5e6; --d2:#e07a63; --d3:#6cc08a; --food:#f0a54a; --warn:#e07a63;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1a18; --card:#262421; --ink:#eee8de; --sub:#a9a093; --line:#3a3631;
+  --water:#24394a; --road:#3d3a35; --d1:#6aa5e6; --d2:#e07a63; --d3:#6cc08a; --food:#f0a54a; --warn:#e07a63;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:15px}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:28px;margin:0 0 4px}
+h2{font-size:21px;margin:40px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+h3{margin:0 0 6px;font-size:18px}
+.sub{color:var(--sub);margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.grid3{grid-template-columns:1fr}}
+.wx{display:flex;align-items:center;gap:12px}
+.wx b{font-size:20px}
+.tag{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;color:#fff;margin-right:6px}
+.t1{background:var(--d1)}.t2{background:var(--d2)}.t3{background:var(--d3)}.tf{background:var(--food)}
+.day{border-left:6px solid var(--c);}
+.tl{list-style:none;padding:0;margin:8px 0 0}
+.tl li{display:grid;grid-template-columns:4.6em 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:none}
+.tl .t{font-weight:700;color:var(--c);font-variant-numeric:tabular-nums}
+.tl .food{color:var(--food);font-weight:700}
+.small{font-size:13px;color:var(--sub)}
+.note{border-left:4px solid var(--food);background:var(--card);padding:12px 16px;border-radius:8px;margin:12px 0}
+.note.warn{border-color:var(--warn)}
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px}
+svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:14px}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--sub);white-space:nowrap;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>金沢 3日間スケジュール</h1>
+<p class="sub">10/28（水）〜10/30（金）。天気予報を見て、晴れの日に外歩き、雨の日に屋内を回す組み方にしました。</p>
+
+<h2>考え方</h2>
+<div class="grid3">
+  <div class="card"><div class="wx"><b>10/28（水）</b><span>くもり 14℃ / 11℃・降水40%</span></div>
+  <p><span class="tag t1">1日目</span><b>西側のエリア</b>。訪問先（増泉）に向かう途中にある長町・せせらぎ通り・にし茶屋街を回ります。雨は降らない予報です。</p></div>
+  <div class="card"><div class="wx"><b>10/29（木）</b><span>晴れのちくもり 19℃ / 7℃</span></div>
+  <p><span class="tag t2">2日目</span><b>外歩きの王道を全部</b>。兼六園・金沢城・ひがし茶屋街。いちばん天気がいい日なので、外の見どころはこの日にまとめます。</p></div>
+  <div class="card"><div class="wx"><b>10/30（金）</b><span>くもりのち雨・降水80%</span></div>
+  <p><span class="tag t3">3日目</span><b>屋内の建築めぐり</b>。石川県立図書館・国立工芸館・鈴木大拙館・21世紀美術館。屋根のある近江町市場でお昼。</p></div>
+</div>
+
+<h2>3日間の動き（地図）</h2>
+<div class="legend">
+  <span><i style="background:var(--d1)"></i>1日目</span>
+  <span><i style="background:var(--d2)"></i>2日目</span>
+  <span><i style="background:var(--d3)"></i>3日目</span>
+  <span>★ ホテル（南町）</span>
+</div>
+<div class="mapbox"><svg id="map" viewBox="0 0 1300 1130"></svg></div>
+<p class="small">ホテルは近江町市場と香林坊のあいだにあり、どの日もホテルを起点に動けます。図書館だけは東の外れにあるので、3日目の朝にタクシーで行きます。</p>
+
+<h2>1日目　10/28（水）</h2>
+<div class="card day" style="--c:var(--d1)">
+<ul class="tl">
+  <li><span class="t">12:49</span><span>金沢駅に着く（かがやき509号・グランクラスで軽食を食べた後）</span></li>
+  <li><span class="t">13:15</span><span>バスかタクシーで<b>ホテル（南町）</b>へ。チェックイン前なので荷物だけ預ける</span></li>
+  <li><span class="t">13:30</span><span class="food">小腹を満たす：ひらみぱん（長町・せせらぎ通り）<br><span class="small" style="font-weight:400;color:var(--sub)">大正時代の鉄工所をリノベしたベーカリー。パンの販売は8:00〜18:00、月曜休み。ホテルから歩いて10分ほど。パンを1〜2個買って軽く済ませる</span></span></li>
+  <li><span class="t">14:00</span><span><b>長町武家屋敷跡</b>（土塀と石畳の道）・<b>野村家</b>の庭。玉川図書館（谷口吉郎・吉生の親子設計）も外から見られる</span></li>
+  <li><span class="t">15:15</span><span>タクシーで犀川を渡り、<b>谷口吉郎・吉生記念 金沢建築館</b>（〜17:00、入館は16:30まで）</span></li>
+  <li><span class="t">16:20</span><span>すぐ近くの<b>にし茶屋街</b>をさっと歩く</span></li>
+  <li><span class="t">16:45</span><span>タクシーで訪問先（増泉4丁目）へ。にし茶屋街からは近い</span></li>
+  <li><span class="t">17:00</span><span>訪問・ミーティング → 19:00頃から会食 → 夜にホテルへ戻ってチェックイン</span></li>
+</ul>
+<p class="small">ポイント：西側の見どころは、訪問先へ向かう方向と同じなので、移動にむだがありません。和菓子は2日目にきちんとしたお店で食べるので、この日はパンにしています。</p>
+</div>
+
+<h2>2日目　10/29（木）晴れ</h2>
+<div class="card day" style="--c:var(--d2)">
+<ul class="tl">
+  <li><span class="t">7:30</span><span class="food">朝ごはん：近江町市場（ホテルから歩いてすぐ）<br><span class="small" style="font-weight:400;color:var(--sub)">もりもり寿し 近江町店は朝7時から営業。海鮮丼の店は開店直後が空いている</span></span></li>
+  <li><span class="t">8:30</span><span>歩いて<b>兼六園</b>へ（冬期は8:00開園）。朝の空いている時間に回る</span></li>
+  <li><span class="t">9:45</span><span>橋を渡って<b>金沢城公園</b>・玉泉院丸庭園</span></li>
+  <li><span class="t">11:00</span><span><b>尾山神社</b>のステンドグラスの神門（ホテルのすぐ近く）</span></li>
+  <li><span class="t">11:30</span><span class="food">お昼：グリルオーツカ（片町）のハントンライス<br><span class="small" style="font-weight:400;color:var(--sub)">金沢のご当地洋食の元祖。11:00〜（ラストオーダー14:45）、水曜休みなので木曜はOK</span></span></li>
+  <li><span class="t">13:00</span><span>バスで「橋場町」へ。浅野川沿いの<b>主計町茶屋街</b></span></li>
+  <li><span class="t">13:30</span><span class="food">和菓子：ひがし茶屋街の<b>志摩</b>で、畳のお座敷から庭を見ながら抹茶と生菓子<br><span class="small" style="font-weight:400;color:var(--sub)">重要文化財のお茶屋。9:30〜17:30。入館500円＋抹茶と生菓子800円。館内は手荷物不可（無料ロッカーあり）</span></span></li>
+  <li><span class="t">14:30</span><span>ひがし茶屋街をお店めぐり（懐華樓、金箔ソフトの箔一など）</span></li>
+  <li><span class="t">16:00</span><span>ホテルに戻って休憩</span></li>
+  <li><span class="t">19:00</span><span class="food">夜ごはん：金沢おでん「赤玉本店」（片町）<br><span class="small" style="font-weight:400;color:var(--sub)">12:00〜22:00、月曜休み。車麩・ばい貝など。ホテルから歩いて帰れる</span></span></li>
+</ul>
+<p class="small">「かに面」（香箱がに）は11/6解禁なので、今回はまだ食べられません。</p>
+</div>
+
+<h2>3日目　10/30（金）雨</h2>
+<div class="card day" style="--c:var(--d3)">
+<ul class="tl">
+  <li><span class="t">8:00</span><span>チェックアウトして、荷物はホテルに預ける</span></li>
+  <li><span class="t">8:15</span><span class="food">朝ごはん：ひらみぱんのモーニング（朝のラストオーダー10:30）<br><span class="small" style="font-weight:400;color:var(--sub)">1日目はパンの持ち帰り、3日目は店内でモーニング、という使い分け</span></span></li>
+  <li><span class="t">9:15</span><span>タクシーで<b>石川県立図書館</b>へ（約15分）。円形の本棚に囲まれた「グレートホール」。平日は9:00〜19:00、月曜休館</span></li>
+  <li><span class="t">10:30</span><span>タクシーで<b>国立工芸館</b>（明治の洋館を移築した建物）</span></li>
+  <li><span class="t">11:20</span><span>歩いて<b>鈴木大拙館</b>（9:30〜17:00、月曜休館）。雨の日の「水鏡の庭」は水面に波紋が広がって、むしろきれい</span></li>
+  <li><span class="t">12:00</span><span><b>21世紀美術館</b>の建物と無料ゾーン・無料の展示（有料展とプールの地下は30日まで閉場）</span></li>
+  <li><span class="t">13:15</span><span class="food">お昼：近江町市場で海鮮丼（屋根があるので雨でも平気）</span></li>
+  <li><span class="t">14:30</span><span>時間調整（ホテル近くでお茶、または早めに駅へ）</span></li>
+  <li><span class="t">15:30</span><span>ホテルで荷物を受け取る → タクシーで金沢駅</span></li>
+  <li><span class="t">16:00</span><span class="food">駅ナカ「あんと」でお土産と駅弁（夜ごはん用）</span></li>
+  <li><span class="t">16:49</span><span>かがやき512号（9号車14C）→ 東京19:20 → 京急久里浜20:50頃</span></li>
+</ul>
+</div>
+
+<h2>確認しておきたいこと</h2>
+<div class="note warn">
+・営業時間・定休日は、観光サイトの情報をもとにしています（志摩の定休日は記載なし）。お店は前日に公式情報か電話で確認してください。<br>
+・28日は最高14℃、29日の朝は7℃まで下がります。羽織るものを1枚持っていくと安心です。<br>
+・30日は雨なので、折りたたみ傘を。移動はタクシーを使うと濡れずに済みます。
+</div>
+
+<h2>食事のまとめ</h2>
+<table>
+<tr><th>日</th><th>食事</th><th>お店</th><th>場所</th></tr>
+<tr><td>1日目</td><td>昼の軽食</td><td>ひらみぱん（パンを買う）</td><td>長町・せせらぎ通り</td></tr>
+<tr><td>1日目</td><td>夜</td><td>会食</td><td>—</td></tr>
+<tr><td>2日目</td><td>朝</td><td>近江町市場（もりもり寿し など）</td><td>ホテルの近く</td></tr>
+<tr><td>2日目</td><td>昼</td><td>グリルオーツカ（ハントンライス）</td><td>片町</td></tr>
+<tr><td>2日目</td><td>おやつ</td><td>志摩（抹茶と生菓子）</td><td>ひがし茶屋街</td></tr>
+<tr><td>2日目</td><td>夜</td><td>赤玉本店（金沢おでん）</td><td>片町</td></tr>
+<tr><td>3日目</td><td>朝</td><td>ひらみぱん（モーニング）</td><td>長町・せせらぎ通り</td></tr>
+<tr><td>3日目</td><td>昼</td><td>近江町市場（海鮮丼）</td><td>ホテルの近く</td></tr>
+<tr><td>3日目</td><td>夜</td><td>あんとで駅弁 → 車内で</td><td>金沢駅</td></tr>
+</table>
+</div>
+
+<script>
+const K=26000, LON0=136.634, LAT0=36.582, YR=1.24;
+const P=(lat,lon)=>[(lon-LON0)*K,(LAT0-lat)*K*YR];
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('map');
+const el=(t,a,p=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e;};
+const path=pts=>pts.map((p,i)=>(i?'L':'M')+P(p[0],p[1]).join(' ')).join(' ');
+el('rect',{x:0,y:0,width:1300,height:1130,fill:'var(--card)',rx:10});
+[[[36.553,136.686],[36.560,136.680],[36.5655,136.6745],[36.5695,136.6700],[36.5718,136.6672],[36.5738,136.6648],[36.5765,136.6620],[36.5805,136.6585]],
+ [[36.5490,136.6650],[36.5515,136.6600],[36.5540,136.6550],[36.5560,136.6510],[36.5585,136.6465],[36.5610,136.6430],[36.5640,136.6380]]]
+ .forEach(r=>el('path',{d:path(r),fill:'none',stroke:'var(--water)','stroke-width':18,'stroke-linecap':'round'}));
+const lbl=(lat,lon,t)=>{const [x,y]=P(lat,lon);const e=el('text',{x,y,'font-size':14,fill:'var(--sub)','font-style':'italic'});e.textContent=t;};
+lbl(36.5795,136.6600,'浅野川');lbl(36.5622,136.6395,'犀川');
+const S={
+ station:['金沢駅',36.5781,136.6480,12,-10],
+ hotel:['ホテル',36.5652,136.6555,12,-12],
+ omicho:['近江町市場',36.5716,136.6566,12,-8],
+ hirami:['ひらみぱん',36.5630,136.6518,-12,18,'end'],
+ nagamachi:['長町武家屋敷・野村家',36.5622,136.6497,-12,6,'end'],
+ kenchiku:['金沢建築館',36.5548,136.6515,12,4],
+ nishi:['にし茶屋街',36.5535,136.6497,-12,8,'end'],
+ masuizumi:['訪問先（増泉）',36.5480,136.6400,14,6],
+ kenroku:['兼六園',36.5622,136.6630,12,4],
+ castle:['金沢城',36.5652,136.6600,12,-10],
+ oyama:['尾山神社',36.5668,136.6545,-12,-6,'end'],
+ grill:['グリルオーツカ',36.5590,136.6520,-12,4,'end'],
+ akadama:['赤玉本店',36.5578,136.6508,-12,14,'end'],
+ kazue:['主計町',36.5732,136.6638,-12,-8,'end'],
+ higashi:['ひがし茶屋街（志摩）',36.5726,136.6712,12,-8],
+ lib:['石川県立図書館',36.5532,136.6762,-12,24,'end'],
+ kogei:['国立工芸館',36.5594,136.6624,12,16],
+ daisetz:['鈴木大拙館',36.5578,136.6606,12,22],
+ k21:['21世紀美術館',36.5608,136.6582,-12,-10,'end'],
+};
+const R={
+ d1:['station','hotel','hirami','nagamachi','kenchiku','nishi','masuizumi'],
+ d2:['hotel','omicho','kenroku','castle','oyama','grill','kazue','higashi','hotel','akadama'],
+ d3:['hotel','hirami','lib','kogei','daisetz','k21','omicho','hotel','station'],
+};
+const off={d1:-6,d2:0,d3:6};
+for(const [k,ids] of Object.entries(R)){
+  const pts=ids.map(id=>{const p=P(S[id][1],S[id][2]);return [p[0]+off[k],p[1]+off[k]];});
+  el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0]+' '+p[1]).join(' '),fill:'none',stroke:`var(--${k})`,'stroke-width':4,'stroke-linejoin':'round',opacity:.85,'stroke-dasharray':k==='d3'?'10 6':'0'});
+}
+for(const [id,[n,lat,lon,dx,dy,an]] of Object.entries(S)){
+  const [x,y]=P(lat,lon);
+  if(id==='hotel'){el('text',{x,y:y+9,'text-anchor':'middle','font-size':28,fill:'var(--food)'}).textContent='★';}
+  else el('circle',{cx:x,cy:y,r:7,fill:'var(--ink)'});
+  const t=el('text',{x:x+dx,y:y+dy,'text-anchor':an||'start','font-size':16,'font-weight':700,fill:'var(--ink)',style:'paint-order:stroke;stroke:var(--card);stroke-width:4px'});t.textContent=n;
+}
+const m500=500/(111320*Math.cos(36.565*Math.PI/180))*K;
+el('line',{x1:1000,y1:1100,x2:1000+m500,y2:1100,stroke:'var(--ink)','stroke-width':3});
+el('text',{x:1000,y:1088,'font-size':13,fill:'var(--ink)'}).textContent='500m（徒歩約7分）';
+const cg=el('g',{transform:'translate(1260,50)'});el('path',{d:'M0 -22 L7 6 L0 0 L-7 6 Z',fill:'var(--ink)'},cg);
+el('text',{x:0,y:24,'text-anchor':'middle','font-size':13,fill:'var(--ink)'},cg).textContent='北';
+</script>
+</body>
+</html>
