@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>原稿提出カレンダー</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@600&display=swap">
+<style>
+/* 上に11月（今月のみ）、下に12月以降の毎月共通サイクル。提出日に丸と色ラベル。ライト固定 */
+:root{
+  --bg:#f7f8f6; --paper:#ffffff; --ink:#22262a; --muted:#6b7177; --line:#e2e5e1;
+  --threads:#2f5d8a; --threads-bg:#e8eff6;
+  --blog:#3d7a55; --blog-bg:#e7f2eb;
+  --report:#b0652a; --report-bg:#f8ede3;
+  --plan:#6f4f8f; --plan-bg:#efe9f5;
+  --done:#9aa0a5; --done-bg:#f0f1f0;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:44px}
+.part{display:grid;gap:20px}
+h1{font-family:var(--f-display);font-weight:600;font-size:1.9rem;line-height:1.3;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.4rem;line-height:1.35;margin:0;text-wrap:balance}
+h3{font-size:1rem;margin:0 0 10px;font-weight:700}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.lead{margin:6px 0 0;color:var(--muted)}
+.summary{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:grid;gap:4px}
+.summary p{margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.88rem}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.d-threads{background:var(--threads)} .d-blog{background:var(--blog)} .d-report{background:var(--report)} .d-plan{background:var(--plan)} .d-done{background:var(--done)}
+
+.cal{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.wd{font-size:.75rem;color:var(--muted);text-align:center;padding:6px 0;border-bottom:1px solid var(--line);letter-spacing:.05em}
+.cell{min-height:104px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.cell:nth-child(7n){border-right:none}
+.cell.blank{background:var(--bg)}
+.num{font-variant-numeric:tabular-nums;font-size:.9rem;color:var(--muted);width:32px;height:32px;display:grid;place-items:center;border-radius:50%;line-height:1;text-align:center}
+.num small{display:block;font-size:.58rem}
+.cell.on .num{color:var(--ink);font-weight:700;border:2px solid var(--ink)}
+.cell.past .num{border-color:var(--done);color:var(--done)}
+.tag{font-size:.75rem;line-height:1.35;padding:3px 6px;border-radius:5px;font-weight:500}
+.t-threads{background:var(--threads-bg);color:var(--threads)}
+.t-blog{background:var(--blog-bg);color:var(--blog)}
+.t-report{background:var(--report-bg);color:var(--report)}
+.t-plan{background:var(--plan-bg);color:var(--plan)}
+.t-done{background:var(--done-bg);color:var(--done)}
+.dots{display:none;gap:4px}
+
+.list{background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.row{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row.past{color:var(--done)}
+.date{font-weight:700;font-variant-numeric:tabular-nums}
+.items{display:grid;gap:4px}
+.items div{display:flex;align-items:baseline;gap:8px}
+.notes{margin:0;padding-left:1.2em;color:var(--muted);font-size:.88rem;display:grid;gap:4px}
+hr{border:none;border-top:1px solid var(--line);margin:0}
+
+@media (max-width:640px){
+  h1{font-size:1.55rem}
+  .cell{min-height:58px;padding:6px 4px;align-items:center}
+  .tag{display:none}
+  .dots{display:flex}
+  .num{width:28px;height:28px;font-size:.8rem}
+  .row{grid-template-columns:5.5em minmax(0,1fr);padding:12px 14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>原稿提出カレンダー</h1>
+    <p class="lead">承認前の原稿とSEOの提出物を、いつお送りするかをまとめました。11月だけ臨時の日程で、12月分からは毎月同じ日付で回します。</p>
+  </header>
+
+  <div class="legend" aria-label="凡例">
+    <span><i class="dot d-threads"></i>Threads / X</span>
+    <span><i class="dot d-blog"></i>ブログ（note・アメブロ）</span>
+    <span><i class="dot d-report"></i>SEOレポート</span>
+    <span><i class="dot d-plan"></i>SEO企画</span>
+    <span><i class="dot d-done"></i>提出済み</span>
+  </div>
+
+  <!-- 11月 -->
+  <section class="part" aria-labelledby="nov">
+    <div>
+      <p class="eyebrow">今月のみ</p>
+      <h2 id="nov">2026年11月の提出日</h2>
+      <p class="lead">11月は前月から用意していた原稿がないため、臨時の日程でお送りします。</p>
+    </div>
+    <div class="cal"><div class="grid" id="grid-nov"></div></div>
+    <div>
+      <h3>11月の提出内容</h3>
+      <div class="list" id="list-nov"></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- 今後 -->
+  <section class="part" aria-labelledby="fixed">
+    <div>
+      <p class="eyebrow">12月分から（11月25日の提出から）</p>
+      <h2 id="fixed">毎月の提出日</h2>
+      <p class="lead">今後は毎月5日・15日・25日・月末の4回だけで運用します。</p>
+    </div>
+    <div class="summary">
+      <p>Threads / X：毎月5日・15日・25日に10本ずつ（月 約30本）</p>
+      <p>ブログ：15日と月末に4本ずつ（月 8本）</p>
+      <p>SEO：15日にレポート（前月分）、月末に企画（翌月分）</p>
+    </div>
+    <div class="cal"><div class="grid" id="grid-fixed"></div></div>
+    <div>
+      <h3>提出日ごとの内容</h3>
+      <div class="list" id="list-fixed"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>補足</h3>
+    <ul class="notes">
+      <li>日付は目安です。提出日の当日が難しい場合は、なるべく前倒しでお送りします。</li>
+      <li>ブログは毎日投稿ではないため、前半分は1〜15日、後半分は16日〜月末のあいだに4本ずつ投稿します。</li>
+      <li>月末は、30日の月は30日、31日の月は31日です。</li>
+      <li>SEOレポートは前月分の数字がそろう15日に提出します。SEOの記事はこちらで進めるため、ご確認が必要なのは企画のみです。</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+const WD = ["日","月","火","水","木","金","土"];
+function render(gridId, listId, S, opts){
+  const grid = document.getElementById(gridId);
+  const list = document.getElementById(listId);
+  let html = "";
+  if (opts.weekdays) html += WD.map(w => `<div class="wd">${w}</div>`).join("");
+  for (let i = 0; i < opts.offset; i++) html += `<div class="cell blank" aria-hidden="true"></div>`;
+  for (let d = 1; d <= opts.days; d++) {
+    const e = S[d]; const it = e ? e.it : [];
+    const label = opts.monthEnd && d === opts.days ? `${d}<small>月末</small>` : d;
+    html += `<div class="cell${it.length ? " on" : ""}${e && e.past ? " past" : ""}"><span class="num">${label}</span>`
+      + it.map(([k,t]) => `<span class="tag t-${k}">${t}</span>`).join("")
+      + (it.length ? `<span class="dots">${it.map(([k]) => `<i class="dot d-${k}"></i>`).join("")}</span>` : "")
+      + `</div>`;
+  }
+  for (let i = opts.offset + opts.days; i % 7 !== 0; i++) html += `<div class="cell blank" aria-hidden="true"></div>`;
+  grid.innerHTML = html;
+  list.innerHTML = Object.keys(S).map(d => `<div class="row${S[d].past ? " past" : ""}"><div class="date">${opts.dateLabel(Number(d))}</div><div class="items">`
+    + S[d].it.map(([k,t]) => `<div><i class="dot d-${k}"></i><span>${t}</span></div>`).join("")
+    + `</div></div>`).join("");
+}
+
+// 2026年11月（11月1日は日曜）
+render("grid-nov", "list-nov", {
+  6:  {past:true, it:[["done","Threads/X（8〜17日分）提出済み"],["done","ブログ 2本 提出済み"]]},
+  11: {it:[["threads","Threads/X（18〜30日分）"]]},
+  15: {it:[["report","SEOレポート（10月分）"]]},
+  17: {it:[["blog","ブログ 6本（11月の残り）"]]},
+  25: {it:[["threads","Threads/X 10本（12月1〜10日分）"]]},
+  30: {it:[["blog","ブログ 4本（12月前半分）"],["plan","SEO企画（12月分）"]]}
+}, {weekdays:true, offset:0, days:30, dateLabel:d => `11/${d}（${WD[(d-1)%7]}）`});
+
+// 毎月共通
+render("grid-fixed", "list-fixed", {
+  5:  {it:[["threads","Threads/X 10本（11〜20日分）"]]},
+  15: {it:[["threads","Threads/X 10〜11本（21日〜月末分）"],["blog","ブログ 4本（後半分）"],["report","SEOレポート（前月分）"]]},
+  25: {it:[["threads","Threads/X 10本（翌月1〜10日分）"]]},
+  30: {it:[["blog","ブログ 4本（翌月前半分）"],["plan","SEO企画（翌月分）"]]}
+}, {weekdays:false, offset:0, days:30, monthEnd:true, dateLabel:d => d === 30 ? "月末" : `${d}日`});
+</script>
+</body>
+</html>
