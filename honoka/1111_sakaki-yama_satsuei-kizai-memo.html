@@ -1,0 +1,444 @@
+<title>榊の山 撮影機材メモ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 1カラムの現場用メモ。上から「今の設定」→ 当日の切り替え → マイク → 前日チェック。スマホ片手で読む前提 */
+:root {
+  --bg: #f4f6f2;
+  --surface: #ffffff;
+  --fg: #1d2620;
+  --muted: #5d6b61;
+  --line: #d9e0d8;
+  --leaf: #2f6b47;       /* 榊の葉の深緑 */
+  --leaf-soft: #e3efe6;
+  --rec: #c4352b;        /* REC / MIC端子の赤 */
+  --rec-soft: #f8e4e1;
+  --warn: #9a6a12;
+  --warn-soft: #f7eed9;
+  --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a16; --surface: #1c241f; --fg: #e6ece7; --muted: #9aa89e; --line: #2e3a32;
+    --leaf: #7cc39a; --leaf-soft: #213529; --rec: #ef6b60; --rec-soft: #3a2220;
+    --warn: #e3b55a; --warn-soft: #362d1a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a16; --surface: #1c241f; --fg: #e6ece7; --muted: #9aa89e; --line: #2e3a32;
+  --leaf: #7cc39a; --leaf-soft: #213529; --rec: #ef6b60; --rec-soft: #3a2220;
+  --warn: #e3b55a; --warn-soft: #362d1a; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 64px;
+}
+.wrap { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .12em; color: var(--leaf); font-weight: 700; }
+h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.lead { color: var(--muted); margin: 0; font-size: 14px; }
+.status { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--leaf-soft); color: var(--leaf); }
+.pill::before { content: "✓"; }
+
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; padding-top: 4px; }
+nav.toc a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--leaf); border-color: var(--leaf); }
+
+section { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 16px; }
+h2 { font-family: var(--font-display); font-size: 20px; margin: 0; padding-bottom: 8px; border-bottom: 2px solid var(--leaf); text-wrap: balance; }
+h3 { font-family: var(--font-display); font-size: 16px; margin: 6px 0 0; }
+p { margin: 0; }
+.note { font-size: 13px; color: var(--muted); }
+
+/* 今の設定：カメラ画面風の表示 */
+.settings { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: 1fr; }
+.settings .row { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line); align-items: baseline; }
+.settings .row:first-child { border-top: 0; }
+.settings dt { font-size: 13px; color: var(--muted); }
+.settings dd { margin: 0; min-width: 0; }
+.val { font-family: var(--font-mono); font-weight: 500; font-size: 16px; color: var(--leaf); }
+.path { display: block; font-size: 12px; color: var(--muted); }
+
+.steps { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; }
+ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px; }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+thead th { border-top: 0; font-size: 12px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+td:first-child { white-space: nowrap; font-family: var(--font-mono); font-weight: 500; }
+tr.current td { background: var(--leaf-soft); }
+.tag { display: inline-block; font-family: var(--font-body); font-size: 11px; font-weight: 700; color: var(--leaf); border: 1px solid var(--leaf); border-radius: 4px; padding: 0 5px; margin-left: 4px; vertical-align: 1px; }
+
+.callout { border-radius: 8px; padding: 12px 14px; font-size: 14px; display: flex; flex-direction: column; gap: 4px; }
+.callout strong { font-weight: 700; }
+.callout.warn { background: var(--warn-soft); }
+.callout.warn strong { color: var(--warn); }
+.callout.rec { background: var(--rec-soft); }
+.callout.rec strong { color: var(--rec); }
+
+.jack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.jack div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.dot.red { background: #d8463b; }
+.dot.green { background: #3f9a5c; }
+.jack b { font-size: 15px; }
+.jack span { font-size: 13px; color: var(--muted); }
+
+.leds { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.led-row { display: grid; grid-template-columns: 5.5em 1fr; gap: 10px; align-items: center; font-size: 14px; }
+.lamps { display: flex; gap: 5px; }
+.lamp { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--muted); }
+.lamp.on { background: var(--fg); border-color: var(--fg); }
+.lamp.blink { border-color: var(--fg); background: transparent; animation: blink 1.2s steps(2, start) infinite; }
+@keyframes blink { 50% { background: var(--fg); } }
+@media (prefers-reduced-motion: reduce) { .lamp.blink { animation: none; background: color-mix(in srgb, var(--fg) 45%, transparent); } }
+
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.checklist li { border-top: 1px solid var(--line); }
+.checklist li:first-child { border-top: 0; }
+.checklist label { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; cursor: pointer; }
+.checklist input { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--leaf); flex: none; }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.checklist small { display: block; font-size: 12px; color: var(--muted); text-decoration: none; }
+.reset { align-self: flex-start; font: inherit; font-size: 13px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 4px 12px; cursor: pointer; }
+.reset:focus-visible, .checklist input:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+
+footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+footer a { color: var(--muted); }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">小林さん・三重県 榊の山　撮影 11/14</div>
+  <h1>撮影機材メモ（α7 II ＋ DJI Mic Mini 2）</h1>
+  <p class="lead">11/11 に機材テストをしたときの設定と使い方のまとめ。当日、設定を変えたくなったときもここを見ればOK。</p>
+  <div class="status">
+    <span class="pill">α7 II＋マイク 録音OK</span>
+    <span class="pill">iPhone＋マイク 録音OK</span>
+  </div>
+  <nav class="toc" aria-label="目次">
+    <a href="#now">今の設定</a>
+    <a href="#change">当日変えたいとき</a>
+    <a href="#basic">α7 II 動画の基本</a>
+    <a href="#focus">ピント（AF-S／AF-C）</a>
+    <a href="#interview">インタビューの撮り方</a>
+    <a href="#broll">手持ちで撮る</a>
+    <a href="#mic">マイクのつなぎ方</a>
+    <a href="#sound">音の確認</a>
+    <a href="#charge">充電</a>
+    <a href="#check">前日チェック</a>
+  </nav>
+</header>
+
+<section id="now">
+  <h2>α7 II の今の設定</h2>
+  <dl class="settings">
+    <div class="row"><dt>モードダイヤル</dt><dd><span class="val">🎞 ムービー（P）</span><span class="path">上の丸いダイヤルをフィルムのマークに</span></dd></div>
+    <div class="row"><dt>記録方式</dt><dd><span class="val">XAVC S</span><span class="path">MENU → カメラのタブ → 記録方式</span></dd></div>
+    <div class="row"><dt>記録設定</dt><dd><span class="val">24p 50M</span><span class="path">MENU → カメラのタブ → 記録設定（記録方式のすぐ下）</span></dd></div>
+    <div class="row"><dt>PP</dt><dd><span class="val">OFF</span><span class="path">ピクチャープロファイル。今回は触らない</span></dd></div>
+  </dl>
+  <p class="note">記録方式を先に XAVC S にしないと、記録設定に「50M」の選択肢が出てこない。</p>
+</section>
+
+<section id="change">
+  <h2>当日、雰囲気を変えたくなったら</h2>
+
+  <h3>記録設定（動きの質感）</h3>
+  <p>「p」の前の数字は1秒あたりのコマ数。<strong>スローモーションになるわけではなく</strong>、再生速度は普通のまま、動きの質感が変わる。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>記録設定</th><th>見え方</th><th>こんなとき</th></tr></thead>
+      <tbody>
+        <tr class="current"><td>24p 50M<span class="tag">今これ</span></td><td>少しブレが残って動きが柔らかい。映画っぽい</td><td>ブランドムービー全般</td></tr>
+        <tr><td>30p 50M</td><td>テレビやYouTubeのような自然な動き</td><td>インタビューを普通っぽく見せたい</td></tr>
+        <tr><td>60p 50M</td><td>くっきり滑らか。編集で半分の速さのスローにできる</td><td>手元の作業、葉が揺れるところをスローで見せたい</td></tr>
+        <tr><td>120p 50M</td><td>編集で大きくスローにできる</td><td>水しぶき・風になびく枝などをしっかりスローに</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">「50M」は画質（1秒あたりのデータ量）。数字が大きいほど細かい葉っぱや木漏れ日が崩れにくい。スロー用に60p・120pで撮ったカットは、撮り終わったら24pに戻すのを忘れずに。</p>
+
+  <h3>記録方式（ファイルの種類）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>記録方式</th><th>画質</th><th>向いている用途</th></tr></thead>
+      <tbody>
+        <tr class="current"><td>XAVC S<span class="tag">今これ</span></td><td>一番きれい（50Mbps）。1本1ファイルで取り込みやすい</td><td>今回のブランドムービー</td></tr>
+        <tr><td>AVCHD</td><td>普通（最大28Mbps）。フォルダ構造が複雑</td><td>テレビ・ブルーレイ用。基本使わない</td></tr>
+        <tr><td>MP4</td><td>軽い（約16Mbps以下）</td><td>スマホに送ってSNSに上げる程度</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn">
+    <strong>XAVC S でエラーが出たら</strong>
+    <span>SDカードが対応していない（SDXC・64GB以上・Class10/U3 が必要）。その場合は AVCHD にして「24p 24M(FX)」を選ぶ。</span>
+  </div>
+
+  <h3>色を映画っぽくする設定（今回は使わない）</h3>
+  <p>画面の「PP」（ピクチャープロファイル）を変えると、色を後から調整する前提の撮り方になる。撮影後に色を整える編集が必須になるので、今回は OFF のまま。</p>
+</section>
+
+<section id="basic">
+  <h2>α7 II 動画の基本</h2>
+  <ol class="steps">
+    <li>モードダイヤルを <strong>🎞 フィルムのマーク</strong>（MRの隣）に合わせる</li>
+    <li>背面右端の <strong>赤い MOVIE ボタン</strong>で録画開始。もう一度押して停止（シャッターボタンでは録画できない）</li>
+    <li>画面に赤い <strong>● REC</strong> が出ていれば録画中</li>
+  </ol>
+  <h3>画面で見るところ</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>表示</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>4時間31分</td><td>SDカードの残りで撮れる時間</td></tr>
+        <tr><td>CH1 / CH2</td><td><strong>音のメーター</strong>。話して緑のバーが動けば録れている</td></tr>
+        <tr><td>0:00</td><td>録画している時間</td></tr>
+        <tr><td>72%</td><td>バッテリー残量</td></tr>
+        <tr><td>AF-C</td><td>動くものにピントを合わせ続ける。動画はこれでOK（写真のときは AF-S に戻す → 下の「ピントの設定」）</td></tr>
+        <tr><td>1/60・F3.2・ISO</td><td>シャッター・絞り・感度。Pモードなのでカメラが自動で決める</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout rec">
+    <strong>止まる・切れるに注意</strong>
+    <span>1本の録画は<strong>最長 約29分</strong>で自動停止する。長いインタビューは止まっていないかときどき確認する。動画はバッテリーの減りが速いので、予備バッテリーを2〜3個持っていく。</span>
+  </div>
+
+  <h3 id="focus">ピントの設定（写真と動画で切り替える）</h3>
+  <p>フォーカスモードは<strong>写真と動画で共通の設定</strong>。動画用に AF-C にすると、写真もそのまま AF-C になる。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>撮るもの</th><th>設定</th><th>見分け方</th></tr></thead>
+      <tbody>
+        <tr><td>写真</td><td><strong>AF-S</strong>（シングルAF）</td><td>半押しで<strong>ピピッと鳴る</strong>。左下に緑の ●</td></tr>
+        <tr><td>動画（手持ち）</td><td><strong>AF-C</strong>（コンティニュアスAF）</td><td>音は鳴らない。左下に緑の ((●))</td></tr>
+        <tr><td>インタビュー</td><td><strong>MF</strong>（手動）</td><td>右上の AF/MF レバーで切り替え</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>変え方：</strong>背面の <strong>Fn ボタン</strong> → フォーカスモード（AF-C／AF-S の表示）→ 切り替える</p>
+  <div class="callout warn">
+    <strong>「半押しで音が鳴らない」「左下に ((●)) が出る」のは故障ではない</strong>
+    <span>AF-C になっているだけ。写真を撮る前に Fn で AF-S に戻す。インタビューで MF にしたら、終わったら AF/MF レバーを AF に戻す。</span>
+  </div>
+</section>
+
+<section id="interview">
+  <h2>インタビューの撮り方（三脚で固定）</h2>
+  <p>お手本は <a href="https://www.youtube.com/watch?v=DulCkTWUosw">Hidakuma Brand Film</a>。インタビューは<strong>α7 II＋三脚で完全に固定</strong>、話している間はカメラを一切動かさない。iPhoneより α7 II の方が<strong>背景がふわっとボケる</strong>ので、ここは α7 II で撮る。</p>
+
+  <h3>三脚（家のスマホ用の軽い三脚でOK）</h3>
+  <ul class="plain">
+    <li>スマホホルダーの所にそのまま α7 II が付く（11/11 テスト済み・ガタつきなし）</li>
+    <li><strong>脚はいっぱいまで広げる</strong>。伸ばすのは太い段から、一番細い段はなるべく使わない</li>
+    <li><strong>センターポール（真ん中の銀の棒）は必要な分だけ</strong>上げる。上げるほど揺れやすい</li>
+    <li>風がある日は、センターポールの下にカバンを引っかけて重しにする。それでも揺れるなら木や建物の陰に移る</li>
+    <li><strong>カメラのストラップはまとめておく</strong>。ぶら下がったままだと風で揺れて、音も入る</li>
+  </ul>
+
+  <h3>高さと座り方</h3>
+  <ul class="plain">
+    <li>レンズは<strong>話す人の目の高さ</strong>。座った人ならだいたい1m前後なので、今の三脚で足りる</li>
+    <li>椅子がなければ、切り株・丸太・岩に座ってもらう（お手本の森のインタビューもこれ）</li>
+    <li>立って話してもらうときはセンターポールを上げる。少し下から見上げるくらいはOK、上から見下ろすのはNG</li>
+  </ul>
+
+  <h3>構図</h3>
+  <ul class="plain">
+    <li>話す人は<strong>画面の左右どちらかに寄せる</strong>（真ん中にしない）</li>
+    <li>聞き手（Honoka）は<strong>カメラのすぐ横</strong>に座る。話す人は聞き手を見て話すので、目線がカメラの少し横に流れる</li>
+    <li>寄せた側と<strong>反対側に目線が向くように</strong>座る位置を決める（右に寄せたら左を向いて話す）</li>
+    <li><strong>質問が変わるタイミングでズームを少し変える</strong>。引き（腰から上）と寄り（胸から上）の2サイズがあると、編集で切り替えられて言い直しも目立たない</li>
+  </ul>
+
+  <h3>背景をボカす3つのコツ</h3>
+  <ol class="steps">
+    <li><strong>人と背景の間を数メートル空ける</strong>（森の手前に座ってもらう）</li>
+    <li><strong>ズームを望遠側</strong>にして、カメラを少し離して置く</li>
+    <li><strong>F値（絞り）を一番小さい数字</strong>にする</li>
+  </ol>
+  <p class="note">今の P モードだと F値はカメラまかせ。もっとボカしたいときは、MENU → カメラのタブ →「ムービー」で <strong>A（絞り優先）</strong>にして、F値を一番小さくする。見つからなければ P のままでもOK（1と2だけでも効果は出る）。</p>
+
+  <h3>光</h3>
+  <ul class="plain">
+    <li><strong>曇りか日陰</strong>が一番きれい。顔に直射日光が当たる場所は避ける</li>
+    <li>木漏れ日が顔にまだらに当たるのもNG。少し場所をずらす</li>
+  </ul>
+
+  <h3>ピント</h3>
+  <ul class="plain">
+    <li>座っている人はほとんど動かないので、<strong>MF（手動）で目に合わせて固定</strong>が安心。α7 II の動画のAFは途中で迷うことがある</li>
+    <li>合わせるときは画面を拡大して、<strong>目</strong>がくっきりする所で止める</li>
+    <li>MFに自信がなければ AF-C のままでもいい。その場合は撮ったあとに一度再生して、ピントが背景に抜けていないか確認</li>
+  </ul>
+
+  <h3>録画の流れ</h3>
+  <ol class="steps">
+    <li>マイクのメーター（CH1 / CH2）が動くか確認</li>
+    <li>MOVIE ボタンで録画開始 → <strong>手を離して2〜3秒待つ</strong>（押したときの揺れが落ち着く）</li>
+    <li>質問する。<strong>話している間は三脚・カメラに触らない</strong></li>
+    <li>約29分で止まるので、区切りのいいところで一度止めて撮り直す</li>
+  </ol>
+  <div class="callout warn">
+    <strong>iPhone も同時に回すなら</strong>
+    <span>iPhone を横向きにして斜めから寄りで撮ると2カメになる。撮り始めに両方のカメラの前で<strong>1回大きく手を叩く</strong>（編集で音と映像を合わせる目印）。置き場所がなければ、無理せず α7 II 1台でOK。</span>
+  </div>
+</section>
+
+<section id="broll">
+  <h2>手元・葉っぱ・風景は手持ちで</h2>
+  <p>お手本の作業パートは「止まっている」か「スーッと少しだけ動く」の2種類だけ。振り回さない。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>撮るもの</th><th>カメラ</th><th>撮り方</th></tr></thead>
+      <tbody>
+        <tr><td>手元・榊の葉</td><td>α7 II</td><td>ズームでなく<strong>自分が近づいて</strong>、背景がボケるくらい寄る</td></tr>
+        <tr><td>風景</td><td>α7 II</td><td>余裕があれば三脚に載せて10秒固定。なければ手持ちでOK</td></tr>
+        <tr><td>歩きながら</td><td>iPhone</td><td>手ブレ補正が強いので iPhone に任せる</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>ブレないコツ</h3>
+  <ul class="plain">
+    <li><strong>両脇をしめて肘を体につける</strong>。木や岩に肩や背中を預けるとさらに安定</li>
+    <li>動かすなら<strong>超ゆっくり</strong>。動かさないのが一番</li>
+    <li><strong>1カット5〜10秒</strong>は回す。使うのは2〜3秒でも、編集でブレの少ない所を選べる</li>
+    <li>望遠側ほどブレが目立つ。手持ちのときはズームは広め</li>
+    <li>α7 II の<strong>手ブレ補正（SteadyShot）がONか</strong>を出発前に確認</li>
+  </ul>
+</section>
+
+<section id="mic">
+  <h2>DJI Mic Mini 2 のつなぎ方</h2>
+  <p>送信機（話す人の胸元）と受信機（カメラ・iPhone側）は<strong>出荷時からペアリング済み</strong>。ケースから出して、両方のランプが<strong>緑に点灯</strong>していればつながっている（緑と青の交互点滅はつなぎ中）。</p>
+
+  <h3>α7 II につなぐ</h3>
+  <ol class="steps">
+    <li>受信機をカメラ上部の金具（シュー）に取り付ける</li>
+    <li>3.5mmケーブルで、受信機とカメラ左側面の端子をつなぐ</li>
+  </ol>
+  <div class="jack">
+    <div><b><i class="dot red"></i>赤</b><span>マイク入力。ケーブルはここ</span></div>
+    <div><b><i class="dot green"></i>緑</b><span>ヘッドホン。イヤホンで音を確認できる</span></div>
+  </div>
+  <p class="note">刺すと自動で外付けマイクに切り替わる（内蔵マイクは切れる）。</p>
+
+  <h3>iPhone（Lightning）につなぐ</h3>
+  <ol class="steps">
+    <li>受信機のクリップを起こすと、下に<strong>金色のピンの接点</strong>がある</li>
+    <li>Lightningアダプターを、<strong>三角マークを合わせて</strong>そこに差し込む</li>
+    <li>iPhone の充電口に差して、カメラアプリの「ビデオ」で録画する（設定不要）</li>
+  </ol>
+  <div class="callout warn">
+    <strong>USB-C の穴ではない</strong>
+    <span>受信機の USB-C の穴は充電用。アダプターは接点の方に付ける。アダプターを付けている間は iPhone を充電できないので、満充電にしておく。</span>
+  </div>
+
+  <h3>送信機のボタン（ケースのフタ裏のシールと同じ）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>操作</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>電源 2秒長押し</td><td>送信機の電源オン／オフ</td></tr>
+        <tr><td>電源 2回押し</td><td>ノイズキャンセルのオン／オフ</td></tr>
+        <tr><td>リンク 2秒長押し</td><td>ペアリングモード（つながらなくなったとき）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">ノイズキャンセルは強くかけると声がこもることがある。山ではまずオフで撮り、風や川の音が気になったときだけオンにする。</p>
+  <p class="note">つながらないとき：両方の電源を入れて、受信機のリンクボタンを長押し → 送信機のリンクボタンを長押し。両方緑に点灯したら完了。</p>
+
+  <h3>本番でのつけ方</h3>
+  <ul class="plain">
+    <li><strong>フサフサ（ウインドスクリーン）は付けたまま</strong>。風の「ボボボ」を防ぐ</li>
+    <li>マイクは胸元、<strong>口から20cmくらい</strong>にクリップで留める</li>
+    <li>服や髪がマイクに当たらないように（擦れる音が一番入りやすい）</li>
+    <li>撮る前に毎回、<strong>CH1 / CH2 のメーターが動いているか</strong>を確認</li>
+  </ul>
+</section>
+
+<section id="sound">
+  <h2>外付けマイクで録れているかの確認</h2>
+  <ul class="plain">
+    <li><strong>別の部屋でささやく</strong>：カメラを置いたまま、送信機を持って別の部屋でささやく。耳元のようにはっきり聞こえればOK</li>
+    <li><strong>マイクを指でこする</strong>：録画中にフサフサを軽くこすって、ガサガサが大きく入っていればOK</li>
+    <li><strong>刺す・抜くで比べる</strong>：同じ声で1本ずつ撮って聞き比べる（11/11 はこれで確認済み）</li>
+  </ul>
+  <p class="note">メーターの目安：普通に話して真ん中から少し右。右端の赤に頻繁に届くなら大きすぎ、ほとんど動かないなら小さすぎ。</p>
+</section>
+
+<section id="charge">
+  <h2>マイクの充電</h2>
+  <p>付属の USB-C ケーブル（両端 USB-C）でケースを充電する。送信機・受信機もケースに入れたままにすれば一緒に充電される。電源は切らなくていい（ケースに入れると自動で切れる）。</p>
+  <div class="leds" aria-label="ケースの白いランプの見かた">
+    <div class="led-row"><div class="lamps"><i class="lamp blink"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i></div><span>25%以下</span></div>
+    <div class="led-row"><div class="lamps"><i class="lamp on"></i><i class="lamp blink"></i><i class="lamp"></i><i class="lamp"></i></div><span>26〜50%</span></div>
+    <div class="led-row"><div class="lamps"><i class="lamp on"></i><i class="lamp on"></i><i class="lamp blink"></i><i class="lamp"></i></div><span>51〜75%</span></div>
+    <div class="led-row"><div class="lamps"><i class="lamp on"></i><i class="lamp on"></i><i class="lamp on"></i><i class="lamp blink"></i></div><span>76〜99%</span></div>
+    <div class="led-row"><div class="lamps"><i class="lamp on"></i><i class="lamp on"></i><i class="lamp on"></i><i class="lamp on"></i></div><span><strong>満充電</strong>（点滅が止まる）</span></div>
+  </div>
+  <p class="note">白いランプ＝ケースの残量。緑のランプ＝中に入っているマイク本体の状態。1時間たっても1個目が点滅のままなら、別の充電器かパソコンの USB-C 端子で試す。</p>
+</section>
+
+<section id="check">
+  <h2>前日（11/13）チェックリスト</h2>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" id="c1"><span>DJI Mic のケース満充電<small>白いランプ4つ点灯</small></span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>送信機・受信機をケースに入れて充電</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>α7 II のバッテリー（予備も全部）</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>iPhone 満充電</span></label></li>
+    <li><label><input type="checkbox" id="c5"><span>SDカードの空き容量</span></label></li>
+    <li><label><input type="checkbox" id="c6"><span>α7 II が XAVC S／24p 50M になっている</span></label></li>
+    <li><label><input type="checkbox" id="c7"><span>持ち物：3.5mmケーブル・Lightningアダプター・フサフサ・有線イヤホン</span></label></li>
+    <li><label><input type="checkbox" id="c8"><span>三脚（スマホ用の軽いもの）<small>カメラのネジが締まるか、センターポールが上がるか</small></span></label></li>
+    <li><label><input type="checkbox" id="c9"><span>α7 II の手ブレ補正（SteadyShot）がON</span></label></li>
+  </ul>
+  <button class="reset" id="reset" type="button">チェックをすべて外す</button>
+</section>
+
+<footer>
+  11/11 機材テスト時のメモ。ケースのランプの見かたは
+  <a href="https://cdn.multitronic.fi/media/5/b/mmo_146035314_1777462245_5895_190.pdf">DJI Mic Mini 2 取扱説明書</a> より。
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var KEY = "sakaki-shoot-checklist";
+  var boxes = document.querySelectorAll("#checklist input");
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { saved = {}; }
+  function save() {
+    var s = {};
+    boxes.forEach(function (b) { s[b.id] = b.checked; });
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  boxes.forEach(function (b) {
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener("change", save);
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    save();
+  });
+})();
+</script>
