@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三重出張 4日間スケジュール</title>
+<style>
+:root{
+  --bg:#f6f3ee; --card:#fff; --ink:#26221d; --sub:#6f675c; --line:#e3dcd0;
+  --d1:#2f6fb3; --d2:#2b8c8c; --d3:#3f8a5a; --d4:#b5452f; --food:#d0811f; --warn:#b5452f; --ok:#3f8a5a;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1a18; --card:#262421; --ink:#eee8de; --sub:#a9a093; --line:#3a3631;
+    --d1:#6aa5e6; --d2:#5cc4c4; --d3:#6cc08a; --d4:#e07a63; --food:#f0a54a; --warn:#e07a63; --ok:#6cc08a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1a18; --card:#262421; --ink:#eee8de; --sub:#a9a093; --line:#3a3631;
+  --d1:#6aa5e6; --d2:#5cc4c4; --d3:#6cc08a; --d4:#e07a63; --food:#f0a54a; --warn:#e07a63; --ok:#6cc08a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:15px}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:28px;margin:0 0 4px}
+h2{font-size:21px;margin:40px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+h3{margin:0 0 6px;font-size:18px}
+.sub{color:var(--sub);margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}}
+.wx > b{font-size:19px;display:block}
+.wx > .w{color:var(--sub);font-size:14px}
+.tag{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;color:#fff;margin-right:6px}
+.t1{background:var(--d1)}.t2{background:var(--d2)}.t3{background:var(--d3)}.t4{background:var(--d4)}
+.day{border-left:6px solid var(--c)}
+.tl{list-style:none;padding:0;margin:8px 0 0}
+.tl li{display:grid;grid-template-columns:4.6em 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:none}
+.tl .t{font-weight:700;color:var(--c);font-variant-numeric:tabular-nums}
+.tl .food{color:var(--food);font-weight:700}
+.tl .rsv{font-weight:700}
+.small{font-size:13px;color:var(--sub)}
+.d{font-size:13px;color:var(--sub);font-weight:400;display:block}
+.note{border-left:4px solid var(--food);background:var(--card);padding:12px 16px;border-radius:8px;margin:12px 0}
+.note.warn{border-color:var(--warn)}
+.ok{color:var(--ok);font-weight:700;white-space:nowrap}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--sub);white-space:nowrap;font-weight:600}
+ul.check{margin:6px 0;padding-left:1.2em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>三重出張 4日間スケジュール</h1>
+<p class="sub">11/12（木）〜11/15（日）。小林様の山で撮影＋伊勢・志摩。観光は平日に寄せ、撮影は天気のいい14日（予備は13日）にしました。宿と電車はすべて予約済みです。</p>
+
+<h2>4日間の考え方</h2>
+<div class="grid4">
+  <div class="card wx"><span class="tag t1">1日目</span><b>11/12（木）</b><span class="w">晴れ　7〜18℃</span>
+  <p>昼に伊勢市に着いて、<b>外宮 → 内宮 → おはらい町・おかげ横丁</b>。平日の午後なので空いています。</p></div>
+  <div class="card wx"><span class="tag t2">2日目</span><b>11/13（金）</b><span class="w">くもり時々晴れ　9〜20℃</span>
+  <p><b>志摩へ日帰り</b>。賢島から船で地中海村へ渡り、ランチと散策。朝は小雨、昼から晴れの予報です。</p></div>
+  <div class="card wx"><span class="tag t3">3日目</span><b>11/14（土）</b><span class="w">くもり　10〜19℃</span>
+  <p><b>山で撮影（第1候補）</b>。山も雨の心配が小さい予報です。夜は向かいのパールピアへ移ります。</p></div>
+  <div class="card wx"><span class="tag t4">4日目</span><b>11/15（日）</b><span class="w">雨　降水60〜80%</span>
+  <p>お土産と、おかげ横丁のやり残しだけ。<b>15:54</b>の近鉄特急で帰ります。</p></div>
+</div>
+<p class="small">天気は11/10時点のウェザーニュースとOpen-Meteoの予報です。13日は山（大台町）だけ午後に小雨の可能性があります。11/11〜12ごろにもう一度確認して、撮影日を決めます。</p>
+
+<h2>予約済みのもの</h2>
+<div class="card tbl">
+<table>
+<tr><th>日付</th><th>内容</th><th>時刻・座席</th><th>料金</th><th>状況</th></tr>
+<tr><td>11/12〜14</td><td>EN HOTEL Ise（2泊）</td><td>伊勢市駅から徒歩4分。チェックイン15:00、チェックアウト10:00</td><td>32,308円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/14〜15</td><td>伊勢パールピアホテル（1泊）</td><td>EN HOTELの向かい側。返金不可</td><td>18,806円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/12</td><td>新幹線 のぞみ245号</td><td>新横浜 9:29 → 名古屋 10:45　12号車・通路側</td><td>10,440円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/12</td><td>近鉄特急 伊勢志摩ライナー</td><td>近鉄名古屋 11:10 → 伊勢市 12:34　1号車・デラックス</td><td>1,660円＋運賃1,740円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/13</td><td>近鉄特急（志摩へ）</td><td>伊勢市 10:31 → 賢島 11:21　1号車12A・デラックス（一人席）</td><td>530円（伊勢志摩チケレス割）＋運賃820円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/13</td><td>海上タクシー（賢島 → 地中海村）</td><td>賢島 12:15発 → 地中海村（約10分）。帰りは地中海村 14:00か15:00発</td><td>片道1,300円＋入村料700円（現金のみ）</td><td>未予約</td></tr>
+<tr><td>11/15</td><td>近鉄特急 アーバンライナー</td><td>伊勢市 15:54 → 近鉄名古屋 17:18　1号車・デラックス</td><td>1,660円＋運賃1,740円</td><td class="ok">予約済み</td></tr>
+<tr><td>11/15</td><td>新幹線 のぞみ268号</td><td>名古屋 17:51 → 新横浜 19:08　13号車・通路側</td><td>10,640円</td><td class="ok">予約済み</td></tr>
+</table>
+</div>
+<p class="small">新幹線はスマートEX（EXアプリ）、近鉄特急は近鉄特急チケットレスサービスで予約。近鉄の運賃1,740円は、当日ICカードで改札を通るときに払います。</p>
+
+<h2>1日目　11/12（木）移動とお伊勢参り</h2>
+<div class="card day" style="--c:var(--d1)">
+<ul class="tl">
+  <li><span class="t">7:51</span><span>浦賀駅を出発（京急の特急。金沢文庫で快特に変わるだけで、横浜まで乗ったまま）</span></li>
+  <li><span class="t">8:43</span><span>横浜からJR横浜線 → 8:55に新横浜着<span class="d">新幹線まで34分の余裕</span></span></li>
+  <li><span class="t">9:29</span><span class="rsv">のぞみ245号（12号車・通路側）→ 10:45 名古屋<span class="d">登録したICカードで新幹線の改札を通る</span></span></li>
+  <li><span class="t">10:45</span><span>近鉄名古屋駅へ乗り換え（約10分）<span class="d">新幹線の中央改札を出る → 中央コンコースを東（桜通口・広小路口のほう）へ → 「近鉄線」の表示に沿って地下へ → ICカードで近鉄の改札に入る</span></span></li>
+  <li><span class="t">11:10</span><span class="rsv">近鉄特急 伊勢志摩ライナー（1号車・デラックス）→ 12:34 伊勢市<span class="d">1号車はホームのいちばん先頭側なので、ホームを2〜3分歩きます</span></span></li>
+  <li><span class="t">12:40</span><span>EN HOTELに荷物を預ける（チェックインは15時から。断られたら伊勢市駅の手荷物預かり所 600円・9:00〜17:30）</span></li>
+  <li><span class="t">13:00</span><span><b>外宮</b>（40分〜1時間）<span class="d">伊勢市駅から歩いて約5分</span></span></li>
+  <li><span class="t">14:00</span><span>外宮前からバスで<b>内宮</b>へ（約15〜20分、500円弱）</span></li>
+  <li><span class="t">14:30</span><span><b>内宮</b>（1〜1.5時間）。参拝は17時まで</span></li>
+  <li><span class="t">16:00</span><span class="food">おはらい町・おかげ横丁<span class="d">17時ごろ閉まる店が多いので、食べたいものを先に。昼ごはんが遅くなる日なので、ここで食べ歩きもあり</span></span></li>
+  <li><span class="t">17:00</span><span>バスで伊勢市駅のほうへ戻り、EN HOTELにチェックイン</span></li>
+</ul>
+</div>
+
+<h2>2日目　11/13（金）志摩へ日帰り</h2>
+<div class="card day" style="--c:var(--d2)">
+<ul class="tl">
+  <li><span class="t">朝</span><span>8〜9時は小雨の予報。ホテルで仕事をして、雨が上がってから出発</span></li>
+  <li><span class="t">10:31</span><span class="rsv">近鉄特急で<b>賢島</b>へ（1号車12A・デラックスの一人席）→ 11:21着<span class="d">特急券は予約済み（530円、伊勢志摩チケレス割）。運賃820円はICカードで払う</span></span></li>
+  <li><span class="t">11:21</span><span>賢島駅のまわりを散歩・カフェ。<b>12:05までに</b>船着き場のEntrada賢島で受付・支払い（現金のみ）</span></li>
+  <li><span class="t">12:15</span><span class="rsv"><b>海上タクシーで地中海村へ</b>（約10分、英虞湾を渡る）<span class="d">片道1,300円＋地中海村の入村料700円。予約制（前日まではネット、当日は電話 0599-52-0888）</span></span></li>
+  <li><span class="t">12:25</span><span class="food">地中海村でランチと散策<span class="d">Rias by Kokotxa はラストオーダー13:00なので着いたらすぐ。Cafe Amigo は9:00〜18:00</span></span></li>
+  <li><span class="t">14:00か15:00</span><span><b>海上タクシーで賢島へ戻る</b>（出航5分前までに桟橋へ）</span></li>
+  <li><span class="t">午後</span><span>余裕があれば、近鉄で鵜方へ（5分・260円）→ タクシーで<b>横山展望台</b>（片道約10分・約1,700円）。ビジターセンターは16:30まで</span></li>
+  <li><span class="t">夕方</span><span>近鉄で伊勢市へ戻り、EN HOTEL泊。夕食は伊勢市駅の近く（海鮮丼なら三幸丸・嘉市を電話で確認）</span></li>
+</ul>
+<div class="note warn"><b>船は天気が悪いと運休します。</b>自己都合のキャンセルには取消料がかかります。タクシーを使う場合、志摩市ではUberは使えないので、帰りの迎えを頼むか、タクシー会社の番号を控えておいてください。</div>
+<p class="small">14日の予報が悪くなったら、この日に山で撮影して、志摩は14日に回します。</p>
+</div>
+
+<h2>3日目　11/14（土）山で撮影</h2>
+<div class="card day" style="--c:var(--d3)">
+<ul class="tl">
+  <li><span class="t">朝</span><span>EN HOTELをチェックアウト（10:00まで）→ 向かいの<b>パールピア</b>のフロントに荷物を預ける</span></li>
+  <li><span class="t">8:17</span><span>山への行き方の例：JRで伊勢市 → 多気（8:39着）→ 特急南紀1号（9:24発）→ <b>三瀬谷 9:47着</b>（1,100円）→ 小林様の車で約20分<span class="d">伊勢市駅で拾ってもらう場合は、車で約52分。どちらにするかは小林様と決める</span></span></li>
+  <li><span class="t">日中</span><span><b>撮影</b>（三重県多気郡大台町神滝233-3）。山の朝は10℃前後なので上着を持っていく</span></li>
+  <li><span class="t">夕方</span><span>伊勢市へ戻り、パールピアにチェックイン</span></li>
+</ul>
+</div>
+
+<h2>4日目　11/15（日）お土産と帰る日（雨）</h2>
+<div class="card day" style="--c:var(--d4)">
+<ul class="tl">
+  <li><span class="t">午前</span><span>パールピアをチェックアウト → フロントに荷物を預ける</span></li>
+  <li><span class="t">10:00</span><span class="food">バスでおはらい町・おかげ横丁へ。昼ごはんとお土産（赤福など）<span class="d">屋根のある店が多いので雨でも回りやすい。日曜は昼から混むので午前のうちに</span></span></li>
+  <li><span class="t">14:00</span><span>伊勢市駅のほうへ戻る。外宮にまだ行っていなければ、駅から歩いて5分</span></li>
+  <li><span class="t">15:20</span><span>パールピアで荷物を受け取る</span></li>
+  <li><span class="t">15:54</span><span class="rsv">近鉄特急 アーバンライナー（1号車・デラックス）→ 17:18 近鉄名古屋</span></li>
+  <li><span class="t">17:18</span><span>JRの名古屋駅へ移動 → 新幹線の改札に入る<span class="d">新幹線まで33分の余裕</span></span></li>
+  <li><span class="t">17:51</span><span class="rsv">のぞみ268号（13号車・通路側）→ 19:08 新横浜</span></li>
+  <li><span class="t">20:20</span><span>JR横浜線と京急で浦賀に着く</span></li>
+</ul>
+<p class="small">持ち歩きたくないお土産は、伊勢市駅や近鉄名古屋駅の売店でも買えます。</p>
+</div>
+
+<h2>電車が遅れたとき</h2>
+<div class="card tbl">
+<table>
+<tr><th>状況</th><th>どうするか</th><th>結果</th></tr>
+<tr><td>行き：京急が30分くらい遅れる</td><td>EXアプリで新幹線を<b>のぞみ343号（新横浜9:37発→名古屋10:54着）</b>に変更</td><td>近鉄11:10発にそのまま間に合う</td></tr>
+<tr><td>行き：名古屋に11:00すぎに着きそう</td><td>新幹線の中で、近鉄特急を<b>11:50発</b>に変更（11:10になる前に）</td><td>伊勢市13:10着。お参りは十分間に合う</td></tr>
+<tr><td>帰り：近鉄特急が遅れる</td><td>EXアプリで新幹線を後ろの便に変更（のぞみ40号 18:20発など）</td><td>新横浜19:37着</td></tr>
+</table>
+</div>
+<div class="note"><b>変更のルール。</b>スマートEXは発車時刻まで何度でも無料（キャンセルは発車前で320円）。近鉄チケットレスは発車時刻まで3回まで無料（キャンセルは220円）。<b>近鉄は乗り遅れると変更もキャンセルもできない</b>ので、遅れそうなら発車前に変えておきます。</div>
+
+<h2>当日のチェックリスト</h2>
+<div class="card">
+<ul class="check">
+  <li><b>ICカード</b>：スマートEXに登録したICカードで新幹線に乗る。近鉄の運賃1,740円×2回分の残高を入れておく</li>
+  <li><b>近鉄の特急券</b>：スクリーンショットや印刷は使えない。車内で聞かれたら、近鉄特急チケットレスにログイン →「特急券の予約状況確認」の画面を見せる</li>
+  <li><b>スマホの充電</b>：特急券の表示と変更に使うので、モバイルバッテリーを持っていく</li>
+  <li><b>上着</b>：山で撮影する日の朝は10℃前後</li>
+  <li><b>傘</b>：15日は雨の予報</li>
+  <li><b>領収書</b>：スマートEXはEXアプリ右上のアカウント →「購入履歴・領収書」（予約した日の翌日から）。近鉄は購入画面の「領収書画面表示」から</li>
+</ul>
+</div>
+
+<h2>まだ残っていること</h2>
+<div class="card">
+<ul class="check">
+  <li>11/13の海上タクシー（賢島12:15発）を予約する。前日まではネット、当日は電話 0599-52-0888。支払いは現金なので、2,000円（船1,300円＋入村料700円）を用意</li>
+  <li>11/13の夕食：伊勢エビの入った海鮮丼があるか、三幸丸（0596-23-0500）か嘉市に電話で確認</li>
+  <li>小林様に連絡：「14日に伺う予定です。天気によっては13日に変えるかもしれません」と、山へ行くときに拾ってもらう場所（三瀬谷駅か伊勢市駅か）</li>
+  <li>帰りの新幹線（11/15）の乗車ICカードが指定されているか、EXアプリの予約一覧で確認</li>
+  <li>11/11〜12ごろに天気予報をもう一度見て、撮影日を決める</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
