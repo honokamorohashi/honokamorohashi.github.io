@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>海外移住SEO戦略 | strategy-career.com</title><style>
+
+  :root {
+    --bg: #FAFAF8; --bg-card: #FFFFFF; --bg-card-alt: #F5F5F2;
+    --text: #1A1A18; --text-muted: #6B6B65; --text-light: #9A9A92;
+    --accent: #2D6A4F; --accent-light: #D8F3DC; --accent-muted: #95D5B2;
+    --warn: #E07A2F; --warn-light: #FFF0E0;
+    --info: #3A6EA5; --info-light: #E0EDF7;
+    --border: #E4E4DF; --border-strong: #C8C8C0;
+    --shadow: rgba(26,26,24,0.06); --radius: 6px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+  .report-header { margin-bottom: 48px; }
+  .report-header .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+  .report-header h1 { font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .report-header .meta { font-size: 13px; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 17px; font-weight: 700; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: inline-block; }
+  .context-box { background: var(--info-light); border-left: 3px solid var(--info); border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; margin-bottom: 32px; }
+  .context-box h3 { font-size: 14px; font-weight: 700; color: var(--info); margin-bottom: 10px; }
+  .context-box p { font-size: 13px; color: var(--text); margin-bottom: 8px; }
+  .context-box p:last-child { margin-bottom: 0; }
+  .context-box strong { font-weight: 600; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  @media (max-width: 640px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: 0 1px 3px var(--shadow); }
+  .kpi-card .kpi-label { font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+  .kpi-card .kpi-value { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .kpi-card .kpi-sub { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+  .kpi-value.accent { color: var(--accent); }
+  .kpi-change { font-size: 12px; margin-top: 4px; font-weight: 600; }
+  .kpi-change.positive { color: var(--accent); }
+  .kpi-change.negative { color: var(--warn); }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 1px 3px var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 13px; }
+  thead th { background: var(--bg-card-alt); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-strong); white-space: nowrap; position: sticky; top: 0; }
+  thead th.num { text-align: right; }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg-card-alt); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.02em; }
+  .tag-a { background: var(--accent-light); color: var(--accent); }
+  .tag-b { background: var(--warn-light); color: var(--warn); }
+  .tag-c { background: var(--info-light); color: var(--info); }
+  .tag-pillar { background: var(--accent); color: #fff; }
+  .pos-good { color: var(--accent); font-weight: 600; }
+  .pos-mid { color: var(--warn); }
+  .pos-low { color: var(--text-light); }
+  .no-data { color: var(--text-light); font-style: italic; }
+  .article-link { color: var(--accent); text-decoration: none; font-size: 12px; line-height: 1.4; display: block; }
+  .article-link:hover { text-decoration: underline; }
+  td.article-title-cell { min-width: 220px; }
+  .change { font-size: 11px; display: block; margin-top: 2px; }
+  .change.up { color: var(--accent); }
+  .change.down { color: var(--warn); }
+  .change.flat { color: var(--text-light); }
+  .change.new { color: var(--info); font-weight: 600; }
+  .pub-date { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 640px) { .insight-grid { grid-template-columns: 1fr; } }
+  .insight-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .insight-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .insight-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .insight-card .highlight { color: var(--accent); font-weight: 600; }
+  .timeline-note { background: var(--bg-card-alt); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
+  .timeline-note h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .timeline-bar { display: flex; align-items: stretch; height: 32px; border-radius: 4px; overflow: hidden; margin-bottom: 12px; font-size: 10px; font-weight: 600; letter-spacing: 0.02em; }
+  .timeline-bar .phase { display: flex; align-items: center; justify-content: center; color: #fff; white-space: nowrap; padding: 0 8px; }
+  .phase-index { background: var(--accent-muted); flex: 1; }
+  .phase-settle { background: var(--warn); opacity: 0.8; flex: 2; }
+  .phase-stable { background: var(--accent); flex: 3; }
+  .timeline-labels { display: flex; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .timeline-labels span { flex: 1; }
+  .timeline-labels span:nth-child(2) { flex: 2; text-align: center; }
+  .timeline-labels span:last-child { flex: 3; text-align: right; }
+  .footer-note { font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); padding-top: 20px; margin-top: 48px; }
+  @media print {
+    body { font-size: 11px; }
+    .container { max-width: 100%; padding: 0; }
+    table { font-size: 10px; }
+    td.article-title-cell { min-width: 0; max-width: 180px; }
+    .article-link { font-size: 9px; word-break: break-all; }
+    th.num, td.num { padding: 4px 6px; white-space: nowrap; }
+    @page { size: A4; margin: 9mm 10mm; }
+    html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { page-break-inside: auto; }
+    .section-title, h3, h4 { break-after: avoid; page-break-after: avoid; }
+    tr, .kpi-card, .chart-card, .context-box { break-inside: avoid; page-break-inside: avoid; }
+    .footer-note { margin-top: 10px !important; padding-top: 8px !important; break-before: avoid; }
+  }
+
+
+  .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 16px 8px; margin-bottom: 16px; }
+  .chart-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .chart-card .note { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .legend-dot { display:inline-block; width:10px; height:10px; border-radius:2px; vertical-align:-1px; margin-right:4px; }
+  .warn-box { background: var(--warn-light); border-left: 3px solid var(--warn); border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; margin-bottom: 24px; }
+  .warn-box h3 { font-size: 14px; font-weight: 700; color: var(--warn); margin-bottom: 10px; }
+  .warn-box p, .warn-box li { font-size: 13px; margin-bottom: 6px; }
+  .warn-box ul { padding-left: 18px; }
+  .sub { font-size: 11px; color: var(--text-light); font-weight: 400; }
+  .action-list { counter-reset: a; list-style: none; }
+  .action-list li { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px 14px 52px; margin-bottom: 10px; position: relative; font-size: 13px; }
+  .action-list li::before { counter-increment: a; content: counter(a); position: absolute; left: 16px; top: 13px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 12px; text-align: center; line-height: 24px; }
+  .action-list li strong { display: block; margin-bottom: 2px; }
+  .action-list li span { color: var(--text-muted); }
+  .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } .container { padding: 24px 16px 60px; } }
+  .tag { white-space: nowrap; }
+  footer { font-size: 11px; color: var(--text-light); border-top: 1px solid var(--border); padding-top: 16px; margin-top: 40px; }
+
+  .section h3{color:var(--text);} @media print{ .section-title,.section h3{break-after:avoid;page-break-after:avoid;} .section-title + *{break-before:avoid;} } @media print{ .section{break-inside:auto;} .insight-card,.action-list li,tr{break-inside:avoid;} }
+
+.hero{background:var(--bg-card);border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:var(--radius);padding:28px 28px 24px;margin-bottom:44px;box-shadow:0 1px 3px var(--shadow)}
+.hero-lead{font-size:19px;font-weight:700;line-height:1.6;margin-bottom:22px}
+.hero-lead strong{color:var(--accent)}
+.goal-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.goal{background:var(--accent-light);border-radius:var(--radius);padding:14px 16px}
+.goal-label{font-size:12px;color:var(--accent);font-weight:600}
+.goal-value{font-size:30px;font-weight:800;color:var(--accent);line-height:1.3}
+.goal-value span{font-size:14px;font-weight:600;margin-left:3px}
+.goal-sub{font-size:11px;color:var(--text-muted)}
+.gap{display:grid;grid-template-columns:1.25fr 36px 1fr;align-items:stretch}
+.gap-col{border-radius:var(--radius);padding:16px 18px}
+.gap-col.them{background:var(--bg-card-alt);border:1px solid var(--border)}
+.gap-col.us{background:var(--info-light);border:1px solid #c5d9ec}
+.gap-col.do{background:var(--accent);color:#fff}
+.gap-h{font-size:13px;font-weight:700;margin-bottom:10px}
+.gap-col ul{list-style:none}
+.gap-col li{margin-bottom:9px;font-size:13px}
+.gap-col li b{display:block}
+.gap-col li span{font-size:11.5px;color:var(--text-muted)}
+.gap-col.do li{font-size:14px;margin-bottom:12px}
+.gap-arrow{display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);font-weight:700}
+.main-label{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);padding:3px 12px;border-radius:12px;margin-bottom:12px}
+.sub-label{background:var(--text-muted);margin-top:24px}
+.measures{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.measure{background:var(--bg-card);border:2px solid var(--accent);border-radius:8px;padding:20px 18px;position:relative}
+.m-num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:17px;text-align:center;line-height:34px;margin-bottom:10px}
+.m-title{font-size:17px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.m-body{font-size:12.5px;color:var(--text-muted);line-height:1.7}
+.subs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.subm{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;font-size:13px}
+.subm b{display:block;margin-bottom:2px}
+.subm span{font-size:11.5px;color:var(--text-muted)}
+.browser{border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 2px 8px var(--shadow)}
+.browser-bar{background:#ECECE8;padding:8px 12px;display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:#C8C8C0;display:inline-block}
+.browser-bar span{margin-left:10px;background:#fff;padding:2px 12px;border-radius:10px}
+.wf{padding:18px 22px 22px}
+.wf-hero{background:linear-gradient(120deg,#2D6A4F,#52a07a);color:#fff;border-radius:6px;padding:22px 24px;margin-bottom:18px}
+.wf-site{font-size:12px;opacity:.85;letter-spacing:.08em}
+.wf-catch{font-size:16px;font-weight:700;line-height:1.6;margin:6px 0 12px}
+.wf-search{background:#fff;color:var(--text-light);font-size:12px;padding:7px 12px;border-radius:4px;width:60%}
+.wf-h{font-size:13px;font-weight:700;margin:16px 0 8px;border-left:3px solid var(--accent);padding-left:8px}
+.wf-grid8{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.wf-grid8 div{background:var(--accent-light);border-radius:4px;text-align:center;font-size:11.5px;font-weight:600;padding:16px 2px;color:var(--accent)}
+.wf-more{font-size:11px;color:var(--accent);text-align:right;margin-top:4px}
+.wf-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.wf-grid4 div{border:1px solid var(--border);border-radius:4px;font-size:12px;font-weight:600;padding:12px;line-height:1.4}
+.wf-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.wf-steps div{background:var(--bg-card-alt);border-radius:4px;font-size:12px;padding:10px;text-align:center}
+.wf-steps b{display:block;color:var(--accent);font-size:16px}
+.wf-two{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin-top:16px}
+.wf-author{display:flex;gap:12px;align-items:center;border:1px solid var(--border);border-radius:4px;padding:12px;font-size:11.5px;line-height:1.6}
+.wf-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent-muted);flex:none}
+.wf-stu{background:var(--info-light);border-radius:4px;padding:12px;font-size:11.5px;line-height:1.6}
+.wf-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wf-grid3 div{height:46px;background:var(--bg-card-alt);border-radius:4px}
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.phase{border-radius:8px;padding:16px;background:var(--bg-card);border:1px solid var(--border);display:flex;flex-direction:column}
+.ph-time{font-size:17px;font-weight:800;padding-bottom:8px;margin-bottom:10px;border-bottom:3px solid}
+.ph-time span{font-size:11px;font-weight:500;color:var(--text-muted);margin-left:8px}
+.p1 .ph-time{border-color:var(--accent-muted)} .p2 .ph-time{border-color:#52a07a} .p3 .ph-time{border-color:var(--accent)}
+.phase ul{padding-left:16px;font-size:12.5px;flex:1}
+.phase li{margin-bottom:6px}
+.ph-goal{margin-top:10px;background:var(--accent-light);color:var(--accent);border-radius:4px;padding:8px 10px;font-size:12.5px;font-weight:600}
+.flow{display:flex;align-items:stretch;gap:6px}
+.flow-box{flex:1;border-radius:6px;padding:12px;background:var(--bg-card-alt);text-align:center;font-size:11.5px;color:var(--text-muted)}
+.flow-box b{display:block;font-size:14px;color:var(--text);margin-bottom:4px}
+.flow-box.mid{background:var(--accent-light)} .flow-box.mid b{color:var(--accent)}
+.flow-box.end{background:var(--accent);color:#D8F3DC} .flow-box.end b{color:#fff}
+.flow-arrow{display:flex;align-items:center;color:var(--accent);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.kpis div{border:1px solid var(--border);border-radius:4px;padding:10px;font-size:12px;background:var(--bg-card)}
+.kpis b{display:block;margin-bottom:3px}
+.kpis span{font-size:11px;color:var(--text-muted)}
+.appendix{margin-top:56px;padding-top:28px;border-top:2px dashed var(--border-strong)}
+.appendix-h{font-size:16px;font-weight:700;color:var(--text-muted);margin-bottom:6px}
+.ah3{font-size:14px;margin:22px 0 10px}
+@media (max-width:700px){.goal-row,.measures,.subs,.road,.kpis{grid-template-columns:1fr}.gap{grid-template-columns:1fr}.gap-arrow{transform:rotate(90deg);height:30px}.flow{flex-direction:column}.flow-arrow{justify-content:center;transform:rotate(90deg)}.wf-grid8{grid-template-columns:repeat(4,1fr)}.wf-grid4,.wf-steps{grid-template-columns:repeat(2,1fr)}.wf-two{grid-template-columns:1fr}}
+@media print{.hero,.gap,.measures,.subs,.road,.flow,.kpis,.browser,svg{break-inside:avoid}.section-title,.ah3,.appendix-h{break-after:avoid} .appendix{break-before:page} .pb{break-before:page} .keep{break-inside:avoid}}
+</style></head><body><div class="container">
+<div class="report-header"><div class="eyebrow">SEO Strategy</div><h1>海外移住.comに並ぶサイトへ｜strategy-career.com SEO戦略</h1></div>
+
+<!-- ===== 結論 ===== -->
+<div class="hero">
+<div class="hero-lead">海外移住.comとの差は、記事の本数ではなく<strong>「サイトの作り」</strong>です。<br>記事ひとつひとつでは、すでに上回っているところがあります。</div>
+<div class="goal-row">
+<div class="goal"><div class="goal-label">12か月後のゴール</div><div class="goal-value">月7,000<span>訪問</span></div><div class="goal-sub">海外移住.comと同じ規模</div></div>
+<div class="goal"><div class="goal-label">「海外移住」の順位</div><div class="goal-value">5位<span>以内</span></div><div class="goal-sub">海外移住.comは4位</div></div>
+<div class="goal"><div class="goal-label">1訪問で読まれるページ</div><div class="goal-value">2.5<span>ページ</span></div><div class="goal-sub">海外移住.comは約2.9</div></div>
+</div>
+</div>
+
+<!-- ===== 差分 ===== -->
+<div class="section"><div class="section-title">海外移住.comとの差</div>
+<div class="gap">
+<div class="gap-col them"><div class="gap-h">海外移住.comにあって、自社にないもの</div>
+<ul><li><b>トップページが「海外移住」の総合入口</b><span>国一覧・ランキング・準備の手順が1画面に</span></li>
+<li><b>国ごとの厚み</b><span>主要20か国は、ビザ・費用・学校・医療など1国13ページ</span></li>
+<li><b>ページからページへ回る作り</b><span>国→項目→別の国へと読み進められる</span></li></ul></div>
+<div class="gap-arrow">→</div>
+<div class="gap-col do"><div class="gap-h">だから、やること</div>
+<ul><li><b>① トップページを総合入口に作り替える</b></li><li><b>② ヨーロッパの国別ハブを作る</b></li><li><b>③ ランキング→国→手続きの導線を張る</b></li></ul></div>
+</div>
+<div class="gap" style="margin-top:12px">
+<div class="gap-col us"><div class="gap-h">自社にあって、海外移住.comにないもの</div>
+<ul><li><b>ヨーロッパ・永住権・治安のランキングで上位</b><span>「ヨーロッパ 住みやすい国ランキング」2位、「治安がいい国ランキング」5位（海外移住.comは圏外・11位）</span></li>
+<li><b>新しいデータ</b><span>海外移住.comの国別データは2017年の統計のまま</span></li>
+<li><b>移住した本人が書いている</b><span>「海外移住」上位のサイトに、体験者が書いたページは1つもない</span></li></ul></div>
+<div class="gap-arrow">→</div>
+<div class="gap-col do"><div class="gap-h">だから、伸ばすこと</div>
+<ul><li><b>勝っているランキングを毎年更新する</b></li><li><b>土居さんの経歴と受講生の事例を、サイト全体で見せる</b></li></ul></div>
+</div>
+</div>
+
+<!-- ===== 施策 ===== -->
+<div class="section pb"><div class="section-title">やること</div>
+<div class="main-label">メイン施策</div>
+<div class="measures">
+<div class="measure"><div class="m-num">1</div><div class="m-title">トップページを<br>「海外移住の総合入口」に</div><div class="m-body">新着記事の一覧から、国・ランキング・準備の手順・書き手から探せる入口へ。「海外移住」の1語（月約1.4万回検索）を取りにいく中心のページにします。</div></div>
+<div class="measure"><div class="m-num">2</div><div class="m-title">ヨーロッパの<br>国別ハブ</div><div class="m-body">オランダ・ポルトガル・イギリス・スイス・フランス・ドイツ・イタリア・スペイン。1国ごとに、住む方法（ビザ）・費用・永住権・暮らし・教育・体験談をまとめます。</div></div>
+<div class="measure"><div class="m-num">3</div><div class="m-title">ランキングから<br>国・手続きへの導線</div><div class="m-body">いま検索の入口になっているランキング記事から、各国のハブへ、ハブから手続きの記事へ。1回の訪問で何ページも読まれる流れを作ります。</div></div>
+</div>
+<div class="main-label sub-label">サブ施策</div>
+<div class="subs">
+<div class="subm"><b>同じテーマの記事をまとめる</b><span>費用・教育移住・持ち物などを1本ずつに</span></div>
+<div class="subm"><b>ランキングを毎年更新</b><span>「2027年版」として新しいデータで出し直す</span></div>
+<div class="subm"><b>書き手の見せ方</b><span>全記事に著者欄、プロフィールと実績ページを充実</span></div>
+<div class="subm"><b>SNS・YouTubeから記事へ</b><span>投稿や動画の説明欄から関連記事へリンク</span></div>
+<div class="subm"><b>新しいテーマ</b><span>日本人の海外移住先ランキング（最新の在留邦人統計）など</span></div>
+<div class="subm"><b>計測を揃える</b><span>プロフィール・YouTube・LINEへの移動を記録</span></div>
+</div>
+</div>
+
+<!-- ===== サイト構造 ===== -->
+<div class="section"><div class="section-title">サイトの作りの変え方</div>
+<svg viewBox="0 0 880 400" style="width:100%;height:auto;display:block" role="img" aria-label="サイト構造の今とこれから">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#95D5B2"/></marker></defs>
+<!-- before -->
+<rect x="0" y="0" width="300" height="400" rx="8" fill="#F5F5F2"/>
+<text x="150" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#6B6B65">いま</text>
+<rect x="60" y="52" width="180" height="44" rx="6" fill="#fff" stroke="#C8C8C0"/>
+<text x="150" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#1A1A18">トップページ</text>
+<text x="150" y="88" text-anchor="middle" font-size="11" fill="#6B6B65">新着記事の一覧</text>
+<g font-size="11" fill="#1A1A18">
+<rect x="22" y="140" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="60" y="161" text-anchor="middle">治安ランキング</text>
+<rect x="112" y="128" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="150" y="149" text-anchor="middle">スイス移住</text>
+<rect x="202" y="146" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="240" y="167" text-anchor="middle">住民票</text>
+<rect x="40" y="208" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="78" y="229" text-anchor="middle">教育移住</text>
+<rect x="140" y="196" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="178" y="217" text-anchor="middle">費用</text>
+<rect x="196" y="250" width="82" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="237" y="271" text-anchor="middle">オランダ移住</text>
+<rect x="22" y="268" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="60" y="289" text-anchor="middle">物価ランキング</text>
+<rect x="110" y="300" width="76" height="34" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="148" y="321" text-anchor="middle">年金</text>
+</g>
+<text x="150" y="372" text-anchor="middle" font-size="12" fill="#6B6B65">記事がそれぞれ単独で検索に出ている</text>
+<!-- arrow -->
+<text x="320" y="210" font-size="30" fill="#2D6A4F">→</text>
+<!-- after -->
+<rect x="360" y="0" width="520" height="400" rx="8" fill="#D8F3DC" fill-opacity="0.45"/>
+<text x="620" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#2D6A4F">これから</text>
+<rect x="510" y="48" width="220" height="50" rx="6" fill="#2D6A4F"/>
+<text x="620" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">トップページ</text>
+<text x="620" y="88" text-anchor="middle" font-size="11" fill="#D8F3DC">海外移住の総合入口</text>
+<g stroke="#95D5B2" stroke-width="2" fill="none" marker-end="url(#ah)">
+<path d="M560,98 L430,140"/><path d="M600,98 L560,140"/><path d="M640,98 L690,140"/><path d="M680,98 L815,140"/></g>
+<g font-size="12" font-weight="700" fill="#1A1A18">
+<rect x="372" y="142" width="116" height="40" rx="5" fill="#fff" stroke="#2D6A4F"/><text x="430" y="167" text-anchor="middle">国から探す</text>
+<rect x="502" y="142" width="116" height="40" rx="5" fill="#fff" stroke="#2D6A4F"/><text x="560" y="167" text-anchor="middle">ランキングで比べる</text>
+<rect x="632" y="142" width="116" height="40" rx="5" fill="#fff" stroke="#2D6A4F"/><text x="690" y="167" text-anchor="middle">準備の手順</text>
+<rect x="762" y="142" width="108" height="40" rx="5" fill="#fff" stroke="#2D6A4F"/><text x="816" y="167" text-anchor="middle">書き手・実績</text>
+</g>
+<g stroke="#95D5B2" stroke-width="2" fill="none" marker-end="url(#ah)"><path d="M430,182 L430,214"/><path d="M560,182 L470,224"/></g>
+<rect x="372" y="216" width="246" height="48" rx="6" fill="#fff" stroke="#2D6A4F" stroke-width="1.5"/>
+<text x="495" y="237" text-anchor="middle" font-size="13" font-weight="700" fill="#2D6A4F">国別ハブ（例：オランダ移住）</text>
+<text x="495" y="254" text-anchor="middle" font-size="10.5" fill="#6B6B65">英・仏・独・伊・西・葡・蘭・スイス</text>
+<g stroke="#95D5B2" stroke-width="1.5" fill="none"><path d="M410,264 L410,290"/><path d="M495,264 L495,290"/><path d="M580,264 L580,290"/></g>
+<g font-size="11" fill="#1A1A18">
+<rect x="372" y="292" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="410" y="311" text-anchor="middle">住む方法</text>
+<rect x="457" y="292" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="495" y="311" text-anchor="middle">費用</text>
+<rect x="542" y="292" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="580" y="311" text-anchor="middle">永住権</text>
+<rect x="372" y="330" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="410" y="349" text-anchor="middle">暮らし</text>
+<rect x="457" y="330" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="495" y="349" text-anchor="middle">教育</text>
+<rect x="542" y="330" width="76" height="30" rx="4" fill="#fff" stroke="#E4E4DF"/><text x="580" y="349" text-anchor="middle">体験談</text>
+</g>
+<g stroke="#95D5B2" stroke-width="2" fill="none" marker-end="url(#ah)"><path d="M690,182 L690,214"/></g>
+<rect x="632" y="216" width="238" height="48" rx="6" fill="#fff" stroke="#2D6A4F" stroke-width="1.5"/>
+<text x="751" y="237" text-anchor="middle" font-size="13" font-weight="700" fill="#2D6A4F">手続き・お金</text>
+<text x="751" y="254" text-anchor="middle" font-size="10.5" fill="#6B6B65">住民票・年金・保険・税金・持ち物</text>
+<text x="751" y="300" text-anchor="middle" font-size="11.5" fill="#1A1A18">どの記事からも</text>
+<text x="751" y="318" text-anchor="middle" font-size="11.5" fill="#1A1A18">「次に読む記事」へ進める</text>
+<text x="620" y="384" text-anchor="middle" font-size="12" fill="#2D6A4F">サイト全体が「海外移住の網羅」としてGoogleに伝わる</text>
+</svg>
+</div>
+
+<!-- ===== トップページ イメージ ===== -->
+<div class="section"><div class="section-title">トップページのイメージ</div>
+<div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>strategy-career.com</span></div>
+<div class="wf">
+<div class="wf-hero"><div class="wf-site">海外移住ミライ地図</div><div class="wf-catch">好きな国で、自分の事業で生きる。<br>海外移住の方法・費用・永住権を、国ごとにまとめています。</div><div class="wf-search">国名やキーワードで探す</div></div>
+<div class="wf-h">国から探す</div>
+<div class="wf-grid8"><div>オランダ</div><div>ポルトガル</div><div>イギリス</div><div>スイス</div><div>フランス</div><div>ドイツ</div><div>イタリア</div><div>スペイン</div></div>
+<div class="wf-more">アジア・その他の国 ›</div>
+<div class="wf-h">ランキングで比べる</div>
+<div class="wf-grid4"><div>ヨーロッパで<br>住みやすい国</div><div>治安が<br>いい国</div><div>永住権が<br>取りやすい国</div><div>物価が<br>安い国</div></div>
+<div class="wf-h">移住の準備を、順番に</div>
+<div class="wf-steps"><div><b>1</b>国を選ぶ</div><div><b>2</b>住む方法（ビザ）</div><div><b>3</b>費用とお金</div><div><b>4</b>出国前の手続き</div></div>
+<div class="wf-two"><div class="wf-author"><div class="wf-avatar"></div><div><b>このサイトの書き手｜土居正英</b><br>スイス・イギリスに10年。イギリスで2社を経営し、永住権を取得。</div></div><div class="wf-stu"><b>受講生の移住先</b><br>オランダ・フランス・スペイン・オーストリア・アメリカ ほか</div></div>
+<div class="wf-h">新着記事</div>
+<div class="wf-grid3"><div></div><div></div><div></div></div>
+</div></div>
+<p class="sub" style="margin-top:8px">配置のイメージです。デザインは今のサイトの色と雰囲気に合わせて作ります。</p>
+</div>
+
+<!-- ===== ロードマップ ===== -->
+<div class="section"><div class="section-title">ロードマップ</div>
+<div class="road">
+<div class="phase p1"><div class="ph-time">〜3か月<span>2027年2月</span></div><ul><li>トップページの作り替え</li><li>国別ハブ 4か国<br><span class="sub">オランダ・ポルトガル・イギリス・スイス</span></li><li>ランキングからの導線</li><li>同じテーマの記事をまとめる</li></ul><div class="ph-goal">月2,000訪問<br>「海外移住」20位以内</div></div>
+<div class="phase p2"><div class="ph-time">〜6か月<span>2027年5月</span></div><ul><li>国別ハブ 残り4か国<br><span class="sub">フランス・ドイツ・イタリア・スペイン</span></li><li>ランキングの2027年版</li><li>日本人の海外移住先ランキング</li><li>SNS・YouTubeからの導線</li></ul><div class="ph-goal">月4,000訪問<br>「海外移住」10位以内</div></div>
+<div class="phase p3"><div class="ph-time">〜12か月<span>2027年11月</span></div><ul><li>国別ハブを受講生の事例で厚く</li><li>アジア・英語圏の扱いを広げる</li><li>外部メディアへの寄稿・取材</li></ul><div class="ph-goal"><b>月7,000訪問</b><br><b>「海外移住」5位以内</b></div></div>
+</div>
+</div>
+
+<!-- ===== SEOのゴール ===== -->
+<div class="section"><div class="section-title">SEOのゴールは、リストではなく「入口と信頼」</div>
+<div class="flow">
+<div class="flow-box"><b>SEO</b><span>まだ土居さんを<br>知らない人</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box mid"><b>入口</b><span>「海外移住」で<br>最初に出会う</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box mid"><b>信頼</b><span>名前やテーマで調べると<br>専門サイトとして出てくる</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box end"><b>SNS・YouTube・LINE</b><span>関係が深まり、<br>登録・相談へ</span></div>
+</div>
+<p style="font-size:13px;margin:14px 0">SEOで来る人は、国や費用を調べている情報集めの段階です。登録や相談はSNS・YouTube・LINEで関係が深まってから起きるので、SEOの成果はリスト数ではなく、次の指標で見ます。GoogleのAIによる概要やChatGPTが出典に選ぶのも、テーマを網羅していて信頼できるサイトです。</p>
+<div class="kpis">
+<div><b>指名以外の検索からのクリック</b><span>土居さんを知らない人がどれだけ来たか</span></div>
+<div><b>1ページ目に出ているキーワードの数</b><span>入口の広さ</span></div>
+<div><b>1訪問で読まれるページ数</b><span>サイトとしての信頼・回遊</span></div>
+<div><b>プロフィール・YouTube・Instagramへの移動</b><span>SNSとの関係につながったか</span></div>
+<div><b>指名検索（土居正英）の数</b><span>知られた結果、名前で調べる人が増えたか</span></div>
+</div>
+</div>
+
+<!-- ===== 判断 ===== -->
+<div class="section keep"><div class="section-title">判断していただきたいこと</div>
+<ol class="action-list">
+<li><strong>アジア・英語圏の国をどこまで扱うか</strong><span>「国名＋移住」の検索の多くはタイ・マレーシア・オーストラリアなどです。まずヨーロッパの国別ハブを固め、アジア・英語圏は今ある記事の更新にとどめる案を推奨します。</span></li>
+<li><strong>トップページの作り替え</strong><span>上のイメージの方向で進めてよいか。</span></li>
+<li><strong>同じテーマの記事をまとめること</strong><span>複数の記事を1本にまとめ、古いURLは新しい記事へ転送します。</span></li>
+</ol>
+</div>
+
+<div class="appendix"><div class="appendix-h">参考データ（裏付け）</div>
+<h3 class="ah3">A. 「海外移住」の検索市場（月間検索数・推定）</h3><div class="table-wrap"><table><thead><tr><th>テーマ</th><th class="num">月間検索数（推定）</th><th>代表的な語（月間）</th></tr></thead><tbody>
+<tr><td>国名＋移住（アジア・英語圏）</td><td class="num">約45,100</td><td>タイ移住 9,680／マレーシア移住 6,480／オーストラリア移住・アメリカ移住 各3,520</td></tr>
+<tr><td>「海外移住」そのもの</td><td class="num">約20,200</td><td>海外移住 14,480／海外移住 おすすめ 4,320</td></tr>
+<tr><td>ランキング・国選び</td><td class="num">約9,200</td><td>治安がいい国ランキング 3,520／永住権 取りやすい国 1,520／物価が安い国 1,280</td></tr>
+<tr><td>国名＋移住（ヨーロッパ）</td><td class="num">約7,100</td><td>オランダ移住 1,520／スイス移住・ポルトガル移住 各1,040</td></tr>
+<tr><td>仕事・年代・教育</td><td class="num">約5,700</td><td>海外移住 仕事 1,920／教育移住 1,920／老後 海外移住 800</td></tr>
+<tr><td>手続き・お金</td><td class="num">約3,500</td><td>海外移住 年金 1,520／税金 704／住民票 472</td></tr>
+<tr><td><strong>合計</strong></td><td class="num"><strong>約90,800</strong></td><td class="sub">このほか「◯◯に住むには」「日本より治安がいい国」のような長い語が、上の数倍あります</td></tr>
+</tbody></table></div>
+<h3 class="ah3">B. 海外移住.comと自社の比較</h3><div class="table-wrap"><table><thead><tr><th>指標</th><th>海外移住.com</th><th>自社（海外移住ミライ地図）</th></tr></thead><tbody>
+<tr><td>運営</td><td>2014年〜。メディア運営会社（探偵・セブ留学のポータルも運営）</td><td>2026年6月から記事投稿</td></tr>
+<tr><td>ページ数</td><td>約1,290（ブログ964・国別ページ290・ランキングほか）</td><td>記事122本</td></tr>
+<tr><td>月間訪問数</td><td>約6,900（Similarweb推定・10月）</td><td>969セッション（GA4実測・10月）</td></tr>
+<tr><td>日本国内のサイト順位（Similarweb）</td><td>約15.8万位</td><td>約46.9万位</td></tr>
+<tr><td>1訪問あたりのページ数</td><td class="pos-good">2.89</td><td>1.29（GA4では1人あたり1.44）</td></tr>
+<tr><td>平均滞在時間</td><td class="pos-good">1分43秒</td><td>56秒</td></tr>
+<tr><td>「海外移住」</td><td class="pos-good">4位（トップページ）</td><td>20位圏外</td></tr>
+<tr><td>「海外移住 ランキング」</td><td class="pos-good">1位</td><td>12位</td></tr>
+<tr><td>「海外移住 おすすめ 国 ランキング」</td><td class="pos-good">3位</td><td>9位</td></tr>
+<tr><td>「海外移住 おすすめ」</td><td>8位</td><td>15位</td></tr>
+<tr><td>「治安がいい国ランキング」</td><td>11位</td><td class="pos-good">5位</td></tr>
+<tr><td>「ヨーロッパ 住みやすい国ランキング」</td><td>圏外</td><td class="pos-good">2位</td></tr>
+<tr><td>「アジア 住みやすい国」</td><td>13位</td><td class="pos-good">3位</td></tr>
+<tr><td>「永住権 取りやすい国」「ヨーロッパ 移住」</td><td>圏外</td><td class="pos-good">各8位</td></tr>
+<tr><td>「海外移住 健康保険」</td><td>圏外</td><td class="pos-good">6位</td></tr>
+<tr><td>カナダ・豪・NZ・マレーシア・タイ・フィリピン・シンガポール・アメリカ＋移住</td><td>8か国とも圏外</td><td>8か国とも圏外</td></tr>
+<tr><td>更新状況</td><td>国別データは2017年の外務省統計のまま。2019年以降の記事は、ほぼカナダ在住者の日記（月5本前後）</td><td>月13〜15本の新規記事</td></tr>
+</tbody></table></div>
+<p class="sub" style="margin-top:6px">順位はGoogle検索（日本・上位20位）を11/17に確認。海外移住.comの訪問数はSimilarwebの推定、自社はGA4の実測です。</p>
+<h3 class="ah3">C. 「海外移住」で上位にいるほかのサイト</h3><div class="table-wrap"><table><thead><tr><th>サイト</th><th>何で稼いでいるか</th><th>移住の記事</th><th>書き手</th></tr></thead><tbody>
+<tr><td>GLOBAL COMPASS（SMBC信託銀行）</td><td>デビットカード・外貨口座・送金</td><td>約5本。上位は約1.4万字のまとめ1本</td><td>FPの実名署名</td></tr>
+<tr><td>Digima〜出島〜</td><td>海外進出の支援企業の紹介</td><td>ほぼ1本（「2026年最新版」のまとめ）</td><td>編集部</td></tr>
+<tr><td>Wise</td><td>海外送金サービス</td><td>73本（国別ビザ・出国前の手続き・ワーホリ）</td><td>署名あり（体験者ではない）</td></tr>
+<tr><td>CREX</td><td>成果報酬型の広告</td><td>51本。上位は約2.4万字の「ランキング15選」</td><td>法人名義の監修</td></tr>
+<tr><td>AOM Visa Consulting</td><td>投資家ビザの申請代行</td><td>移住関連45本</td><td>代表の大使館勤務経歴を前面に</td></tr>
+<tr><td>ファイナンシャルフィールド</td><td>広告</td><td>「海外移住」54本（お金の切り口）</td><td>編集部</td></tr>
+<tr><td>留学ワールド（DEOW）</td><td>留学エージェント</td><td>1本（留学から移住を目指す方法）</td><td>表示なし</td></tr>
+<tr><td>海外移住.com</td><td>広告</td><td>国別約290ページ＋体験談ブログ</td><td>表示なし</td></tr>
+</tbody></table></div>
+<p class="sub" style="margin-top:6px">上位の多くは、銀行・送金・広告などのサービスへ案内するための「まとめ記事1本」で、移住した本人が書いたページはありません。</p>
+</div>
+<footer><p>データ：Google Search Console、Google アナリティクス4、Google検索の順位（2026/11/17）、Similarweb（2026年10月の推定値）、aramakijake（月間検索数のGoogle推定値）、各サイトのサイトマップと本文。</p></footer>
+</div></body></html>
